@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let requestFactory = RequestFactory()
     
     override func viewDidLoad() {
@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         signin()
         login()
         logout()
+        
+        getCategoryGoods()
+        getGoodById()
     }
     
     func login() {
@@ -73,6 +76,30 @@ class ViewController: UIViewController {
                             card: "9872389-2424-234224-234",
                             bio: "This is good! I think I will switch to another language")
         auth.changeUserData(data: data) { response in
+            switch response.result {
+            case .success(let login):
+                print(login)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getCategoryGoods() {
+        let catalog = requestFactory.makeCatalogRequestFatory()
+        catalog.getGoods(page: 1, category: 1) { response in
+            switch response.result {
+            case .success(let login):
+                print(login)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getGoodById() {
+        let catalog = requestFactory.makeCatalogRequestFatory()
+        catalog.getGood(by: 123) { response in
             switch response.result {
             case .success(let login):
                 print(login)
