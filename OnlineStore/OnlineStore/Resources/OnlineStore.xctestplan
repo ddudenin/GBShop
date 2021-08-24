@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "8FCA919C-82F2-46BD-816F-004029F4B2B2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OnlineStore.xcodeproj",
+      "identifier" : "0AEA84AB26BA686900D4DF77",
+      "name" : "OnlineStore"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OnlineStore.xcodeproj",
+        "identifier" : "0AEA84C126BA686B00D4DF77",
+        "name" : "OnlineStoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:OnlineStore.xcodeproj",
+        "identifier" : "0AEA84CC26BA686B00D4DF77",
+        "name" : "OnlineStoreUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

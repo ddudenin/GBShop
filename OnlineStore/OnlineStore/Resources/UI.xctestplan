@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "E921CD26-E4D9-4669-97A0-E6A369B09D39",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OnlineStore.xcodeproj",
+        "identifier" : "0AEA84CC26BA686B00D4DF77",
+        "name" : "OnlineStoreUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
