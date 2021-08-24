@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         logout()
         changeUserData()
         
-        getCategoryGoods()
-        getGoodById()
+        getCategoryProducts()
+        getProductById()
     }
     
     func login() {
@@ -29,9 +29,9 @@ class ViewController: UIViewController {
         auth.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
         auth.logout(userId: 123) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -60,9 +60,9 @@ class ViewController: UIViewController {
         auth.signup(data: data) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -79,33 +79,33 @@ class ViewController: UIViewController {
         auth.changeUserData(data: data) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func getCategoryGoods() {
+    func getCategoryProducts() {
         let catalog = requestFactory.makeCatalogRequestFatory()
         catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func getGoodById() {
+    func getProductById() {
         let catalog = requestFactory.makeCatalogRequestFatory()
         catalog.getProduct(by: 123) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }

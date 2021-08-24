@@ -37,7 +37,7 @@ extension Catalog: CatalogRequestFactory {
     
     func getProduct(by id: Int,
                     completionHandler: @escaping (AFDataResponse<ProductByIdResult>) -> Void) {
-        let requestModel = Good(baseUrl: baseUrl, id: id)
+        let requestModel = Product(baseUrl: baseUrl, id: id)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
@@ -59,7 +59,7 @@ extension Catalog {
         }
     }
     
-    struct Good: RequestRouter {
+    struct Product: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "getProductById"
