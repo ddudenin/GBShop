@@ -12,7 +12,7 @@ class Auth: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "http://127.0.0.1:8080/")!
+    let baseUrl = URL(string: "https://shielded-beach-25860.herokuapp.com/")!
     
     init(
         errorParser: AbstractErrorParser,
