@@ -38,10 +38,10 @@ class OnlineStoreTests: XCTestCase {
             case .success(let model):
                 XCTAssertEqual(model.result, 1)
                 XCTAssertNotNil(model.user)
-                XCTAssertEqual(model.user!.id, 123)
-                XCTAssertEqual(model.user!.login, "geekbrains")
-                XCTAssertEqual(model.user!.firstname, "John")
-                XCTAssertEqual(model.user!.lastname, "Doe")
+                XCTAssertEqual(model.user?.id, 123)
+                XCTAssertEqual(model.user?.login, "geekbrains")
+                XCTAssertEqual(model.user?.firstname, "John")
+                XCTAssertEqual(model.user?.lastname, "Doe")
                 XCTAssertEqual(model.authToken, "some_authorizaion_token")
                 
                 authExpectation.fulfill()
@@ -340,9 +340,10 @@ class OnlineStoreTests: XCTestCase {
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 1)
-                XCTAssertEqual(model.productName, "Ноутбук")
-                XCTAssertEqual(model.productPrice, 45600)
-                XCTAssertEqual(model.productDescription, "Мощный игровой ноутбук")
+                XCTAssertNotNil(model.productInfo)
+                XCTAssertEqual(model.productInfo?.name, "Ноутбук")
+                XCTAssertEqual(model.productInfo?.price, 45600)
+                XCTAssertEqual(model.productInfo?.description, "Мощный игровой ноутбук")
                 
                 catalogExpectation.fulfill()
             case .failure(let error):
@@ -368,10 +369,8 @@ class OnlineStoreTests: XCTestCase {
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
-                XCTAssertNil(model.productName)
-                XCTAssertNil(model.productPrice)
-                XCTAssertNil(model.productDescription)
-                
+                XCTAssertNil(model.productInfo)
+
                 catalogExpectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)

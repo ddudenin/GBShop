@@ -9,8 +9,6 @@ import Foundation
 
 class ProductByIdResult: Codable {
     let result: Int
-    let productName: String?
-    let productPrice: Int?
-    let productDescription: String?
+    let productInfo: ProductInfo?
 }
 

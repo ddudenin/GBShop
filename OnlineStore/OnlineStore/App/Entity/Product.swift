@@ -15,3 +15,8 @@ struct Product: Codable {
 
 typealias CatalogResult = [Product]
 
+struct ProductInfo: Codable {
+    let name: String
+    let price: Int
+    let description: String
+}
