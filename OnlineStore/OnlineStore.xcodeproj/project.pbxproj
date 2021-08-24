@@ -18,7 +18,7 @@
 		0A251F7526C8F51600F46226 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7426C8F51600F46226 /* Auth.swift */; };
 		0A251F7726C8F54100F46226 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7626C8F54100F46226 /* RequestFactory.swift */; };
 		0A251F7926C8FBFB00F46226 /* LogoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7826C8FBFB00F46226 /* LogoutResult.swift */; };
-		0A251F7B26C8FE1400F46226 /* SigninResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7A26C8FE1400F46226 /* SigninResult.swift */; };
+		0A251F7B26C8FE1400F46226 /* SignupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7A26C8FE1400F46226 /* SignupResult.swift */; };
 		0A251F7D26C9018500F46226 /* ChangeUserDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7C26C9018500F46226 /* ChangeUserDataResult.swift */; };
 		0A251F7F26C9032A00F46226 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7E26C9032A00F46226 /* UserData.swift */; };
 		0AAE38FA26CEB67B00873823 /* CatalogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE38F926CEB67B00873823 /* CatalogRequestFactory.swift */; };
@@ -67,7 +67,7 @@
 		0A251F7426C8F51600F46226 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		0A251F7626C8F54100F46226 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		0A251F7826C8FBFB00F46226 /* LogoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResult.swift; sourceTree = "<group>"; };
-		0A251F7A26C8FE1400F46226 /* SigninResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninResult.swift; sourceTree = "<group>"; };
+		0A251F7A26C8FE1400F46226 /* SignupResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupResult.swift; sourceTree = "<group>"; };
 		0A251F7C26C9018500F46226 /* ChangeUserDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserDataResult.swift; sourceTree = "<group>"; };
 		0A251F7E26C9032A00F46226 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0AAE38F926CEB67B00873823 /* CatalogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogRequestFactory.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				0A251F6D26C8F49D00F46226 /* LoginResult.swift */,
-				0A251F7A26C8FE1400F46226 /* SigninResult.swift */,
+				0A251F7A26C8FE1400F46226 /* SignupResult.swift */,
 				0A251F7826C8FBFB00F46226 /* LogoutResult.swift */,
 				0AAE390426CEBD3700873823 /* ProductByIdResult.swift */,
 				0A251F7C26C9018500F46226 /* ChangeUserDataResult.swift */,
@@ -555,7 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A251F7326C8F4F600F46226 /* AuthRequestFactory.swift in Sources */,
-				0A251F7B26C8FE1400F46226 /* SigninResult.swift in Sources */,
+				0A251F7B26C8FE1400F46226 /* SignupResult.swift in Sources */,
 				0A251F6A26C8F36F00F46226 /* AbstractRequestFactory.swift in Sources */,
 				0A251F7D26C9018500F46226 /* ChangeUserDataResult.swift in Sources */,
 				0A251F7926C8FBFB00F46226 /* LogoutResult.swift in Sources */,

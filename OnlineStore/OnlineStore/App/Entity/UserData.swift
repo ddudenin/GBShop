@@ -15,14 +15,4 @@ struct UserData: Codable {
     let gender: String
     let card: String
     let bio: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "id_user"
-        case username
-        case password
-        case email
-        case gender
-        case card = "credit_card"
-        case bio
-    }
 }

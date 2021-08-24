@@ -14,10 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        changeUserData()
-        signin()
+        
+        signup()
         login()
         logout()
+        changeUserData()
         
         getCategoryGoods()
         getGoodById()
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func signin() {
+    func signup() {
         let auth = requestFactory.makeAuthRequestFatory()
         let data = UserData(id: 123,
                             username: "Somebody",
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
                             gender: "m",
                             card: "9872389-2424-234224-234",
                             bio: "This is good! I think I will switch to another language")
-        auth.signin(data: data) { response in
+        auth.signup(data: data) { response in
             switch response.result {
             case .success(let login):
                 print(login)
@@ -87,7 +88,7 @@ class ViewController: UIViewController {
     
     func getCategoryGoods() {
         let catalog = requestFactory.makeCatalogRequestFatory()
-        catalog.getGoods(page: 1, category: 1) { response in
+        catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let login):
                 print(login)
@@ -99,7 +100,7 @@ class ViewController: UIViewController {
     
     func getGoodById() {
         let catalog = requestFactory.makeCatalogRequestFatory()
-        catalog.getGood(by: 123) { response in
+        catalog.getProduct(by: 123) { response in
             switch response.result {
             case .success(let login):
                 print(login)
