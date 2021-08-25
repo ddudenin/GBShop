@@ -8,11 +8,11 @@
 import Alamofire
 
 protocol AbstractRequestFactory {
-    
+
     var errorParser: AbstractErrorParser { get }
     var sessionManager: Session { get }
     var queue: DispatchQueue { get }
-    
+
     @discardableResult
     func request<T: Decodable>(
         request: URLRequestConvertible,
@@ -21,7 +21,7 @@ protocol AbstractRequestFactory {
 }
 
 extension AbstractRequestFactory {
-    
+
     @discardableResult
     public func request<T: Decodable>(
         request: URLRequestConvertible,

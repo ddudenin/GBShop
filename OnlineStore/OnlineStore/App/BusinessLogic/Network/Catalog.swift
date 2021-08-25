@@ -8,7 +8,7 @@
 import Alamofire
 
 class Catalog: AbstractRequestFactory {
-    
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
@@ -25,7 +25,7 @@ class Catalog: AbstractRequestFactory {
 }
 
 extension Catalog: CatalogRequestFactory {
-    
+
     func getProducts(page: Int,
                      category: Int,
                      completionHandler: @escaping (AFDataResponse<CatalogResult>) -> Void) {
@@ -34,7 +34,7 @@ extension Catalog: CatalogRequestFactory {
                                 category: category)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
-    
+
     func getProduct(by id: Int,
                     completionHandler: @escaping (AFDataResponse<ProductByIdResult>) -> Void) {
         let requestModel = Product(baseUrl: baseUrl, id: id)
@@ -43,12 +43,12 @@ extension Catalog: CatalogRequestFactory {
 }
 
 extension Catalog {
-    
+
     struct Page: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "catalogData"
-        
+
         let page: Int
         let category: Int
         var parameters: Parameters? {
@@ -58,12 +58,12 @@ extension Catalog {
             ]
         }
     }
-    
+
     struct Product: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "getProductById"
-        
+
         let id: Int
         var parameters: Parameters? {
             return [

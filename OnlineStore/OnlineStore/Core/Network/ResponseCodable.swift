@@ -8,13 +8,13 @@
 import Alamofire
 
 class CustomDecodableSerializer<T: Decodable>: DataResponseSerializerProtocol {
-    
+
     private let errorParser: AbstractErrorParser
-    
+
     init(errorParser: AbstractErrorParser) {
         self.errorParser = errorParser
     }
-    
+
     func serialize(request: URLRequest?,
                    response: HTTPURLResponse?,
                    data: Data?,
@@ -51,4 +51,3 @@ extension DataRequest {
                         completionHandler: completionHandler)
     }
 }
-

@@ -17,24 +17,24 @@ enum LoggerLevels: Int {
 }
 
 class Logger {
-    
+
     static let instance = Logger()
-    
+
     private enum PathLengths: Int {
         case None = 0
         case Short
         case Long
     }
-    
+
     private let dateFormatter = DateFormatter()
     var verbosityLevel: LoggerLevels = .Custom
     private let pathLength: PathLengths = .Short
     private let timeStampState: Bool = false
-    
-    func logMessage(message: String , _ logLevel: LoggerLevels = .Info, file: String = #file, method: String = #function, line: UInt = #line) {
-        
+
+    func logMessage(message: String, _ logLevel: LoggerLevels = .Info, file: String = #file, method: String = #function, line: UInt = #line) {
+
         var outputMessage: String = ""
-        
+
         if self.verbosityLevel.rawValue > LoggerLevels.None.rawValue && logLevel.rawValue <= self.verbosityLevel.rawValue {
             switch self.pathLength.rawValue {
             case PathLengths.Long.rawValue:
@@ -47,14 +47,13 @@ class Logger {
                 outputMessage += "\(getGlyphForLogLevel(logLevel: logLevel))\(message)"
                 break
             }
-            
+
             self.timeStampState ? print(outputMessage + " " + self.getTimeStamp()) : print(outputMessage)
         }
     }
-    
+
     private func getGlyphForLogLevel(logLevel: LoggerLevels) -> String {
-        switch logLevel
-        {
+        switch logLevel {
         case .Error:
             return "❌ "
         case .Warning:
@@ -69,7 +68,7 @@ class Logger {
             return " "
         }
     }
-    
+
     private func getTimeStamp() -> String {
         dateFormatter.dateFormat = "HH:mm:ss.zzz"
         let timeStamp = dateFormatter.string(from: Date())
