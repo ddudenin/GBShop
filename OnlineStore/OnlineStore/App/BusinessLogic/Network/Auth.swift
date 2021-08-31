@@ -12,8 +12,8 @@ class Auth: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
-    
+    let baseUrl = URL(string: "https://whispering-hollows-71279.herokuapp.com/")!
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -41,9 +41,9 @@ extension Auth: AuthRequestFactory {
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func signin(data: UserData,
-                completionHandler: @escaping (AFDataResponse<SigninResult>) -> Void) {
-        let requestModel = Signin(baseUrl: baseUrl, data: data)
+    func signup(data: UserData,
+                completionHandler: @escaping (AFDataResponse<SignupResult>) -> Void) {
+        let requestModel = Signup(baseUrl: baseUrl, data: data)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
@@ -58,8 +58,8 @@ extension Auth {
     
     struct Login: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "login.json"
+        let method: HTTPMethod = .post
+        let path: String = "login"
         
         let login: String
         let password: String
@@ -73,32 +73,32 @@ extension Auth {
     
     struct Logout: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "logout.json"
+        let method: HTTPMethod = .post
+        let path: String = "logout"
         
         let id: Int
         var parameters: Parameters? {
             return [
-                "id_user": id
+                "idUser": id
             ]
         }
     }
     
-    struct Signin: RequestRouter {
+    struct Signup: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "registerUser.json"
+        let method: HTTPMethod = .post
+        let path: String = "registerUser"
         
         let data: UserData
         
         var parameters: Parameters? {
             return [
-                "id_user" : data.id,
+                "idUser" : data.id,
                 "username" : data.username,
                 "password" : data.password,
                 "email" : data.email,
                 "gender": data.gender,
-                "credit_card" : data.card,
+                "creditCard" : data.card,
                 "bio" : data.bio
             ]
         }
@@ -106,19 +106,19 @@ extension Auth {
     
     struct ChangeUserData: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .get
-        let path: String = "changeUserData.json"
+        let method: HTTPMethod = .post
+        let path: String = "changeUserData"
         
         let data: UserData
         
         var parameters: Parameters? {
             return [
-                "id_user" : data.id,
+                "idUser" : data.id,
                 "username" : data.username,
                 "password" : data.password,
                 "email" : data.email,
                 "gender": data.gender,
-                "credit_card" : data.card,
+                "creditCard" : data.card,
                 "bio" : data.bio
             ]
         }

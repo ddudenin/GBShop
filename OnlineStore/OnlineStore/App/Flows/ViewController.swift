@@ -14,13 +14,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        changeUserData()
-        signin()
+        
+        signup()
         login()
         logout()
+        changeUserData()
         
-        getCategoryGoods()
-        getGoodById()
+        getCategoryProducts()
+        getProductById()
     }
     
     func login() {
@@ -28,9 +29,9 @@ class ViewController: UIViewController {
         auth.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -40,14 +41,14 @@ class ViewController: UIViewController {
         auth.logout(userId: 123) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func signin() {
+    func signup() {
         let auth = requestFactory.makeAuthRequestFatory()
         let data = UserData(id: 123,
                             username: "Somebody",
@@ -56,12 +57,12 @@ class ViewController: UIViewController {
                             gender: "m",
                             card: "9872389-2424-234224-234",
                             bio: "This is good! I think I will switch to another language")
-        auth.signin(data: data) { response in
+        auth.signup(data: data) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -78,33 +79,33 @@ class ViewController: UIViewController {
         auth.changeUserData(data: data) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func getCategoryGoods() {
+    func getCategoryProducts() {
         let catalog = requestFactory.makeCatalogRequestFatory()
-        catalog.getGoods(page: 1, category: 1) { response in
+        catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func getGoodById() {
+    func getProductById() {
         let catalog = requestFactory.makeCatalogRequestFatory()
-        catalog.getGood(by: 123) { response in
+        catalog.getProduct(by: 123) { response in
             switch response.result {
             case .success(let login):
-                print(login)
+                Logger.instance.logMessage(message: "\(login)", .Success)
             case .failure(let error):
-                print(error.localizedDescription)
+                Logger.instance.logMessage(message: error.localizedDescription, .Error)
             }
         }
     }
