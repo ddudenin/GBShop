@@ -8,11 +8,11 @@
 import Alamofire
 
 protocol ReviewRequestFactory {
-
+    
     func addReview(userId: Int,
                    reviewText: String,
                    completionHandler: @escaping (AFDataResponse<AddReviewResult>) -> Void)
     
-    func removeReview(id: Int,
+    func removeReview(withId: Int,
                       completionHandler: @escaping (AFDataResponse<RemoveReviewResult>) -> Void)
 }

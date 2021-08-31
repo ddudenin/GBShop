@@ -8,12 +8,12 @@
 import Alamofire
 
 class Review: AbstractRequestFactory {
-
+    
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     let baseUrl = URL(string: "https://cryptic-citadel-85782.herokuapp.com/")!
-
+    
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -25,7 +25,7 @@ class Review: AbstractRequestFactory {
 }
 
 extension Review: ReviewRequestFactory {
-
+    
     func addReview(userId: Int,
                    reviewText: String,
                    completionHandler: @escaping (AFDataResponse<AddReviewResult>) -> Void) {
@@ -35,20 +35,20 @@ extension Review: ReviewRequestFactory {
         self.request(request: requestModel, completionHandler: completionHandler)
     }
     
-    func removeReview(id: Int,
+    func removeReview(withId id: Int,
                       completionHandler: @escaping (AFDataResponse<RemoveReviewResult>) -> Void) {
-        let requestModel = RemovingReview(baseUrl: baseUrl, id: id)
+        let requestModel = RemovingReview(baseUrl: baseUrl, commentId: id)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
 
 extension Review {
-
+    
     struct NewReview: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "addReview"
-
+        
         let userId: Int
         let reviewText: String
         var parameters: Parameters? {
@@ -63,11 +63,11 @@ extension Review {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "removeReview"
-
-        let id: Int
+        
+        let commentId: Int
         var parameters: Parameters? {
             return [
-                "commentId": id
+                "commentId": commentId
             ]
         }
     }

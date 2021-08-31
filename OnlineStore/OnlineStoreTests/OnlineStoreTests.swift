@@ -418,7 +418,7 @@ class OnlineStoreTests: XCTestCase {
         let review = Review(errorParser: ErrorParser(),
                             sessionManager: session)
         
-        let reviewExpectation = expectation(description: "Success Add Review")
+        let reviewExpectation = expectation(description: "Failure Add Review")
         
         review.addReview(userId: 321,
                          reviewText: "Текст отзыва") { (response) in
@@ -426,6 +426,58 @@ class OnlineStoreTests: XCTestCase {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
                 XCTAssertEqual(model.userMessage, "Сообщение об ошибке")
+                
+                reviewExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [reviewExpectation], timeout: 5.0)
+    }
+    
+    // MARK: Test Remove review
+    
+    func testSuccessRemoveReview() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let review = Review(errorParser: ErrorParser(),
+                            sessionManager: session)
+        
+        let reviewExpectation = expectation(description: "Success Remove Review")
+        
+        review.removeReview(withId: 123) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 1)
+                
+                reviewExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [reviewExpectation], timeout: 5.0)
+    }
+    
+    func testFailureRemoveReview() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let review = Review(errorParser: ErrorParser(),
+                            sessionManager: session)
+        
+        let reviewExpectation = expectation(description: "Failure Remove Review")
+        
+        review.removeReview(withId: 321) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 0)
                 
                 reviewExpectation.fulfill()
             case .failure(let error):

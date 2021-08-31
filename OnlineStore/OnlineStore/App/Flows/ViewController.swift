@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     
     func removeReview() {
         let review = requestFactory.makeReviewRequestFactory()
-        review.removeReview(id: 123) { response in
+        review.removeReview(withId: 123) { response in
             switch response.result {
             case .success(let deletedReview):
                 log(message: "\(deletedReview)", .Success)
