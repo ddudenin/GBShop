@@ -7,6 +7,18 @@
 
 import Foundation
 
+func log(message: String,
+         _ logLevel: LoggerLevels = .Info,
+         file: String = #file,
+         method: String = #function,
+         line: UInt = #line) {
+    Logger.instance.logMessage(message: message,
+                               logLevel,
+                               file: file,
+                               method: method,
+                               line: line)
+}
+
 enum LoggerLevels: Int {
     case None = 0
     case Error
@@ -30,9 +42,14 @@ class Logger {
     var verbosityLevel: LoggerLevels = .Custom
     private let pathLength: PathLengths = .Short
     private let timeStampState: Bool = false
+    
+    private init() {}
 
-    func logMessage(message: String, _ logLevel: LoggerLevels = .Info, file: String = #file, method: String = #function, line: UInt = #line) {
-
+    func logMessage(message: String,
+                    _ logLevel: LoggerLevels = .Info,
+                    file: String = #file,
+                    method: String = #function,
+                    line: UInt = #line) {
         var outputMessage: String = ""
 
         if self.verbosityLevel.rawValue > LoggerLevels.None.rawValue && logLevel.rawValue <= self.verbosityLevel.rawValue {

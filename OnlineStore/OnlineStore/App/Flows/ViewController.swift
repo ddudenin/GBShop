@@ -29,9 +29,9 @@ class ViewController: UIViewController {
         auth.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
         auth.logout(userId: 123) { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -60,9 +60,9 @@ class ViewController: UIViewController {
         auth.signup(data: data) { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -79,9 +79,9 @@ class ViewController: UIViewController {
         auth.changeUserData(data: data) { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -91,9 +91,9 @@ class ViewController: UIViewController {
         catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
@@ -103,9 +103,9 @@ class ViewController: UIViewController {
         catalog.getProduct(by: 123) { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
