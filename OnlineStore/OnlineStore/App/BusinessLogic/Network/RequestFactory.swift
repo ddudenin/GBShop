@@ -8,11 +8,11 @@
 import Alamofire
 
 class RequestFactory {
-
+    
     func makeErrorParser() -> AbstractErrorParser {
         return ErrorParser()
     }
-
+    
     lazy var commonSession: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
@@ -20,16 +20,16 @@ class RequestFactory {
         let manager = Session(configuration: configuration)
         return manager
     }()
-
+    
     let sessionQueue = DispatchQueue.global(qos: .utility)
-
+    
     func makeAuthRequestFactory() -> AuthRequestFactory {
         let errorParser = makeErrorParser()
         return Auth(errorParser: errorParser,
                     sessionManager: commonSession,
                     queue: sessionQueue)
     }
-
+    
     func makeCatalogRequestFactory() -> CatalogRequestFactory {
         let errorParser = makeErrorParser()
         return Catalog(errorParser: errorParser,
@@ -39,8 +39,8 @@ class RequestFactory {
     
     func makeReviewRequestFactory() -> ReviewRequestFactory {
         let errorParser = makeErrorParser()
-        return Review(errorParser: errorParser,
-                      sessionManager: commonSession,
-                      queue: sessionQueue)
+        return ProductReview(errorParser: errorParser,
+                             sessionManager: commonSession,
+                             queue: sessionQueue)
     }
 }

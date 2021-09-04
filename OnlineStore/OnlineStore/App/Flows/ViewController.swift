@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         
         addReview()
         removeReview()
+        getProductReviews()
     }
 
     func login() {
@@ -137,4 +138,17 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func getProductReviews() {
+        let review = requestFactory.makeReviewRequestFactory()
+        review.getReviewsForProduct(withId: 2707) { response in
+            switch response.result {
+            case .success(let reviews):
+                log(message: "\(reviews)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+    
 }

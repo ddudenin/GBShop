@@ -15,4 +15,7 @@ protocol ReviewRequestFactory {
     
     func removeReview(withId: Int,
                       completionHandler: @escaping (AFDataResponse<RemoveReviewResult>) -> Void)
+    
+    func getReviewsForProduct(withId: Int,
+                              completionHandler: @escaping (AFDataResponse<ProductReviewsResult>) -> Void)
 }
