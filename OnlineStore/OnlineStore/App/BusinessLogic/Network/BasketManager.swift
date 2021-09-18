@@ -40,6 +40,15 @@ extension BasketManager: BasketRequestFactory {
                                           productId: productId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
+    
+    func payBasket(userId: Int,
+                   payAmount: Int,
+                   completionHandler: @escaping (AFDataResponse<ResultWithMessage>) -> Void) {
+        let requestModel = PayingBasket(baseUrl: baseUrl,
+                                        userId: userId,
+                                        payAmount: payAmount)
+        self.request(request: requestModel, completionHandler: completionHandler)
+    }
 }
 
 extension BasketManager {
@@ -66,10 +75,26 @@ extension BasketManager {
         let path: String = "removeFromBasket"
         
         let productId: Int
-
+        
         var parameters: Parameters? {
             return [
                 "productId": productId,
+            ]
+        }
+    }
+    
+    struct PayingBasket: RequestRouter {
+        let baseUrl: URL
+        let method: HTTPMethod = .post
+        let path: String = "payBasket"
+        
+        let userId: Int
+        let payAmount: Int
+        
+        var parameters: Parameters? {
+            return [
+                "userId": userId,
+                "payAmount": payAmount
             ]
         }
     }

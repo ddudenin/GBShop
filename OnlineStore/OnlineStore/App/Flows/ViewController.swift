@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         
         addToBasket()
         removeFromBasket()
+        payBasket()
     }
     
     func login() {
@@ -158,8 +159,8 @@ class ViewController: UIViewController {
         let basket = requestFactory.makeBasketRequestFactory()
         basket.addToBasket(productId: 123, quantity: 1) { response in
             switch response.result {
-            case .success(let reviews):
-                log(message: "\(reviews)", .Success)
+            case .success(let result):
+                log(message: "\(result)", .Success)
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
             }
@@ -170,12 +171,23 @@ class ViewController: UIViewController {
         let basket = requestFactory.makeBasketRequestFactory()
         basket.removeFromBasket(productId: 123) { response in
             switch response.result {
-            case .success(let reviews):
-                log(message: "\(reviews)", .Success)
+            case .success(let result):
+                log(message: "\(result)", .Success)
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
             }
         }
     }
     
+    func payBasket() {
+        let basket = requestFactory.makeBasketRequestFactory()
+        basket.payBasket(userId: 123, payAmount: 270000) { response in
+            switch response.result {
+            case .success(let result):
+                log(message: "\(result)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
 }

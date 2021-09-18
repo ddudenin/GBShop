@@ -279,8 +279,8 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let catalog = Catalog(errorParser: ErrorParser(),
-                              sessionManager: session)
+        let catalog = CatalogManager(errorParser: ErrorParser(),
+                                     sessionManager: session)
         
         let catalogExpectation = expectation(description: "Success Get category products")
         
@@ -304,8 +304,8 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let catalog = Catalog(errorParser: ErrorParser(),
-                              sessionManager: session)
+        let catalog = CatalogManager(errorParser: ErrorParser(),
+                                     sessionManager: session)
         
         let catalogExpectation = expectation(description: "Failure Get category products")
         
@@ -331,8 +331,8 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let catalog = Catalog(errorParser: ErrorParser(),
-                              sessionManager: session)
+        let catalog = CatalogManager(errorParser: ErrorParser(),
+                                     sessionManager: session)
         
         let catalogExpectation = expectation(description: "Success Get product by id")
         
@@ -360,8 +360,8 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let catalog = Catalog(errorParser: ErrorParser(),
-                              sessionManager: session)
+        let catalog = CatalogManager(errorParser: ErrorParser(),
+                                     sessionManager: session)
         
         let catalogExpectation = expectation(description: "Failure Get product by id")
         
@@ -388,7 +388,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Success Add review")
@@ -415,7 +415,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Failure Add review")
@@ -444,7 +444,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Success Remove review")
@@ -469,7 +469,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Failure Remove review")
@@ -496,7 +496,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Success Get product reviews")
@@ -521,7 +521,7 @@ class OnlineStoreTests: XCTestCase {
         configuration.headers = .default
         let session = Session(configuration: configuration)
         
-        let review = ProductReview(errorParser: ErrorParser(),
+        let review = ReviewManager(errorParser: ErrorParser(),
                                    sessionManager: session)
         
         let reviewExpectation = expectation(description: "Failure Get product reviews")
@@ -538,5 +538,167 @@ class OnlineStoreTests: XCTestCase {
         }
         
         wait(for: [reviewExpectation], timeout: 5.0)
+    }
+    
+    // MARK: Test Add to basket
+    
+    func testSuccessAddToBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Success Add to basket")
+        
+        basket.addToBasket(productId: 123,
+                           quantity: 1) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 1)
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
+    }
+    
+    func testFailureAddToBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Failure Add to basket")
+        
+        basket.addToBasket(productId: 123,
+                           quantity: 5) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 0)
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
+    }
+    
+    // MARK: Test Remove from basket
+    
+    func testSuccessRemoveFromBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Success Remove from basket")
+        
+        basket.removeFromBasket(productId: 123) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 1)
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
+    }
+    
+    func testFailureRemoveFromBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Failure Remove from basket")
+        
+        basket.removeFromBasket(productId: 1234) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 0)
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
+    }
+    
+    // MARK: Test Pay basket
+    
+    func testSuccessPayBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Success Pay basket")
+        
+        basket.payBasket(userId: 123,
+                         payAmount: 270000) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 1)
+                XCTAssertEqual(model.userMessage, "Оплата успешно совершена")
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
+    }
+    
+    func testFailurePayBasket() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpShouldSetCookies = false
+        configuration.headers = .default
+        let session = Session(configuration: configuration)
+        
+        let basket = BasketManager(errorParser: ErrorParser(),
+                                   sessionManager: session)
+        
+        let basketExpectation = expectation(description: "Failure Pay basket")
+        
+        basket.payBasket(userId: 123,
+                         payAmount: 70000) { (response) in
+            switch response.result {
+            case .success(let model):
+                XCTAssertEqual(model.result, 0)
+                XCTAssertEqual(model.userMessage, "Ошибка оплаты")
+                
+                basketExpectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        
+        wait(for: [basketExpectation], timeout: 5.0)
     }
 }
