@@ -7,7 +7,7 @@
 
 import Alamofire
 
-class Catalog: AbstractRequestFactory {
+class CatalogManager: AbstractRequestFactory {
 
     let errorParser: AbstractErrorParser
     let sessionManager: Session
@@ -24,7 +24,7 @@ class Catalog: AbstractRequestFactory {
     }
 }
 
-extension Catalog: CatalogRequestFactory {
+extension CatalogManager: CatalogRequestFactory {
 
     func getProducts(page: Int,
                      category: Int,
@@ -42,7 +42,7 @@ extension Catalog: CatalogRequestFactory {
     }
 }
 
-extension Catalog {
+extension CatalogManager {
 
     struct Page: RequestRouter {
         let baseUrl: URL

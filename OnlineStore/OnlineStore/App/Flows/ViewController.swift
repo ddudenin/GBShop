@@ -8,26 +8,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let requestFactory = RequestFactory()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        
         //signup()
         //login()
         //logout()
         //changeUserData()
-
+        
         //getCategoryProducts()
         //getProductById()
         
-        addReview()
-        removeReview()
-        getProductReviews()
+        //addReview()
+        //removeReview()
+        //getProductReviews()
+        
+        addToBasket()
+        removeFromBasket()
     }
-
+    
     func login() {
         let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: "Somebody", password: "mypassword") { response in
@@ -39,7 +42,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func logout() {
         let auth = requestFactory.makeAuthRequestFactory()
         auth.logout(userId: 123) { response in
@@ -51,7 +54,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func signup() {
         let auth = requestFactory.makeAuthRequestFactory()
         let data = UserData(id: 123,
@@ -70,7 +73,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func changeUserData() {
         let auth = requestFactory.makeAuthRequestFactory()
         let data = UserData(id: 123,
@@ -89,7 +92,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func getCategoryProducts() {
         let catalog = requestFactory.makeCatalogRequestFactory()
         catalog.getProducts(page: 1, category: 1) { response in
@@ -101,7 +104,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func getProductById() {
         let catalog = requestFactory.makeCatalogRequestFactory()
         catalog.getProduct(by: 123) { response in
@@ -142,6 +145,30 @@ class ViewController: UIViewController {
     func getProductReviews() {
         let review = requestFactory.makeReviewRequestFactory()
         review.getReviewsForProduct(withId: 2707) { response in
+            switch response.result {
+            case .success(let reviews):
+                log(message: "\(reviews)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+    
+    func addToBasket() {
+        let basket = requestFactory.makeBasketRequestFactory()
+        basket.addToBasket(productId: 123, quantity: 1) { response in
+            switch response.result {
+            case .success(let reviews):
+                log(message: "\(reviews)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+    
+    func removeFromBasket() {
+        let basket = requestFactory.makeBasketRequestFactory()
+        basket.removeFromBasket(productId: 123) { response in
             switch response.result {
             case .success(let reviews):
                 log(message: "\(reviews)", .Success)

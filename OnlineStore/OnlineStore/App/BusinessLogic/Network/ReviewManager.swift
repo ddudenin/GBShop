@@ -1,5 +1,5 @@
 //
-//  ProductReview.swift
+//  ReviewManager.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 31.08.2021.
@@ -7,7 +7,7 @@
 
 import Alamofire
 
-class ProductReview: AbstractRequestFactory {
+class ReviewManager: AbstractRequestFactory {
     
     let errorParser: AbstractErrorParser
     let sessionManager: Session
@@ -24,11 +24,11 @@ class ProductReview: AbstractRequestFactory {
     }
 }
 
-extension ProductReview: ReviewRequestFactory {
+extension ReviewManager: ReviewRequestFactory {
     
     func addReview(userId: Int,
                    reviewText: String,
-                   completionHandler: @escaping (AFDataResponse<AddReviewResult>) -> Void) {
+                   completionHandler: @escaping (AFDataResponse<ResultWithMessage>) -> Void) {
         let requestModel = NewReview(baseUrl: baseUrl,
                                      userId: userId,
                                      reviewText: reviewText)
@@ -36,7 +36,7 @@ extension ProductReview: ReviewRequestFactory {
     }
     
     func removeReview(withId id: Int,
-                      completionHandler: @escaping (AFDataResponse<RemoveReviewResult>) -> Void) {
+                      completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void) {
         let requestModel = RemovingReview(baseUrl: baseUrl, commentId: id)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
@@ -49,7 +49,7 @@ extension ProductReview: ReviewRequestFactory {
     }
 }
 
-extension ProductReview {
+extension ReviewManager {
     
     struct NewReview: RequestRouter {
         let baseUrl: URL

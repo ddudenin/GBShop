@@ -36,19 +36,19 @@ extension Auth: AuthRequestFactory {
     }
 
     func logout(userId: Int,
-                completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void) {
+                completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void) {
         let requestModel = Logout(baseUrl: baseUrl, id: userId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 
     func signup(data: UserData,
-                completionHandler: @escaping (AFDataResponse<SignupResult>) -> Void) {
+                completionHandler: @escaping (AFDataResponse<ResultWithMessage>) -> Void) {
         let requestModel = Signup(baseUrl: baseUrl, data: data)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 
     func changeUserData(data: UserData,
-                        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void) {
+                        completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void) {
         let requestModel = ChangeUserData(baseUrl: baseUrl, data: data)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
