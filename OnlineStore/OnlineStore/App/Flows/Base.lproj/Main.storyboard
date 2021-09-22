@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-326" y="-473"/>
+            <point key="canvasLocation" x="-1226" y="-1153"/>
         </scene>
         <!--Login Form Controller-->
         <scene sceneID="cBC-8c-dsK">
@@ -100,20 +100,23 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PwK-Fn-U3t">
-                                                <rect key="frame" x="155.5" y="349" width="103.5" height="30"/>
+                                                <rect key="frame" x="156.5" y="349" width="101" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up |" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8m-Ip-vkz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up |" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8m-Ip-vkz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7U-27-3wS">
-                                                        <rect key="frame" x="73.5" y="0.0" width="30" height="30"/>
+                                                        <rect key="frame" x="71" y="0.0" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="gbu-Ib-hrr"/>
                                                             <constraint firstAttribute="height" constant="30" id="hf2-Nk-2dg"/>
                                                         </constraints>
-                                                        <state key="normal" image="person.crop.circle.badge.plus" catalog="system"/>
+                                                        <state key="normal" image="person.crop.square.fill.and.at.rectangle" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="signupButtonHandler:" destination="yh1-Bw-k2p" eventType="touchUpInside" id="paQ-Fd-gki"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -133,10 +136,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="YnZ-Be-9dS" secondAttribute="bottom" id="9QK-gg-OmX"/>
                                     <constraint firstItem="YnZ-Be-9dS" firstAttribute="width" secondItem="KJ8-eV-adD" secondAttribute="width" id="AtX-cy-N45"/>
-                                    <constraint firstAttribute="bottom" secondItem="YnZ-Be-9dS" secondAttribute="bottom" id="BWb-oa-YSZ"/>
-                                    <constraint firstItem="YnZ-Be-9dS" firstAttribute="bottom" secondItem="Eob-vz-3pS" secondAttribute="bottom" id="KmO-Xp-WQX"/>
+                                    <constraint firstAttribute="bottom" secondItem="YnZ-Be-9dS" secondAttribute="bottom" id="J7r-hy-TLS"/>
+                                    <constraint firstItem="YnZ-Be-9dS" firstAttribute="bottom" secondItem="Eob-vz-3pS" secondAttribute="bottom" id="OwO-i5-84x"/>
                                     <constraint firstAttribute="trailing" secondItem="YnZ-Be-9dS" secondAttribute="trailing" id="UNh-yr-Ceg"/>
                                     <constraint firstItem="YnZ-Be-9dS" firstAttribute="top" secondItem="KJ8-eV-adD" secondAttribute="top" id="UmN-wN-XRf"/>
                                     <constraint firstItem="YnZ-Be-9dS" firstAttribute="leading" secondItem="KJ8-eV-adD" secondAttribute="leading" id="ivW-Fa-F8O"/>
@@ -165,6 +167,232 @@
             </objects>
             <point key="canvasLocation" x="-1226.0869565217392" y="-473.4375"/>
         </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="tjQ-xM-Lzq">
+            <objects>
+                <viewController storyboardIdentifier="SignupScreen" id="5wn-fB-cvU" customClass="SignupViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wze-jg-4gk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I1a-4b-gbb">
+                                <rect key="frame" x="30" y="312.5" width="354" height="281.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se1-jJ-qpC">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JpV-rq-xRY" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="30.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="person" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPR-mK-6dI" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="key" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-Zu-Fpo" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="118.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="envelope.circle" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-yh-OIF">
+                                        <rect key="frame" x="0.0" y="162.5" width="354" height="32"/>
+                                        <segments>
+                                            <segment title="male"/>
+                                            <segment title="female"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="credit card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-dI-9HU" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="203.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="creditcard" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xh7-hm-S1Z" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="247.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="text.bubble" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uc-Jn-9Sm">
+                                <rect key="frame" x="195" y="624" width="24.5" height="22"/>
+                                <state key="normal" image="person.fill.checkmark" catalog="system"/>
+                                <connections>
+                                    <action selector="finishRegisterButtonHandler:" destination="5wn-fB-cvU" eventType="touchUpInside" id="O9x-wY-KU6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IRn-B9-Y75"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="I1a-4b-gbb" firstAttribute="centerY" secondItem="IRn-B9-Y75" secondAttribute="centerY" id="Lnd-ON-dX2"/>
+                            <constraint firstItem="I1a-4b-gbb" firstAttribute="leading" secondItem="wze-jg-4gk" secondAttribute="leadingMargin" constant="10" id="RAF-1J-hfE"/>
+                            <constraint firstItem="I1a-4b-gbb" firstAttribute="centerX" secondItem="IRn-B9-Y75" secondAttribute="centerX" id="VMI-5a-hpi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I1a-4b-gbb" secondAttribute="trailing" constant="10" id="g8V-pN-lQv"/>
+                            <constraint firstItem="6uc-Jn-9Sm" firstAttribute="centerX" secondItem="I1a-4b-gbb" secondAttribute="centerX" id="h1X-g9-Ubc"/>
+                            <constraint firstItem="6uc-Jn-9Sm" firstAttribute="top" secondItem="I1a-4b-gbb" secondAttribute="bottom" constant="30" id="wDr-HQ-Thb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextField" destination="xh7-hm-S1Z" id="Yio-v9-9pN"/>
+                        <outlet property="cardNumberTextField" destination="hIe-dI-9HU" id="IlE-BA-6Wk"/>
+                        <outlet property="emailTextField" destination="4pk-Zu-Fpo" id="BCV-zu-OiB"/>
+                        <outlet property="genderSegmentControl" destination="RUX-yh-OIF" id="BoW-yM-neW"/>
+                        <outlet property="passwordTextField" destination="rPR-mK-6dI" id="Mjx-Jp-1tj"/>
+                        <outlet property="usernameTextField" destination="JpV-rq-xRY" id="LeY-B4-DWQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Olv-Dp-sUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-496" y="-140"/>
+        </scene>
+        <!--Edit User Data View Controller-->
+        <scene sceneID="njY-Pl-mG1">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="d3b-0V-NCj" customClass="EditUserDataViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="grp-0e-yNK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-15-ELd">
+                                <rect key="frame" x="30" y="312.5" width="354" height="281.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-y1-lyq">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-PI-S4i" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="30.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="person" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Utc-Gb-f2h" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="key" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-Zw-nCe" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="118.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="envelope.circle" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-5S-b7N">
+                                        <rect key="frame" x="0.0" y="162.5" width="354" height="32"/>
+                                        <segments>
+                                            <segment title="male"/>
+                                            <segment title="female"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="credit card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FBY-2g-7v8" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="203.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="creditcard" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wlQ-cK-V1z" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="247.5" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="text.bubble" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
+                                <rect key="frame" x="195" y="624" width="24" height="22"/>
+                                <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rJ6-0C-E7a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2M0-15-ELd" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="8Cl-Pu-fZr"/>
+                            <constraint firstItem="2M0-15-ELd" firstAttribute="leading" secondItem="grp-0e-yNK" secondAttribute="leadingMargin" constant="10" id="8jd-zD-U1s"/>
+                            <constraint firstItem="XTX-nq-0zi" firstAttribute="centerX" secondItem="2M0-15-ELd" secondAttribute="centerX" id="CfP-z0-b1Z"/>
+                            <constraint firstItem="2M0-15-ELd" firstAttribute="centerY" secondItem="rJ6-0C-E7a" secondAttribute="centerY" id="DSb-uf-BWe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2M0-15-ELd" secondAttribute="trailing" constant="10" id="b1w-PU-ADE"/>
+                            <constraint firstItem="XTX-nq-0zi" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="30" id="bQT-gz-pze"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextField" destination="wlQ-cK-V1z" id="bbD-hP-37Q"/>
+                        <outlet property="cardNumberTextField" destination="FBY-2g-7v8" id="ggh-zE-Lt7"/>
+                        <outlet property="emailTextField" destination="mK5-Zw-nCe" id="c04-v6-BoW"/>
+                        <outlet property="genderSegmentControl" destination="GsX-5S-b7N" id="kek-EN-Lyf"/>
+                        <outlet property="passwordTextField" destination="Utc-Gb-f2h" id="ZK4-Cf-E5O"/>
+                        <outlet property="usernameTextField" destination="lPY-PI-S4i" id="Ckt-q7-9mY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6km-Tv-UcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-497" y="-812"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="1VN-rH-veb">
@@ -176,11 +404,32 @@
         <designable name="3G5-Y7-9Vx">
             <size key="intrinsicContentSize" width="60" height="36"/>
         </designable>
+        <designable name="FBY-2g-7v8">
+            <size key="intrinsicContentSize" width="151.5" height="34"/>
+        </designable>
+        <designable name="Utc-Gb-f2h">
+            <size key="intrinsicContentSize" width="90" height="34"/>
+        </designable>
+        <designable name="lPY-PI-S4i">
+            <size key="intrinsicContentSize" width="95.5" height="34"/>
+        </designable>
+        <designable name="mK5-Zw-nCe">
+            <size key="intrinsicContentSize" width="62.5" height="34"/>
+        </designable>
+        <designable name="wlQ-cK-V1z">
+            <size key="intrinsicContentSize" width="48" height="34"/>
+        </designable>
     </designables>
     <resources>
+        <image name="arrow.clockwise.icloud.fill" catalog="system" width="128" height="88"/>
+        <image name="creditcard" catalog="system" width="128" height="88"/>
+        <image name="envelope.circle" catalog="system" width="128" height="121"/>
         <image name="key" catalog="system" width="86" height="128"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
+        <image name="person.crop.square.fill.and.at.rectangle" catalog="system" width="128" height="93"/>
+        <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
+        <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

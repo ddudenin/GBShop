@@ -22,6 +22,8 @@
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
 		0A36240426FBB247002B31EE /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240326FBB247002B31EE /* SignInButton.swift */; };
 		0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240626FBB288002B31EE /* Ext+UIColor.swift */; };
+		0A36240926FBC48E002B31EE /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240826FBC48E002B31EE /* SignupViewController.swift */; };
+		0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */; };
 		0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740926E37206008CACBA /* ProductReviewsResult.swift */; };
 		0A3C740C26E3722D008CACBA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740B26E3722D008CACBA /* Review.swift */; };
 		0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */; };
@@ -81,6 +83,8 @@
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A36240326FBB247002B31EE /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		0A36240626FBB288002B31EE /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
+		0A36240826FBC48E002B31EE /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserDataViewController.swift; sourceTree = "<group>"; };
 		0A3C740926E37206008CACBA /* ProductReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsResult.swift; sourceTree = "<group>"; };
 		0A3C740B26E3722D008CACBA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResult.swift; sourceTree = "<group>"; };
@@ -305,9 +309,11 @@
 			isa = PBXGroup;
 			children = (
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
-				0AEA84B326BA686900D4DF77 /* ViewController.swift */,
 				0AEA84B526BA686900D4DF77 /* Main.storyboard */,
+				0AEA84B326BA686900D4DF77 /* ViewController.swift */,
 				0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */,
+				0A36240826FBC48E002B31EE /* SignupViewController.swift */,
+				0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -610,10 +616,12 @@
 				0AAE38FA26CEB67B00873823 /* CatalogRequestFactory.swift in Sources */,
 				0ACB0A6826DE863700798B0D /* ReviewManager.swift in Sources */,
 				0A3C740C26E3722D008CACBA /* Review.swift in Sources */,
+				0A36240926FBC48E002B31EE /* SignupViewController.swift in Sources */,
 				0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */,
 				0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */,
 				0AAE390026CEB85800873823 /* CatalogManager.swift in Sources */,
 				0A251F6626C8F29000F46226 /* ErrorParser.swift in Sources */,
+				0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */,
 				0A251F7726C8F54100F46226 /* RequestFactory.swift in Sources */,
 				0AEA84B426BA686900D4DF77 /* ViewController.swift in Sources */,
 				0A251F6826C8F2AF00F46226 /* RequestRouter.swift in Sources */,

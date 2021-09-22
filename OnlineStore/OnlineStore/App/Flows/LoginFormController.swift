@@ -63,6 +63,7 @@ final class LoginFormController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
+    
     @IBAction func loginButtonHandler(_ sender: Any) {
         guard
             let login = self.loginTextField.text,
@@ -70,26 +71,44 @@ final class LoginFormController: UIViewController {
         else {
             return
         }
-    
+        
         let auth = requestFactory.makeAuthRequestFactory()
         
         auth.login(userName: login, password: password) { response in
             switch response.result {
             case .success(let login):
+                if login.result == 0 {
+                    DispatchQueue.main.async {
+                        self.showAlert(message: "Не удалось авторизоваться")
+                    }
+                }
+                
                 log(message: "\(login)", .Success)
             case .failure(let error):
-                let alert = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
-                
-                
+                DispatchQueue.main.async {
+                    self.showAlert(message: error.localizedDescription)
+                }
                 log(message: error.localizedDescription, .Error)
             }
         }
     }
     
+    @IBAction func signupButtonHandler(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignupScreen")
+        self.present(vc, animated: true, completion: .none)
+    }
     
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: message,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .cancel,
+                                   handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension LoginFormController: UITextFieldDelegate {
