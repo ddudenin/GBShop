@@ -11,9 +11,7 @@ final class EditUserDataViewController: UIViewController {
     
     private let requestFactory = RequestFactory()
     
-    
-    
-    private let genderString = ["m", "f"]
+    private let genderStrings = ["m", "f"]
     
     @IBOutlet weak var usernameTextField: TextFieldWithImage!
     @IBOutlet weak var passwordTextField: TextFieldWithImage!
@@ -41,7 +39,12 @@ final class EditUserDataViewController: UIViewController {
         emailTextField.text = data.email
         cardNumberTextField.text = data.card
         bioTextField.text = data.bio
-        genderSegmentControl.selectedSegmentIndex = data.gender == "m" ? 0 : 1
+        
+        if let genderIndex = genderStrings.firstIndex(of: data.gender) {
+            genderSegmentControl.selectedSegmentIndex = genderIndex
+        } else {
+            log(message: "Не удалось выбрать пол пользователя", .Error)
+        }
     }
     
     @IBAction func changeUserDataButtonHandler(_ sender: Any) {
@@ -52,10 +55,14 @@ final class EditUserDataViewController: UIViewController {
             let cardNumber = cardNumberTextField.text,
             let bio = bioTextField.text
         else {
+            DispatchQueue.main.async {
+                showAlert(forController: self, message: "Не удалось обновить данные")
+            }
+            log(message: "Ошибка введенных данных", .Error)
             return
         }
         
-        let gender = genderString[genderSegmentControl.selectedSegmentIndex]
+        let gender = genderStrings[genderSegmentControl.selectedSegmentIndex]
         
         let auth = requestFactory.makeAuthRequestFactory()
         let data = UserData(id: 123,
@@ -71,28 +78,18 @@ final class EditUserDataViewController: UIViewController {
             case .success(let changedData):
                 if changedData.result == 0 {
                     DispatchQueue.main.async {
-                        self.showAlert(message: "Не удалось обновить данные")
+                        showAlert(forController: self, message: "Не удалось обновить данные")
                     }
+                    log(message: "Не удалось обновить данные", .Warning)
+                } else {
+                    log(message: "\(changedData)", .Success)
                 }
-                
-                log(message: "\(changedData)", .Success)
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.showAlert(message: error.localizedDescription)
+                    showAlert(forController: self, message: error.localizedDescription)
                 }
                 log(message: error.localizedDescription, .Error)
             }
         }
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Ошибка",
-                                      message: message,
-                                      preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK",
-                                   style: .cancel,
-                                   handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
     }
 }

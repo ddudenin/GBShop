@@ -29,6 +29,10 @@ final class SignupViewController: UIViewController {
             let cardNumber = cardNumberTextField.text,
             let bio = bioTextField.text
         else {
+            DispatchQueue.main.async {
+                showAlert(forController: self, message: "Не удалось зарегестрироваться")
+            }
+            log(message: "Ошибка чтения данных регистрации", .Error)
             return
         }
         
@@ -47,29 +51,20 @@ final class SignupViewController: UIViewController {
             case .success(let signup):
                 if signup.result == 0 {
                     DispatchQueue.main.async {
-                        self.showAlert(message: signup.userMessage)
+                        showAlert(forController: self, message: signup.userMessage)
                     }
+                    log(message: signup.userMessage, .Warning)
+                } else {
+                    log(message: "\(signup)", .Success)
                 }
                 
-                log(message: "\(signup)", .Success)
+                
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.showAlert(message: error.localizedDescription)
+                    showAlert(forController: self, message: error.localizedDescription)
                 }
                 log(message: error.localizedDescription, .Error)
             }
         }
     }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Ошибка",
-                                      message: message,
-                                      preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK",
-                                   style: .cancel,
-                                   handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
 }

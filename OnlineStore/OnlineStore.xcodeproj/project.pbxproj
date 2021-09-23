@@ -18,6 +18,7 @@
 		0A251F7526C8F51600F46226 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7426C8F51600F46226 /* Auth.swift */; };
 		0A251F7726C8F54100F46226 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7626C8F54100F46226 /* RequestFactory.swift */; };
 		0A251F7F26C9032A00F46226 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7E26C9032A00F46226 /* UserData.swift */; };
+		0A31519E26FCFB51006345C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A31519D26FCFB51006345C2 /* Utils.swift */; };
 		0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */; };
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
 		0A36240426FBB247002B31EE /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240326FBB247002B31EE /* SignInButton.swift */; };
@@ -79,6 +80,7 @@
 		0A251F7426C8F51600F46226 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		0A251F7626C8F54100F46226 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		0A251F7E26C9032A00F46226 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		0A31519D26FCFB51006345C2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A36240326FBB247002B31EE /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				0A36240526FBB261002B31EE /* Extensions */,
 				0A251F6226C8F1A400F46226 /* Network */,
 				0AD0D2B926D586ED00E7D98F /* Logger.swift */,
+				0A31519D26FCFB51006345C2 /* Utils.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */,
 				0AAE38FA26CEB67B00873823 /* CatalogRequestFactory.swift in Sources */,
 				0ACB0A6826DE863700798B0D /* ReviewManager.swift in Sources */,
+				0A31519E26FCFB51006345C2 /* Utils.swift in Sources */,
 				0A3C740C26E3722D008CACBA /* Review.swift in Sources */,
 				0A36240926FBC48E002B31EE /* SignupViewController.swift in Sources */,
 				0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */,
