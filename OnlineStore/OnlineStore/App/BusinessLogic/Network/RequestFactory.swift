@@ -32,14 +32,21 @@ class RequestFactory {
     
     func makeCatalogRequestFactory() -> CatalogRequestFactory {
         let errorParser = makeErrorParser()
-        return Catalog(errorParser: errorParser,
-                       sessionManager: commonSession,
-                       queue: sessionQueue)
+        return CatalogManager(errorParser: errorParser,
+                              sessionManager: commonSession,
+                              queue: sessionQueue)
     }
     
     func makeReviewRequestFactory() -> ReviewRequestFactory {
         let errorParser = makeErrorParser()
-        return ProductReview(errorParser: errorParser,
+        return ReviewManager(errorParser: errorParser,
+                             sessionManager: commonSession,
+                             queue: sessionQueue)
+    }
+    
+    func makeBasketRequestFactory() -> BasketRequestFactory {
+        let errorParser = makeErrorParser()
+        return BasketManager(errorParser: errorParser,
                              sessionManager: commonSession,
                              queue: sessionQueue)
     }

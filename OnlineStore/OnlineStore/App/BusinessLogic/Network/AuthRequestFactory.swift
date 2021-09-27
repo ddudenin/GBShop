@@ -14,11 +14,11 @@ protocol AuthRequestFactory {
                completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void)
 
     func logout(userId: Int,
-                completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void)
+                completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void)
 
     func signup(data: UserData,
-                completionHandler: @escaping (AFDataResponse<SignupResult>) -> Void)
+                completionHandler: @escaping (AFDataResponse<ResultWithMessage>) -> Void)
 
     func changeUserData(data: UserData,
-                        completionHandler: @escaping (AFDataResponse<ChangeUserDataResult>) -> Void)
+                        completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void)
 }
