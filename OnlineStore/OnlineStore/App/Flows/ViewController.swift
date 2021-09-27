@@ -8,48 +8,52 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     let requestFactory = RequestFactory()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+        //signup()
+        //login()
+        //logout()
+        //changeUserData()
+
+        //getCategoryProducts()
+        //getProductById()
         
-        signup()
-        login()
-        logout()
-        changeUserData()
-        
-        getCategoryProducts()
-        getProductById()
+        addReview()
+        removeReview()
+        getProductReviews()
     }
-    
+
     func login() {
-        let auth = requestFactory.makeAuthRequestFatory()
+        let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: "Somebody", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+                log(message: "\(login)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
-    
+
     func logout() {
-        let auth = requestFactory.makeAuthRequestFatory()
+        let auth = requestFactory.makeAuthRequestFactory()
         auth.logout(userId: 123) { response in
             switch response.result {
-            case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+            case .success(let logout):
+                log(message: "\(logout)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
-    
+
     func signup() {
-        let auth = requestFactory.makeAuthRequestFatory()
+        let auth = requestFactory.makeAuthRequestFactory()
         let data = UserData(id: 123,
                             username: "Somebody",
                             password: "mypassword",
@@ -59,16 +63,16 @@ class ViewController: UIViewController {
                             bio: "This is good! I think I will switch to another language")
         auth.signup(data: data) { response in
             switch response.result {
-            case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+            case .success(let signup):
+                log(message: "\(signup)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
-    
+
     func changeUserData() {
-        let auth = requestFactory.makeAuthRequestFatory()
+        let auth = requestFactory.makeAuthRequestFactory()
         let data = UserData(id: 123,
                             username: "Somebody",
                             password: "mypassword",
@@ -78,36 +82,73 @@ class ViewController: UIViewController {
                             bio: "This is good! I think I will switch to another language")
         auth.changeUserData(data: data) { response in
             switch response.result {
-            case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+            case .success(let changedData):
+                log(message: "\(changedData)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
-    
+
     func getCategoryProducts() {
-        let catalog = requestFactory.makeCatalogRequestFatory()
+        let catalog = requestFactory.makeCatalogRequestFactory()
         catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
-            case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+            case .success(let products):
+                log(message: "\(products)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+
+    func getProductById() {
+        let catalog = requestFactory.makeCatalogRequestFactory()
+        catalog.getProduct(by: 123) { response in
+            switch response.result {
+            case .success(let product):
+                log(message: "\(product)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func getProductById() {
-        let catalog = requestFactory.makeCatalogRequestFatory()
-        catalog.getProduct(by: 123) { response in
+    func addReview() {
+        let review = requestFactory.makeReviewRequestFactory()
+        review.addReview(userId: 123,
+                         reviewText: "Текст отзыва") { response in
             switch response.result {
-            case .success(let login):
-                Logger.instance.logMessage(message: "\(login)", .Success)
+            case .success(let newReview):
+                log(message: "\(newReview)", .Success)
             case .failure(let error):
-                Logger.instance.logMessage(message: error.localizedDescription, .Error)
+                log(message: error.localizedDescription, .Error)
             }
         }
     }
+    
+    func removeReview() {
+        let review = requestFactory.makeReviewRequestFactory()
+        review.removeReview(withId: 123) { response in
+            switch response.result {
+            case .success(let deletedReview):
+                log(message: "\(deletedReview)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+    
+    func getProductReviews() {
+        let review = requestFactory.makeReviewRequestFactory()
+        review.getReviewsForProduct(withId: 2707) { response in
+            switch response.result {
+            case .success(let reviews):
+                log(message: "\(reviews)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
+    }
+    
 }
-

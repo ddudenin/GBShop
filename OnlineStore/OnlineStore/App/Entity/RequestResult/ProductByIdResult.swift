@@ -11,4 +11,3 @@ class ProductByIdResult: Codable {
     let result: Int
     let productInfo: ProductInfo?
 }
-
