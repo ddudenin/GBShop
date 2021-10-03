@@ -13,8 +13,6 @@ final class LoginFormController: UIViewController {
     @IBOutlet weak var loginTextField: TextFieldWithImage!
     @IBOutlet weak var passwordTextField: TextFieldWithImage!
     
-    private let requestFactory = RequestFactory()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -92,7 +90,7 @@ final class LoginFormController: UIViewController {
             return
         }
         
-        let auth = requestFactory.makeAuthRequestFactory()
+        let auth = RequestFactory.instance.makeAuthRequestFactory()
         
         auth.login(userName: login, password: password) { response in
             switch response.result {

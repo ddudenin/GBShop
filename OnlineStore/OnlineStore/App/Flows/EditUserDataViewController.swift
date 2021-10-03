@@ -9,8 +9,6 @@ import UIKit
 
 final class EditUserDataViewController: UIViewController {
     
-    private let requestFactory = RequestFactory()
-    
     private let genderStrings = ["m", "f"]
     
     @IBOutlet weak var usernameTextField: TextFieldWithImage!
@@ -64,7 +62,7 @@ final class EditUserDataViewController: UIViewController {
         
         let gender = genderStrings[genderSegmentControl.selectedSegmentIndex]
         
-        let auth = requestFactory.makeAuthRequestFactory()
+        let auth = RequestFactory.instance.makeAuthRequestFactory()
         let data = UserData(id: 123,
                             username: username,
                             password: password,

@@ -8,9 +8,7 @@
 import UIKit
 
 final class SignupViewController: UIViewController {
-    
-    private let requestFactory = RequestFactory()
-    
+
     private let genderString = ["m", "f"]
     
     @IBOutlet weak var usernameTextField: TextFieldWithImage!
@@ -38,7 +36,7 @@ final class SignupViewController: UIViewController {
         
         let gender = genderString[genderSegmentControl.selectedSegmentIndex]
         
-        let auth = requestFactory.makeAuthRequestFactory()
+        let auth = RequestFactory.instance.makeAuthRequestFactory()
         let data = UserData(id: 123,
                             username: username,
                             password: password,
