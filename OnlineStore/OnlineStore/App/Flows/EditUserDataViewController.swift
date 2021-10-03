@@ -23,7 +23,7 @@ final class EditUserDataViewController: UIViewController {
         
         let data = UserData(id: 123,
                             username: "Somebody",
-                            password: "mypassword",
+                            password: "mYp@ssw0rd",
                             email: "some@some.ru",
                             gender: "m",
                             card: "9872389-2424-234224-234",
@@ -89,5 +89,13 @@ final class EditUserDataViewController: UIViewController {
                 log(message: error.localizedDescription, .Error)
             }
         }
+    }
+    
+    @IBAction func exitButtonHandler(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "StartScreen")
+        self.present(mainViewController,
+                     animated: true,
+                     completion: .none)
     }
 }

@@ -213,7 +213,7 @@ class OnlineStoreTests: XCTestCase {
         
         let data = UserData(id: 123,
                             username: "Somebody",
-                            password: "mypassword",
+                            password: "mYp@ssw0rd",
                             email: "some@some.ru",
                             gender: "m",
                             card: "9872389-2424-234224-234",

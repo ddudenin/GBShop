@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u7Y-DN-qfu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yh1-Bw-k2p">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -27,7 +27,7 @@
         <!--Login Form Controller-->
         <scene sceneID="cBC-8c-dsK">
             <objects>
-                <viewController id="yh1-Bw-k2p" customClass="LoginFormController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartScreen" modalPresentationStyle="fullScreen" id="yh1-Bw-k2p" customClass="LoginFormController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIF-n9-ulh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -362,23 +362,37 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
-                                <rect key="frame" x="195" y="599.5" width="24" height="22"/>
-                                <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="V89-jl-aeO">
+                                <rect key="frame" x="127" y="589.5" width="160" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
+                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="22"/>
+                                        <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Go-Pg-dPw">
+                                        <rect key="frame" x="82.5" y="0.0" width="77.5" height="22"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button" image="rectangle.portrait.and.arrow.right.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="buttonHandler:" destination="TPr-du-JqJ" eventType="touchUpInside" id="bwc-WS-r1e"/>
+                                            <action selector="exitButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="hc7-Hy-DWf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rJ6-0C-E7a"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="8Cl-Pu-fZr"/>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="leading" secondItem="grp-0e-yNK" secondAttribute="leadingMargin" constant="10" id="8jd-zD-U1s"/>
-                            <constraint firstItem="XTX-nq-0zi" firstAttribute="centerX" secondItem="2M0-15-ELd" secondAttribute="centerX" id="CfP-z0-b1Z"/>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="centerY" secondItem="rJ6-0C-E7a" secondAttribute="centerY" id="DSb-uf-BWe"/>
+                            <constraint firstItem="V89-jl-aeO" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="JL5-Fk-2br"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2M0-15-ELd" secondAttribute="trailing" constant="10" id="b1w-PU-ADE"/>
-                            <constraint firstItem="XTX-nq-0zi" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="30" id="bQT-gz-pze"/>
+                            <constraint firstItem="V89-jl-aeO" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="20" id="b5y-wC-3YC"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="wWt-a7-y09"/>
@@ -393,13 +407,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6km-Tv-UcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TPr-du-JqJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="396" y="-338"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zg7-Vu-Sxp">
             <objects>
-                <tabBarController id="u7Y-DN-qfu" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabController" modalPresentationStyle="fullScreen" id="u7Y-DN-qfu" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vGT-4E-sMj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -496,6 +511,7 @@
         <image name="person.crop.square.filled.and.at.rectangle" catalog="system" width="128" height="93"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
+        <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

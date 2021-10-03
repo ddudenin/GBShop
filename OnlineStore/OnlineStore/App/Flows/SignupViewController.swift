@@ -8,7 +8,7 @@
 import UIKit
 
 final class SignupViewController: UIViewController {
-
+    
     private let genderString = ["m", "f"]
     
     @IBOutlet weak var usernameTextField: TextFieldWithImage!
@@ -17,7 +17,6 @@ final class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: TextFieldWithImage!
     @IBOutlet weak var cardNumberTextField: TextFieldWithImage!
     @IBOutlet weak var bioTextField: TextFieldWithImage!
-    
     
     @IBAction func finishRegisterButtonHandler(_ sender: Any) {
         guard
@@ -53,9 +52,16 @@ final class SignupViewController: UIViewController {
                     }
                     log(message: signup.userMessage, .Warning)
                 } else {
+                    DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+                        let mainViewController = storyboard.instantiateViewController(withIdentifier: "StartScreen")
+                        self.present(mainViewController,
+                                     animated: true,
+                                     completion: .none)
+                    }
+                    
                     log(message: "\(signup)", .Success)
                 }
-                
                 
             case .failure(let error):
                 DispatchQueue.main.async {

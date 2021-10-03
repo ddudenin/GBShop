@@ -44,6 +44,10 @@ class ProductsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     private func loadProductList() {
         let catalog = RequestFactory.instance.makeCatalogRequestFactory()
         catalog.getProducts(page: 1, category: 1) { response in

@@ -77,7 +77,6 @@ final class LoginFormController: UIViewController {
                                                      height: self.view.frame.size.height)
     }
     
-    
     @IBAction func loginButtonHandler(_ sender: Any) {
         guard
             let login = self.loginTextField.text,
@@ -101,6 +100,14 @@ final class LoginFormController: UIViewController {
                     }
                     log(message: "Ошибка авторизации", .Warning)
                 } else {
+                    DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+                        let mainTabController = storyboard.instantiateViewController(withIdentifier: "MainTabController")
+                        self.present(mainTabController,
+                                     animated: true,
+                                     completion: .none)
+                    }
+                    
                     log(message: "\(login)", .Success)
                 }
             case .failure(let error):
