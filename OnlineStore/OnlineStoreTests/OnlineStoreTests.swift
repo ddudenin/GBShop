@@ -143,7 +143,7 @@ class OnlineStoreTests: XCTestCase {
         
         let data = UserData(id: 123,
                             username: "Somebody",
-                            password: "mypassword",
+                            password: "mYp@ssw0rd",
                             email: "some@some.ru",
                             gender: "m",
                             card: "9872389-2424-234224-234",
@@ -177,8 +177,8 @@ class OnlineStoreTests: XCTestCase {
         
         let data = UserData(id: 456,
                             username: "wrongName",
-                            password: "mypassword",
-                            email: "some@some.ru",
+                            password: "mYp@ssw0rd",
+                            email: "some_some.ru",
                             gender: "m",
                             card: "9872389-2424-234224-234",
                             bio: "This is good! I think I will switch to another language")
@@ -192,7 +192,7 @@ class OnlineStoreTests: XCTestCase {
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
-                XCTAssertEqual(model.userMessage, "Сообщение об ошибке")
+                XCTAssertEqual(model.userMessage, "Неверный формат электронный почты")
                 
                 authExpectation.fulfill()
             case .failure(let error):
