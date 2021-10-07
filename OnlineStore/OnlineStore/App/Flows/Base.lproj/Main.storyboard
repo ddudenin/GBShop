@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yh1-Bw-k2p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u7Y-DN-qfu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -73,7 +73,7 @@
                                                 <rect key="frame" x="10" y="186" width="394" height="78"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your login" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-l0-nAo" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                                        <rect key="frame" x="104.5" y="0.0" width="185.5" height="34"/>
+                                                        <rect key="frame" x="117" y="0.0" width="160.5" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         <userDefinedRuntimeAttributes>
@@ -84,7 +84,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="1VN-rH-veb" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                                        <rect key="frame" x="104.5" y="44" width="185.5" height="34"/>
+                                                        <rect key="frame" x="117" y="44" width="160.5" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                         <userDefinedRuntimeAttributes>
@@ -458,46 +458,61 @@
             </objects>
             <point key="canvasLocation" x="396" y="-996"/>
         </scene>
+        <!--Product Detail View Controller-->
+        <scene sceneID="AAP-ru-yRd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RqA-0p-F7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ProductDetailScreen" modalPresentationStyle="fullScreen" id="i4a-pu-cX2" customClass="ProductDetailViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MeT-21-1g6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BNp-3K-Dsc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1147.8260869565217" y="-996.42857142857133"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="1VN-rH-veb">
-            <size key="intrinsicContentSize" width="185.5" height="34"/>
+            <size key="intrinsicContentSize" width="160.5" height="34"/>
         </designable>
         <designable name="2VB-l0-nAo">
-            <size key="intrinsicContentSize" width="159.5" height="34"/>
+            <size key="intrinsicContentSize" width="129.5" height="34"/>
         </designable>
         <designable name="3G5-Y7-9Vx">
-            <size key="intrinsicContentSize" width="59" height="36"/>
+            <size key="intrinsicContentSize" width="60" height="36"/>
         </designable>
         <designable name="4pk-Zu-Fpo">
-            <size key="intrinsicContentSize" width="92.5" height="34"/>
+            <size key="intrinsicContentSize" width="62.5" height="34"/>
         </designable>
         <designable name="FBY-2g-7v8">
-            <size key="intrinsicContentSize" width="185.5" height="34"/>
+            <size key="intrinsicContentSize" width="151.5" height="34"/>
         </designable>
         <designable name="JpV-rq-xRY">
-            <size key="intrinsicContentSize" width="124.5" height="34"/>
+            <size key="intrinsicContentSize" width="95.5" height="34"/>
         </designable>
         <designable name="Utc-Gb-f2h">
-            <size key="intrinsicContentSize" width="115" height="34"/>
+            <size key="intrinsicContentSize" width="90" height="34"/>
         </designable>
         <designable name="hIe-dI-9HU">
-            <size key="intrinsicContentSize" width="185.5" height="34"/>
+            <size key="intrinsicContentSize" width="151.5" height="34"/>
         </designable>
         <designable name="lPY-PI-S4i">
-            <size key="intrinsicContentSize" width="124.5" height="34"/>
+            <size key="intrinsicContentSize" width="95.5" height="34"/>
         </designable>
         <designable name="mK5-Zw-nCe">
-            <size key="intrinsicContentSize" width="92.5" height="34"/>
+            <size key="intrinsicContentSize" width="62.5" height="34"/>
         </designable>
         <designable name="rPR-mK-6dI">
-            <size key="intrinsicContentSize" width="115" height="34"/>
+            <size key="intrinsicContentSize" width="90" height="34"/>
         </designable>
         <designable name="wlQ-cK-V1z">
-            <size key="intrinsicContentSize" width="80" height="34"/>
+            <size key="intrinsicContentSize" width="48" height="34"/>
         </designable>
         <designable name="xh7-hm-S1Z">
-            <size key="intrinsicContentSize" width="80" height="34"/>
+            <size key="intrinsicContentSize" width="48" height="34"/>
         </designable>
     </designables>
     <resources>

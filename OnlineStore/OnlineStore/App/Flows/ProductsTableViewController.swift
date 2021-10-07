@@ -46,6 +46,21 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let product = products[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+        
+        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailScreen") as? ProductDetailViewController else {
+            Logger.instance.logMessage(message: "Can not load detail VC", .Error)
+            return
+        }
+        
+        detailViewController.configure(product: product)
+        
+        self.present(detailViewController,
+                     animated: true,
+                     completion: .none)
     }
     
     private func loadProductList() {

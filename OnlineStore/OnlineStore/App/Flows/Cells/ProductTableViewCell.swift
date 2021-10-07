@@ -21,6 +21,6 @@ class ProductTableViewCell: UITableViewCell {
     
     func configure(product: Product) {
         self.nameLabel.text = product.name
-        self.priceLabel.text = "\(product.price) ₽"
+        self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
 }
