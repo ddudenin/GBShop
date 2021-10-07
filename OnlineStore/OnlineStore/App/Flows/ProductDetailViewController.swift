@@ -13,13 +13,13 @@ class ProductDetailViewController: UIViewController {
     private lazy var productInfoView = ProductInfoView()
     private lazy var reviewsTableView = UITableView()
     
-    let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    private var product: Product?
+    private var productInfo = ProductInfo(name: "", price: 0, description: "")
     private var reviews = [Review]()
     
     override func viewDidLoad() {
@@ -28,13 +28,23 @@ class ProductDetailViewController: UIViewController {
         configureView()
         
         loadReviews()
-        
-        guard let product = self.product else { return }
-        productDetailView.configure(product: product)
     }
     
     func configure(product: Product) {
-        self.product = product
+        let catalog = RequestFactory.instance.makeCatalogRequestFactory()
+        catalog.getProduct(by: product.id) { response in
+            switch response.result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.productInfo = data.productInfo
+                    self.productDetailView.configure(product: self.productInfo)
+                    self.productInfoView.configure(description: self.productInfo.description)
+                }
+                log(message: "\(product)", .Success)
+            case .failure(let error):
+                log(message: error.localizedDescription, .Error)
+            }
+        }
     }
     
     func configureView() {
@@ -43,8 +53,8 @@ class ProductDetailViewController: UIViewController {
         
         addDetailView()
         addInfoView()
+
         addReviewsTableView()
-        
         configureReviewsTableView()
     }
     

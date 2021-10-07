@@ -53,7 +53,7 @@ class ProductDetailView: UIView {
         self.setupView()
     }
     
-    func configure(product: Product) {
+    func configure(product: ProductInfo) {
         self.artworkImageView.image = UIImage(systemName: "exclamationmark.triangle")
         self.nameLabel.text = product.name
         self.priceLabel.text = ConvertPriceToString(price: product.price)

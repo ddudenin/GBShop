@@ -20,7 +20,12 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func configure(review: Review) {
-        self.usernameLabel.text = "User"
+        if let userId = review.userId {
+            self.usernameLabel.text = "User \(userId)"
+        } else {
+            self.usernameLabel.text = "Unregistered user"
+        }
+
         self.reviewTextLabel.text = review.text
     }
 }

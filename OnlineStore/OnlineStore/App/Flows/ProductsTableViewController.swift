@@ -52,7 +52,7 @@ class ProductsTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailScreen") as? ProductDetailViewController else {
-            Logger.instance.logMessage(message: "Can not load detail VC", .Error)
+            Logger.instance.logMessage(message: "Can not convert VC to ProductDetailViewController", .Error)
             return
         }
         

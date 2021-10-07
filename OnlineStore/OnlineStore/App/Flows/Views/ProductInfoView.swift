@@ -45,6 +45,10 @@ class ProductInfoView: UIView {
         self.setupView()
     }
     
+    func configure(description: String) {
+        descriptionLabel.text = description
+    }
+    
     // MARK: - Private
     
     private func setupView() {
@@ -58,21 +62,12 @@ class ProductInfoView: UIView {
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -4),
+            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -7),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
         ])
-        
-        descriptionLabel.text = """
-Ноутбук имеет следующие характеристики:
-экран: 15.6", IPS, 1920x1080, 60 Гц 45% NTSC;
-процессор: Core i5-10300H (4 ядра и 8 потоков);
-оперативная память: 8 гигабайт DDR4, 2933 МГц;
-видеокарта: GeForce GTX 1650;
-накопители данных: SSD 256 ГБ.
-"""
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
