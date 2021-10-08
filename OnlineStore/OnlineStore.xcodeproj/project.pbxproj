@@ -207,8 +207,6 @@
 			children = (
 				0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */,
 				0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */,
-				0AE12C5D270F7C60006D18D5 /* ReviewTableViewCell.swift */,
-				0AE12C5E270F7C60006D18D5 /* ReviewTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -228,6 +226,34 @@
 				0A36240626FBB288002B31EE /* Ext+UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0A5BB6182710959400C78583 /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0A5BB619271095CA00C78583 /* Cell */,
+				0AE12C54270F5D23006D18D5 /* Views */,
+				0AE12C52270F5AB4006D18D5 /* ProductDetailViewController.swift */,
+			);
+			path = ProductDetail;
+			sourceTree = "<group>";
+		};
+		0A5BB619271095CA00C78583 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0AE12C5D270F7C60006D18D5 /* ReviewTableViewCell.swift */,
+				0AE12C5E270F7C60006D18D5 /* ReviewTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A5BB61A271095EC00C78583 /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				0A32A5AC2709B39900C061B2 /* Cells */,
+				0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */,
+			);
+			path = ProductList;
 			sourceTree = "<group>";
 		};
 		0AAE390626CECCB100873823 /* RequestResult */ = {
@@ -357,16 +383,14 @@
 		0AEA84E326BA6A0A00D4DF77 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				0AE12C54270F5D23006D18D5 /* Views */,
-				0A32A5AC2709B39900C061B2 /* Cells */,
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
+				0A5BB61A271095EC00C78583 /* ProductList */,
+				0A5BB6182710959400C78583 /* ProductDetail */,
 				0AEA84B526BA686900D4DF77 /* Main.storyboard */,
 				0AEA84B326BA686900D4DF77 /* ViewController.swift */,
 				0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */,
 				0A36240826FBC48E002B31EE /* SignupViewController.swift */,
 				0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */,
-				0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */,
-				0AE12C52270F5AB4006D18D5 /* ProductDetailViewController.swift */,
 				0AEA84E026BA69E100D4DF77 /* Core */,
 			);
 			path = Flows;
