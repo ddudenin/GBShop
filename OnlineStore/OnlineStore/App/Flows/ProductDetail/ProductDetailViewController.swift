@@ -9,7 +9,7 @@ import UIKit
 
 class ProductDetailViewController: UIViewController {
     
-    private lazy var productDetailView = ProductDetailView()
+    private lazy var productHeaderView = ProductHeaderView()
     private lazy var productInfoView = ProductInfoView()
     private lazy var reviewsTableView = UITableView()
     
@@ -37,7 +37,7 @@ class ProductDetailViewController: UIViewController {
             case .success(let data):
                 DispatchQueue.main.async {
                     self.productInfo = data.productInfo
-                    self.productDetailView.configure(product: self.productInfo)
+                    self.productHeaderView.configure(product: self.productInfo)
                     self.productInfoView.configure(description: self.productInfo.description)
                 }
                 log(message: "\(product)", .Success)
@@ -51,9 +51,9 @@ class ProductDetailViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         configureScrollView()
         
-        addDetailView()
+        addHeaderView()
         addInfoView()
-
+        
         addReviewsTableView()
         configureReviewsTableView()
     }
@@ -71,15 +71,15 @@ class ProductDetailViewController: UIViewController {
         ])
     }
     
-    private func addDetailView() {
-        scrollView.addSubview(productDetailView)
+    private func addHeaderView() {
+        scrollView.addSubview(productHeaderView)
         
-        productDetailView.translatesAutoresizingMaskIntoConstraints = false
+        productHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            productDetailView.topAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: 25),
-            productDetailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            productDetailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            productHeaderView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 5),
+            productHeaderView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            productHeaderView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
@@ -89,7 +89,7 @@ class ProductDetailViewController: UIViewController {
         productInfoView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            productInfoView.topAnchor.constraint(equalTo: self.productDetailView.bottomAnchor),
+            productInfoView.topAnchor.constraint(equalTo: self.productHeaderView.bottomAnchor),
             productInfoView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             productInfoView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
         ])
@@ -105,6 +105,7 @@ class ProductDetailViewController: UIViewController {
             reviewsTableView.topAnchor.constraint(equalTo: productInfoView.bottomAnchor),
             reviewsTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             reviewsTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            reviewsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             reviewsTableView.heightAnchor.constraint(equalToConstant: 350)
         ])
     }

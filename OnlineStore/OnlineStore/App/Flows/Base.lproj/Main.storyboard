@@ -73,7 +73,7 @@
                                                 <rect key="frame" x="10" y="186" width="394" height="78"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your login" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-l0-nAo" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                                        <rect key="frame" x="117" y="0.0" width="160.5" height="34"/>
+                                                        <rect key="frame" x="104.5" y="0.0" width="185.5" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         <userDefinedRuntimeAttributes>
@@ -84,7 +84,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="1VN-rH-veb" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                                        <rect key="frame" x="117" y="44" width="160.5" height="34"/>
+                                                        <rect key="frame" x="104.5" y="44" width="185.5" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                         <userDefinedRuntimeAttributes>
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF7-r6-jtS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1226.0869565217392" y="-473.4375"/>
+            <point key="canvasLocation" x="-1226" y="-338"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="tjQ-xM-Lzq">
@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Olv-Dp-sUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-496" y="-140"/>
+            <point key="canvasLocation" x="-459" y="5"/>
         </scene>
         <!--Profile-->
         <scene sceneID="njY-Pl-mG1">
@@ -421,15 +421,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ub2-4e-Leg" kind="relationship" relationship="viewControllers" id="XE6-Mt-4lA"/>
-                        <segue destination="d3b-0V-NCj" kind="relationship" relationship="viewControllers" id="22K-eV-QdU"/>
+                        <segue destination="Y7H-0b-SIr" kind="relationship" relationship="viewControllers" id="lGl-gF-aIK"/>
+                        <segue destination="d3b-0V-NCj" kind="relationship" relationship="viewControllers" id="gNQ-id-NM2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Deu-fr-vxK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-497" y="-785"/>
+            <point key="canvasLocation" x="-459" y="-687"/>
         </scene>
         <!--Products-->
+        <scene sceneID="0Nz-4x-5CX">
+            <objects>
+                <navigationController id="Y7H-0b-SIr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Products" image="bag.fill" catalog="system" id="TKD-uH-9Kg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fla-GP-F1x">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ub2-4e-Leg" kind="relationship" relationship="rootViewController" id="pOZ-qH-hmE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zIK-2p-gnq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="396" y="-996"/>
+        </scene>
+        <!--Products Table View Controller-->
         <scene sceneID="dGJ-kF-fHY">
             <objects>
                 <tableViewController id="ub2-4e-Leg" customClass="ProductsTableViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
@@ -452,16 +469,15 @@
                             <outlet property="delegate" destination="ub2-4e-Leg" id="772-CQ-TZ9"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Products" image="bag.fill" catalog="system" id="l7n-uL-h8p"/>
+                    <navigationItem key="navigationItem" id="5UW-bi-8Cu"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yGi-RH-cBl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="396" y="-996"/>
+            <point key="canvasLocation" x="1242" y="-996"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="AAP-ru-yRd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RqA-0p-F7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ProductDetailScreen" modalPresentationStyle="fullScreen" id="i4a-pu-cX2" customClass="ProductDetailViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MeT-21-1g6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -470,49 +486,50 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RqA-0p-F7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147.8260869565217" y="-996.42857142857133"/>
+            <point key="canvasLocation" x="2072" y="-996"/>
         </scene>
     </scenes>
     <designables>
         <designable name="1VN-rH-veb">
-            <size key="intrinsicContentSize" width="160.5" height="34"/>
+            <size key="intrinsicContentSize" width="185.5" height="34"/>
         </designable>
         <designable name="2VB-l0-nAo">
-            <size key="intrinsicContentSize" width="129.5" height="34"/>
+            <size key="intrinsicContentSize" width="159.5" height="34"/>
         </designable>
         <designable name="3G5-Y7-9Vx">
-            <size key="intrinsicContentSize" width="60" height="36"/>
+            <size key="intrinsicContentSize" width="59" height="36"/>
         </designable>
         <designable name="4pk-Zu-Fpo">
-            <size key="intrinsicContentSize" width="62.5" height="34"/>
+            <size key="intrinsicContentSize" width="92.5" height="34"/>
         </designable>
         <designable name="FBY-2g-7v8">
-            <size key="intrinsicContentSize" width="151.5" height="34"/>
+            <size key="intrinsicContentSize" width="185.5" height="34"/>
         </designable>
         <designable name="JpV-rq-xRY">
-            <size key="intrinsicContentSize" width="95.5" height="34"/>
+            <size key="intrinsicContentSize" width="124.5" height="34"/>
         </designable>
         <designable name="Utc-Gb-f2h">
-            <size key="intrinsicContentSize" width="90" height="34"/>
+            <size key="intrinsicContentSize" width="115" height="34"/>
         </designable>
         <designable name="hIe-dI-9HU">
-            <size key="intrinsicContentSize" width="151.5" height="34"/>
+            <size key="intrinsicContentSize" width="185.5" height="34"/>
         </designable>
         <designable name="lPY-PI-S4i">
-            <size key="intrinsicContentSize" width="95.5" height="34"/>
+            <size key="intrinsicContentSize" width="124.5" height="34"/>
         </designable>
         <designable name="mK5-Zw-nCe">
-            <size key="intrinsicContentSize" width="62.5" height="34"/>
+            <size key="intrinsicContentSize" width="92.5" height="34"/>
         </designable>
         <designable name="rPR-mK-6dI">
-            <size key="intrinsicContentSize" width="90" height="34"/>
+            <size key="intrinsicContentSize" width="115" height="34"/>
         </designable>
         <designable name="wlQ-cK-V1z">
-            <size key="intrinsicContentSize" width="48" height="34"/>
+            <size key="intrinsicContentSize" width="80" height="34"/>
         </designable>
         <designable name="xh7-hm-S1Z">
-            <size key="intrinsicContentSize" width="48" height="34"/>
+            <size key="intrinsicContentSize" width="80" height="34"/>
         </designable>
     </designables>
     <resources>

@@ -1,5 +1,5 @@
 //
-//  ProductDetailView.swift
+//  ProductHeaderView.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 07.10.2021.
@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 #endif
 
-class ProductDetailView: UIView {
+class ProductHeaderView: UIView {
     private(set) lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ class ProductDetailView: UIView {
     }
     
     func configure(product: ProductInfo) {
-        self.artworkImageView.image = UIImage(systemName: "exclamationmark.triangle")
+        self.artworkImageView.image = UIImage(systemName: "tag.circle")
         self.nameLabel.text = product.name
         self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
@@ -65,7 +65,7 @@ class ProductDetailView: UIView {
         self.addSubview(artworkImageView)
         self.addSubview(nameLabel)
         self.addSubview(priceLabel)
-
+        
         NSLayoutConstraint.activate([
             artworkImageView.heightAnchor.constraint(equalToConstant: 100),
             artworkImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -93,9 +93,9 @@ class ProductDetailView: UIView {
 
 #if DEBUG
 
-struct ProductDetailView_Preview: PreviewProvider {
+struct ProductHeaderView_Preview: PreviewProvider {
     static var previews: some View {
-        let view = ProductDetailView()
+        let view = ProductHeaderView()
         view.nameLabel.text = "Игровой ноутбук"
         view.priceLabel.text = ConvertPriceToString(price: 48000)
         return UIPreviewView(view)

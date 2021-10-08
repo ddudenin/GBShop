@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductTableViewCell: UITableViewCell {
-
+    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     

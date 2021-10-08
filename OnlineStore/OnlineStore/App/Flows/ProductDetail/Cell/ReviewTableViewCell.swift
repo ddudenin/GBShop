@@ -25,7 +25,7 @@ class ReviewTableViewCell: UITableViewCell {
         } else {
             self.usernameLabel.text = "Unregistered user"
         }
-
+        
         self.reviewTextLabel.text = review.text
     }
 }

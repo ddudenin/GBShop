@@ -58,9 +58,8 @@ class ProductsTableViewController: UITableViewController {
         
         detailViewController.configure(product: product)
         
-        self.present(detailViewController,
-                     animated: true,
-                     completion: .none)
+        self.navigationController?
+            .pushViewController(detailViewController, animated: true)
     }
     
     private func loadProductList() {
