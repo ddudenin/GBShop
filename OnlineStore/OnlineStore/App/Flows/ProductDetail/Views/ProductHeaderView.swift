@@ -6,9 +6,7 @@
 //
 
 import UIKit
-#if DEBUG
 import SwiftUI
-#endif
 
 class ProductHeaderView: UIView {
     private(set) lazy var artworkImageView: UIImageView = {
@@ -91,8 +89,6 @@ class ProductHeaderView: UIView {
     }
 }
 
-#if DEBUG
-
 struct ProductHeaderView_Preview: PreviewProvider {
     static var previews: some View {
         let view = ProductHeaderView()
@@ -103,6 +99,4 @@ struct ProductHeaderView_Preview: PreviewProvider {
             .previewLayout(.fixed(width: 375, height: 150))
     }
 }
-
-#endif
 

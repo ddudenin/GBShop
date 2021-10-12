@@ -6,9 +6,7 @@
 //
 
 import UIKit
-#if DEBUG
 import SwiftUI
-#endif
 
 class ProductInfoView: UIView {
     private let titleLabel: UILabel = {
@@ -89,9 +87,6 @@ class ProductInfoView: UIView {
     }
 }
 
-#if DEBUG
-
-
 struct ProductInfoView_Preview : PreviewProvider {
     static var previews: some View {
         let view = ProductInfoView()
@@ -111,5 +106,3 @@ Note: True Skate comes with a single skate park and contains additional content 
             .previewLayout(.fixed(width: 375, height: 200))
     }
 }
-
-#endif
