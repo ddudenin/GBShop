@@ -89,7 +89,7 @@ final class LoginFormController: UIViewController {
             return
         }
         
-        let auth = RequestFactory.instance.makeAuthRequestFactory()
+        let auth = RequestFactory.shared.makeAuthRequestFactory()
         
         auth.login(userName: login, password: password) { response in
             switch response.result {

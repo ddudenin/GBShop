@@ -14,7 +14,11 @@ class ProductTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        commonInit()
+    }
+    
+    private func commonInit() {
         nameLabel.text = nil
         priceLabel.text = nil
     }

@@ -9,7 +9,7 @@ import Alamofire
 
 class RequestFactory {
     
-    static let instance = RequestFactory()
+    static let shared = RequestFactory()
     
     private init() {}
     

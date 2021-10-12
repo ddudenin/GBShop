@@ -52,7 +52,7 @@ class ProductsTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailScreen") as? ProductDetailViewController else {
-            Logger.instance.logMessage(message: "Can not convert VC to ProductDetailViewController", .Error)
+            Logger.shared.logMessage(message: "Can not convert VC to ProductDetailViewController", .Error)
             return
         }
         
@@ -63,7 +63,7 @@ class ProductsTableViewController: UITableViewController {
     }
     
     private func loadProductList() {
-        let catalog = RequestFactory.instance.makeCatalogRequestFactory()
+        let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let products):

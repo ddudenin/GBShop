@@ -31,7 +31,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     func configure(product: Product) {
-        let catalog = RequestFactory.instance.makeCatalogRequestFactory()
+        let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProduct(by: product.id) { response in
             switch response.result {
             case .success(let data):
@@ -118,7 +118,7 @@ class ProductDetailViewController: UIViewController {
     }
     
     private func loadReviews() {
-        let review = RequestFactory.instance.makeReviewRequestFactory()
+        let review = RequestFactory.shared.makeReviewRequestFactory()
         review.getReviewsForProduct(withId: 2707) { response in
             switch response.result {
             case .success(let reviews):

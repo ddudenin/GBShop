@@ -14,7 +14,11 @@ class ReviewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        commonInit()
+    }
+    
+    private func commonInit() {
         usernameLabel.text = nil
         reviewTextLabel.text = nil
     }
