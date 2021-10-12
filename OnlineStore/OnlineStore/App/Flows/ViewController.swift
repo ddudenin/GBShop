@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let requestFactory = RequestFactory()
+    let requestFactory = RequestFactory.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()

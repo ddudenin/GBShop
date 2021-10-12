@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5wn-fB-cvU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yh1-Bw-k2p">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -27,7 +27,7 @@
         <!--Login Form Controller-->
         <scene sceneID="cBC-8c-dsK">
             <objects>
-                <viewController id="yh1-Bw-k2p" customClass="LoginFormController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartScreen" modalPresentationStyle="fullScreen" id="yh1-Bw-k2p" customClass="LoginFormController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIF-n9-ulh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -114,7 +114,7 @@
                                                             <constraint firstAttribute="width" constant="30" id="gbu-Ib-hrr"/>
                                                             <constraint firstAttribute="height" constant="30" id="hf2-Nk-2dg"/>
                                                         </constraints>
-                                                        <state key="normal" image="person.crop.square.fill.and.at.rectangle" catalog="system"/>
+                                                        <state key="normal" image="person.crop.square.filled.and.at.rectangle" catalog="system"/>
                                                         <connections>
                                                             <action selector="signupButtonHandler:" destination="yh1-Bw-k2p" eventType="touchUpInside" id="paQ-Fd-gki"/>
                                                         </connections>
@@ -199,7 +199,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPR-mK-6dI" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="10"/>
@@ -281,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="-496" y="-140"/>
         </scene>
-        <!--Edit User Data View Controller-->
+        <!--Profile-->
         <scene sceneID="njY-Pl-mG1">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="d3b-0V-NCj" customClass="EditUserDataViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
@@ -290,7 +290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-15-ELd">
-                                <rect key="frame" x="30" y="312.5" width="354" height="281.5"/>
+                                <rect key="frame" x="30" y="288" width="354" height="281.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-y1-lyq">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
@@ -312,7 +312,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Utc-Gb-f2h" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="10"/>
@@ -362,25 +362,41 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
-                                <rect key="frame" x="195" y="624" width="24" height="22"/>
-                                <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="V89-jl-aeO">
+                                <rect key="frame" x="127" y="589.5" width="160" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
+                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="22"/>
+                                        <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Go-Pg-dPw">
+                                        <rect key="frame" x="82.5" y="0.0" width="77.5" height="22"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button" image="rectangle.portrait.and.arrow.right.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="buttonHandler:" destination="TPr-du-JqJ" eventType="touchUpInside" id="bwc-WS-r1e"/>
+                                            <action selector="exitButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="hc7-Hy-DWf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rJ6-0C-E7a"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="8Cl-Pu-fZr"/>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="leading" secondItem="grp-0e-yNK" secondAttribute="leadingMargin" constant="10" id="8jd-zD-U1s"/>
-                            <constraint firstItem="XTX-nq-0zi" firstAttribute="centerX" secondItem="2M0-15-ELd" secondAttribute="centerX" id="CfP-z0-b1Z"/>
                             <constraint firstItem="2M0-15-ELd" firstAttribute="centerY" secondItem="rJ6-0C-E7a" secondAttribute="centerY" id="DSb-uf-BWe"/>
+                            <constraint firstItem="V89-jl-aeO" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="JL5-Fk-2br"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2M0-15-ELd" secondAttribute="trailing" constant="10" id="b1w-PU-ADE"/>
-                            <constraint firstItem="XTX-nq-0zi" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="30" id="bQT-gz-pze"/>
+                            <constraint firstItem="V89-jl-aeO" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="20" id="b5y-wC-3YC"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="wWt-a7-y09"/>
+                    <navigationItem key="navigationItem" id="P0f-uT-n2W"/>
                     <connections>
                         <outlet property="bioTextField" destination="wlQ-cK-V1z" id="bbD-hP-37Q"/>
                         <outlet property="cardNumberTextField" destination="FBY-2g-7v8" id="ggh-zE-Lt7"/>
@@ -391,8 +407,56 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6km-Tv-UcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TPr-du-JqJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-497" y="-812"/>
+            <point key="canvasLocation" x="396" y="-338"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Zg7-Vu-Sxp">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabController" modalPresentationStyle="fullScreen" id="u7Y-DN-qfu" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vGT-4E-sMj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ub2-4e-Leg" kind="relationship" relationship="viewControllers" id="XE6-Mt-4lA"/>
+                        <segue destination="d3b-0V-NCj" kind="relationship" relationship="viewControllers" id="22K-eV-QdU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Deu-fr-vxK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-497" y="-785"/>
+        </scene>
+        <!--Products-->
+        <scene sceneID="dGJ-kF-fHY">
+            <objects>
+                <tableViewController id="ub2-4e-Leg" customClass="ProductsTableViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0E1-m7-jb6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" id="QOw-bu-94b">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QOw-bu-94b" id="xMw-MG-6iR">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ub2-4e-Leg" id="cmB-Y2-BE7"/>
+                            <outlet property="delegate" destination="ub2-4e-Leg" id="772-CQ-TZ9"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Products" image="bag.fill" catalog="system" id="l7n-uL-h8p"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGi-RH-cBl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="396" y="-996"/>
         </scene>
     </scenes>
     <designables>
@@ -438,13 +502,16 @@
     </designables>
     <resources>
         <image name="arrow.clockwise.icloud.fill" catalog="system" width="128" height="88"/>
+        <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="envelope.circle" catalog="system" width="128" height="121"/>
         <image name="key" catalog="system" width="86" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="person.crop.square.fill.and.at.rectangle" catalog="system" width="128" height="93"/>
+        <image name="person.crop.square.filled.and.at.rectangle" catalog="system" width="128" height="93"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
+        <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

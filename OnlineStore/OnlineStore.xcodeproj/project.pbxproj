@@ -19,6 +19,9 @@
 		0A251F7726C8F54100F46226 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7626C8F54100F46226 /* RequestFactory.swift */; };
 		0A251F7F26C9032A00F46226 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F7E26C9032A00F46226 /* UserData.swift */; };
 		0A31519E26FCFB51006345C2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A31519D26FCFB51006345C2 /* Utils.swift */; };
+		0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */; };
+		0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */; };
+		0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */; };
 		0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */; };
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
 		0A36240426FBB247002B31EE /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240326FBB247002B31EE /* SignInButton.swift */; };
@@ -81,6 +84,9 @@
 		0A251F7626C8F54100F46226 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		0A251F7E26C9032A00F46226 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0A31519D26FCFB51006345C2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
+		0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A36240326FBB247002B31EE /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
@@ -182,6 +188,15 @@
 				0A783F6526F5EDB700F976C2 /* BasketManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0A32A5AC2709B39900C061B2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */,
+				0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0A36240026FBB151002B31EE /* CustomItemsUI */ = {
@@ -311,12 +326,14 @@
 		0AEA84E326BA6A0A00D4DF77 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				0A32A5AC2709B39900C061B2 /* Cells */,
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
 				0AEA84B526BA686900D4DF77 /* Main.storyboard */,
 				0AEA84B326BA686900D4DF77 /* ViewController.swift */,
 				0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */,
 				0A36240826FBC48E002B31EE /* SignupViewController.swift */,
 				0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */,
+				0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -480,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AEA84BC26BA686B00D4DF77 /* LaunchScreen.storyboard in Resources */,
+				0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */,
 				0AEA84B926BA686B00D4DF77 /* Assets.xcassets in Resources */,
 				0AEA84B726BA686900D4DF77 /* Main.storyboard in Resources */,
 			);
@@ -623,6 +641,7 @@
 				0A36240926FBC48E002B31EE /* SignupViewController.swift in Sources */,
 				0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */,
 				0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */,
+				0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */,
 				0AAE390026CEB85800873823 /* CatalogManager.swift in Sources */,
 				0A251F6626C8F29000F46226 /* ErrorParser.swift in Sources */,
 				0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */,
@@ -637,6 +656,7 @@
 				0A251F6E26C8F49D00F46226 /* LoginResult.swift in Sources */,
 				0A251F6426C8F23A00F46226 /* AbstractErrorParser.swift in Sources */,
 				0A251F7F26C9032A00F46226 /* UserData.swift in Sources */,
+				0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */,
 				0A251F7026C8F4BC00F46226 /* User.swift in Sources */,
 				0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */,
 				0AAE38FC26CEB70700873823 /* Product.swift in Sources */,
