@@ -8,19 +8,23 @@
 import UIKit
 
 class ProductTableViewCell: UITableViewCell {
-
+    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        commonInit()
+    }
+    
+    private func commonInit() {
         nameLabel.text = nil
         priceLabel.text = nil
     }
     
     func configure(product: Product) {
         self.nameLabel.text = product.name
-        self.priceLabel.text = "\(product.price) ₽"
+        self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="122" id="KGk-i7-Jjw" customClass="ReviewTableViewCell" customModule="OnlineStore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="122"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="335" height="122"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oSW-yq-iAP">
+                        <rect key="frame" x="12" y="13.5" width="25" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="2pe-rh-fPs"/>
+                            <constraint firstAttribute="width" constant="25" id="xCW-As-oyn"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvw-5Q-lUg">
+                        <rect key="frame" x="52" y="14.5" width="78.5" height="20.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er2-mY-VuN">
+                        <rect key="frame" x="12" y="49" width="311" height="50"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oSW-yq-iAP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="05e-pd-ElK"/>
+                    <constraint firstAttribute="trailing" secondItem="Er2-mY-VuN" secondAttribute="trailing" constant="12" id="71k-CU-MUY"/>
+                    <constraint firstItem="uvw-5Q-lUg" firstAttribute="centerY" secondItem="oSW-yq-iAP" secondAttribute="centerY" id="QR9-t2-4Ax"/>
+                    <constraint firstItem="Er2-mY-VuN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="RtU-be-sKG"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Er2-mY-VuN" secondAttribute="bottom" constant="12" id="pUQ-tA-TOg"/>
+                    <constraint firstItem="Er2-mY-VuN" firstAttribute="top" secondItem="oSW-yq-iAP" secondAttribute="bottom" constant="12" id="qtj-JG-fgs"/>
+                    <constraint firstItem="uvw-5Q-lUg" firstAttribute="leading" secondItem="oSW-yq-iAP" secondAttribute="trailing" constant="15" id="s2m-7i-Peh"/>
+                    <constraint firstItem="oSW-yq-iAP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="xVK-xQ-KAQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="reviewTextLabel" destination="Er2-mY-VuN" id="U5R-QI-XZU"/>
+                <outlet property="usernameLabel" destination="uvw-5Q-lUg" id="2dK-vR-gXi"/>
+            </connections>
+            <point key="canvasLocation" x="142.75362318840581" y="75"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+    </resources>
+</document>

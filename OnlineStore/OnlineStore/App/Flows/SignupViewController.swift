@@ -35,7 +35,7 @@ final class SignupViewController: UIViewController {
         
         let gender = genderString[genderSegmentControl.selectedSegmentIndex]
         
-        let auth = RequestFactory.instance.makeAuthRequestFactory()
+        let auth = RequestFactory.shared.makeAuthRequestFactory()
         let data = UserData(id: 123,
                             username: username,
                             password: password,

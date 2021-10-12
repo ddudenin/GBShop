@@ -12,7 +12,7 @@ func log(message: String,
          file: String = #file,
          method: String = #function,
          line: UInt = #line) {
-    Logger.instance.logMessage(message: message,
+    Logger.shared.logMessage(message: message,
                                logLevel,
                                file: file,
                                method: method,
@@ -30,7 +30,7 @@ enum LoggerLevels: Int {
 
 class Logger {
 
-    static let instance = Logger()
+    static let shared = Logger()
 
     private enum PathLengths: Int {
         case None = 0

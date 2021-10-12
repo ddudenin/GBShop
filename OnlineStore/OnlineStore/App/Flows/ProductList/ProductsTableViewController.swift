@@ -46,10 +46,24 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let product = products[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: .none)
+        
+        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailScreen") as? ProductDetailViewController else {
+            Logger.shared.logMessage(message: "Can not convert VC to ProductDetailViewController", .Error)
+            return
+        }
+        
+        detailViewController.configure(product: product)
+        
+        self.navigationController?
+            .pushViewController(detailViewController, animated: true)
     }
     
     private func loadProductList() {
-        let catalog = RequestFactory.instance.makeCatalogRequestFactory()
+        let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProducts(page: 1, category: 1) { response in
             switch response.result {
             case .success(let products):

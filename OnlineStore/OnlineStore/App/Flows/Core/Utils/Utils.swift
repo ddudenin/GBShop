@@ -20,3 +20,7 @@ func showAlert(forController controller: UIViewController,
     
     controller.present(alert, animated: true, completion: nil)
 }
+
+func ConvertPriceToString(price: Int) -> String {
+    return "\(price) ₽"
+}
