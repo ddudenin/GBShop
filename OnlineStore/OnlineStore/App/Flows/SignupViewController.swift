@@ -72,3 +72,27 @@ final class SignupViewController: UIViewController {
         }
     }
 }
+
+extension SignupViewController: UITextFieldDelegate {
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case usernameTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            cardNumberTextField.becomeFirstResponder()
+        case cardNumberTextField:
+            bioTextField.becomeFirstResponder()
+        default:
+            bioTextField.resignFirstResponder()
+        }
+    }
+    
+    // Called on returnKey pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switchBasedNextTextField(textField)
+        return false
+    }
+}
