@@ -288,7 +288,7 @@ class OnlineStoreTests: XCTestCase {
             switch response.result {
             case .success(let model):
                 XCTAssertGreaterThan(model.count, 0)
-
+                
                 catalogExpectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -344,7 +344,7 @@ class OnlineStoreTests: XCTestCase {
                 XCTAssertEqual(model.productInfo.name, "Игровой ноутбук")
                 XCTAssertEqual(model.productInfo.price, 215590)
                 XCTAssertGreaterThan(model.productInfo.description.count, 0)
-
+                
                 catalogExpectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -369,7 +369,7 @@ class OnlineStoreTests: XCTestCase {
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
-
+                
                 catalogExpectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -503,32 +503,7 @@ class OnlineStoreTests: XCTestCase {
         review.getReviewsForProduct(withId: 2707) { (response) in
             switch response.result {
             case .success(let model):
-                XCTAssertEqual(model.count, 2)
-                
-                reviewExpectation.fulfill()
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
-            }
-        }
-        
-        wait(for: [reviewExpectation], timeout: 5.0)
-    }
-    
-    func testFailureGetProductReviews() {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpShouldSetCookies = false
-        configuration.headers = .default
-        let session = Session(configuration: configuration)
-        
-        let review = ReviewManager(errorParser: ErrorParser(),
-                                   sessionManager: session)
-        
-        let reviewExpectation = expectation(description: "Failure Get product reviews")
-        
-        review.getReviewsForProduct(withId: 2708) { (response) in
-            switch response.result {
-            case .success(let model):
-                XCTAssertEqual(model.count, 0)
+                XCTAssertGreaterThan(model.count, -1)
                 
                 reviewExpectation.fulfill()
             case .failure(let error):
@@ -579,7 +554,7 @@ class OnlineStoreTests: XCTestCase {
         let basketExpectation = expectation(description: "Failure Add to basket")
         
         basket.addToBasket(productId: 123,
-                           quantity: 5) { (response) in
+                           quantity: -1) { (response) in
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
@@ -631,7 +606,7 @@ class OnlineStoreTests: XCTestCase {
         
         let basketExpectation = expectation(description: "Failure Remove from basket")
         
-        basket.removeFromBasket(productId: 1234) { (response) in
+        basket.removeFromBasket(productId: -123) { (response) in
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
@@ -658,8 +633,7 @@ class OnlineStoreTests: XCTestCase {
         
         let basketExpectation = expectation(description: "Success Pay basket")
         
-        basket.payBasket(userId: 123,
-                         payAmount: 270000) { (response) in
+        basket.payBasket(userId: 123, basketCost: 270000, userBalance: 270000) { (response) in
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 1)
@@ -685,12 +659,11 @@ class OnlineStoreTests: XCTestCase {
         
         let basketExpectation = expectation(description: "Failure Pay basket")
         
-        basket.payBasket(userId: 123,
-                         payAmount: 70000) { (response) in
+        basket.payBasket(userId: 123, basketCost: 70000, userBalance: 10000) { (response) in
             switch response.result {
             case .success(let model):
                 XCTAssertEqual(model.result, 0)
-                XCTAssertEqual(model.userMessage, "Ошибка оплаты")
+                XCTAssertEqual(model.userMessage, "Недостаточно средств для оплаты")
                 
                 basketExpectation.fulfill()
             case .failure(let error):

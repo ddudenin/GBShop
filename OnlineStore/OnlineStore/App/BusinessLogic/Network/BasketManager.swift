@@ -18,10 +18,10 @@ class BasketManager: AbstractRequestFactory {
         errorParser: AbstractErrorParser,
         sessionManager: Session,
         queue: DispatchQueue = DispatchQueue.global(qos: .utility)) {
-        self.errorParser = errorParser
-        self.sessionManager = sessionManager
-        self.queue = queue
-    }
+            self.errorParser = errorParser
+            self.sessionManager = sessionManager
+            self.queue = queue
+        }
 }
 
 extension BasketManager: BasketRequestFactory {
@@ -42,11 +42,13 @@ extension BasketManager: BasketRequestFactory {
     }
     
     func payBasket(userId: Int,
-                   payAmount: Int,
+                   basketCost: Int,
+                   userBalance: Int,
                    completionHandler: @escaping (AFDataResponse<ResultWithMessage>) -> Void) {
         let requestModel = PayingBasket(baseUrl: baseUrl,
                                         userId: userId,
-                                        payAmount: payAmount)
+                                        basketCost: basketCost,
+                                        userBalance: userBalance)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
@@ -89,12 +91,14 @@ extension BasketManager {
         let path: String = "payBasket"
         
         let userId: Int
-        let payAmount: Int
+        let basketCost: Int
+        let userBalance: Int
         
         var parameters: Parameters? {
             return [
                 "userId": userId,
-                "payAmount": payAmount
+                "basketCost": basketCost,
+                "userBalance": userBalance
             ]
         }
     }

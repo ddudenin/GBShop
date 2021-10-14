@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A23356927174E3300891BBC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356827174E3300891BBC /* BasketViewController.swift */; };
+		0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356B27174EED00891BBC /* BasketFooterView.swift */; };
+		0A2335702717515E00891BBC /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356E2717515E00891BBC /* BasketTableViewCell.swift */; };
+		0A2335712717515E00891BBC /* BasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A23356F2717515E00891BBC /* BasketTableViewCell.xib */; };
+		0A2335732717659500891BBC /* BasketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2335722717659500891BBC /* BasketItem.swift */; };
+		0A23357527177E6B00891BBC /* Observeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23357427177E6B00891BBC /* Observeable.swift */; };
 		0A251F6426C8F23A00F46226 /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F6326C8F23A00F46226 /* AbstractErrorParser.swift */; };
 		0A251F6626C8F29000F46226 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F6526C8F29000F46226 /* ErrorParser.swift */; };
 		0A251F6826C8F2AF00F46226 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A251F6726C8F2AF00F46226 /* RequestRouter.swift */; };
@@ -30,6 +36,7 @@
 		0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */; };
 		0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740926E37206008CACBA /* ProductReviewsResult.swift */; };
 		0A3C740C26E3722D008CACBA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740B26E3722D008CACBA /* Review.swift */; };
+		0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58DDB727188CCE009A9670 /* UserBasketManager.swift */; };
 		0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */; };
 		0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F6126F5EA5F00F976C2 /* ResultWithMessage.swift */; };
 		0A783F6426F5EC9F00F976C2 /* BasketRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F6326F5EC9F00F976C2 /* BasketRequestFactory.swift */; };
@@ -49,7 +56,6 @@
 		0AE12C60270F7C60006D18D5 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE12C5E270F7C60006D18D5 /* ReviewTableViewCell.xib */; };
 		0AEA84B026BA686900D4DF77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA84AF26BA686900D4DF77 /* AppDelegate.swift */; };
 		0AEA84B226BA686900D4DF77 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA84B126BA686900D4DF77 /* SceneDelegate.swift */; };
-		0AEA84B426BA686900D4DF77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA84B326BA686900D4DF77 /* ViewController.swift */; };
 		0AEA84B726BA686900D4DF77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA84B526BA686900D4DF77 /* Main.storyboard */; };
 		0AEA84B926BA686B00D4DF77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA84B826BA686B00D4DF77 /* Assets.xcassets */; };
 		0AEA84BC26BA686B00D4DF77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA84BA26BA686B00D4DF77 /* LaunchScreen.storyboard */; };
@@ -78,6 +84,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A23356827174E3300891BBC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		0A23356B27174EED00891BBC /* BasketFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterView.swift; sourceTree = "<group>"; };
+		0A23356E2717515E00891BBC /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		0A23356F2717515E00891BBC /* BasketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketTableViewCell.xib; sourceTree = "<group>"; };
+		0A2335722717659500891BBC /* BasketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketItem.swift; sourceTree = "<group>"; };
+		0A23357427177E6B00891BBC /* Observeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observeable.swift; sourceTree = "<group>"; };
 		0A251F6326C8F23A00F46226 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		0A251F6526C8F29000F46226 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		0A251F6726C8F2AF00F46226 /* RequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
@@ -101,6 +113,7 @@
 		0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserDataViewController.swift; sourceTree = "<group>"; };
 		0A3C740926E37206008CACBA /* ProductReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsResult.swift; sourceTree = "<group>"; };
 		0A3C740B26E3722D008CACBA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		0A58DDB727188CCE009A9670 /* UserBasketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBasketManager.swift; sourceTree = "<group>"; };
 		0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResult.swift; sourceTree = "<group>"; };
 		0A783F6126F5EA5F00F976C2 /* ResultWithMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWithMessage.swift; sourceTree = "<group>"; };
 		0A783F6326F5EC9F00F976C2 /* BasketRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketRequestFactory.swift; sourceTree = "<group>"; };
@@ -124,7 +137,6 @@
 		0AEA84AC26BA686900D4DF77 /* OnlineStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEA84AF26BA686900D4DF77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AEA84B126BA686900D4DF77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0AEA84B326BA686900D4DF77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0AEA84B626BA686900D4DF77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AEA84B826BA686B00D4DF77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AEA84BB26BA686B00D4DF77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,6 +186,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A23356727174E0B00891BBC /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				0A23356D2717514000891BBC /* Cell */,
+				0A23356A27174E3E00891BBC /* View */,
+				0A23356827174E3300891BBC /* BasketViewController.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		0A23356A27174E3E00891BBC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A23356B27174EED00891BBC /* BasketFooterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A23356D2717514000891BBC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A23356E2717515E00891BBC /* BasketTableViewCell.swift */,
+				0A23356F2717515E00891BBC /* BasketTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		0A251F6226C8F1A400F46226 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +321,7 @@
 			children = (
 				0A31519D26FCFB51006345C2 /* Utils.swift */,
 				0AE12C59270F5E07006D18D5 /* UIPreviewView.swift */,
+				0A23357427177E6B00891BBC /* Observeable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -356,6 +396,7 @@
 				0A36240526FBB261002B31EE /* Extensions */,
 				0A251F6226C8F1A400F46226 /* Network */,
 				0AD0D2B926D586ED00E7D98F /* Logger.swift */,
+				0A58DDB727188CCE009A9670 /* UserBasketManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -386,8 +427,8 @@
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
 				0A5BB61A271095EC00C78583 /* ProductList */,
 				0A5BB6182710959400C78583 /* ProductDetail */,
+				0A23356727174E0B00891BBC /* Basket */,
 				0AEA84B526BA686900D4DF77 /* Main.storyboard */,
-				0AEA84B326BA686900D4DF77 /* ViewController.swift */,
 				0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */,
 				0A36240826FBC48E002B31EE /* SignupViewController.swift */,
 				0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */,
@@ -406,11 +447,12 @@
 		0AEA84E526BA6A2200D4DF77 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				0AAE390626CECCB100873823 /* RequestResult */,
 				0A251F6F26C8F4BC00F46226 /* User.swift */,
 				0A251F7E26C9032A00F46226 /* UserData.swift */,
 				0AAE38FB26CEB70700873823 /* Product.swift */,
 				0A3C740B26E3722D008CACBA /* Review.swift */,
-				0AAE390626CECCB100873823 /* RequestResult */,
+				0A2335722717659500891BBC /* BasketItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -557,6 +599,7 @@
 				0AEA84BC26BA686B00D4DF77 /* LaunchScreen.storyboard in Resources */,
 				0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */,
 				0AEA84B926BA686B00D4DF77 /* Assets.xcassets in Resources */,
+				0A2335712717515E00891BBC /* BasketTableViewCell.xib in Resources */,
 				0AE12C60270F7C60006D18D5 /* ReviewTableViewCell.xib in Resources */,
 				0AEA84B726BA686900D4DF77 /* Main.storyboard in Resources */,
 			);
@@ -704,27 +747,32 @@
 				0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */,
 				0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */,
 				0AAE390026CEB85800873823 /* CatalogManager.swift in Sources */,
+				0A23357527177E6B00891BBC /* Observeable.swift in Sources */,
 				0A251F6626C8F29000F46226 /* ErrorParser.swift in Sources */,
 				0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */,
 				0A251F7726C8F54100F46226 /* RequestFactory.swift in Sources */,
 				0AE12C53270F5AB4006D18D5 /* ProductDetailViewController.swift in Sources */,
-				0AEA84B426BA686900D4DF77 /* ViewController.swift in Sources */,
 				0A251F6826C8F2AF00F46226 /* RequestRouter.swift in Sources */,
 				0AAE390526CEBD3700873823 /* ProductByIdResult.swift in Sources */,
 				0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */,
 				0AEA84B026BA686900D4DF77 /* AppDelegate.swift in Sources */,
 				0AEA84B226BA686900D4DF77 /* SceneDelegate.swift in Sources */,
+				0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */,
 				0ACB0A6A26DE865100798B0D /* ReviewRequestFactory.swift in Sources */,
+				0A2335732717659500891BBC /* BasketItem.swift in Sources */,
 				0AE12C5F270F7C60006D18D5 /* ReviewTableViewCell.swift in Sources */,
+				0A23356927174E3300891BBC /* BasketViewController.swift in Sources */,
 				0A251F6E26C8F49D00F46226 /* LoginResult.swift in Sources */,
 				0A251F6426C8F23A00F46226 /* AbstractErrorParser.swift in Sources */,
 				0A251F7F26C9032A00F46226 /* UserData.swift in Sources */,
 				0AE12C5C270F64EE006D18D5 /* ProductInfoView.swift in Sources */,
+				0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */,
 				0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */,
 				0A251F7026C8F4BC00F46226 /* User.swift in Sources */,
 				0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */,
 				0AAE38FC26CEB70700873823 /* Product.swift in Sources */,
 				0A783F6626F5EDB700F976C2 /* BasketManager.swift in Sources */,
+				0A2335702717515E00891BBC /* BasketTableViewCell.swift in Sources */,
 				0A251F6C26C8F44100F46226 /* ResponseCodable.swift in Sources */,
 				0A251F7526C8F51600F46226 /* Auth.swift in Sources */,
 			);

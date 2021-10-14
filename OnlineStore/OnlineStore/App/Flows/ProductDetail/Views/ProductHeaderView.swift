@@ -39,11 +39,21 @@ class ProductHeaderView: UIView {
         return label
     }()
     
+    private lazy var addToBasketButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "cart.fill.badge.plus"), for: .normal)
+        button.addTarget(self, action: #selector(addToBasketButtonHandler(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.setupView()
     }
+    
+    weak var productDelegate: ProductDetailViewControllerDelegate?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -63,6 +73,7 @@ class ProductHeaderView: UIView {
         self.addSubview(artworkImageView)
         self.addSubview(nameLabel)
         self.addSubview(priceLabel)
+        self.addSubview(addToBasketButton)
         
         NSLayoutConstraint.activate([
             artworkImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -76,9 +87,11 @@ class ProductHeaderView: UIView {
             nameLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
             nameLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -4),
             
-            
             priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             priceLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
+            priceLabel.bottomAnchor.constraint(equalTo: addToBasketButton.topAnchor, constant: -15),
+            
+            addToBasketButton.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
         ])
     }
     
@@ -86,6 +99,10 @@ class ProductHeaderView: UIView {
         super.traitCollectionDidChange(previousTraitCollection)
         
         artworkImageView.layer.borderColor = UIColor.systemGray2.cgColor
+    }
+    
+    @objc func addToBasketButtonHandler(_ sender: Any) {
+        productDelegate?.addProductToBasket()
     }
 }
 

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProductDetailViewControllerDelegate: AnyObject {
+    func addProductToBasket()
+}
+
 class ProductDetailViewController: UIViewController {
     
     private lazy var productHeaderView = ProductHeaderView()
@@ -19,7 +23,7 @@ class ProductDetailViewController: UIViewController {
         return scrollView
     }()
     
-    private var productInfo = ProductInfo(name: "", price: 0, description: "")
+    private var product = Product(id: -1, name: "", price: 0)
     private var reviews = [Review]()
     
     override func viewDidLoad() {
@@ -28,17 +32,20 @@ class ProductDetailViewController: UIViewController {
         configureView()
         
         loadReviews()
+        
+        productHeaderView.productDelegate = self
     }
     
     func configure(product: Product) {
+        self.product = product
+        
         let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProduct(by: product.id) { response in
             switch response.result {
             case .success(let data):
                 DispatchQueue.main.async {
-                    self.productInfo = data.productInfo
-                    self.productHeaderView.configure(product: self.productInfo)
-                    self.productInfoView.configure(description: self.productInfo.description)
+                    self.productHeaderView.configure(product: data.productInfo)
+                    self.productInfoView.configure(description: data.productInfo.description)
                 }
                 log(message: "\(product)", .Success)
             case .failure(let error):
@@ -114,7 +121,9 @@ class ProductDetailViewController: UIViewController {
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
         
-        reviewsTableView.register(UINib(nibName: "ReviewTableViewCell", bundle: .none), forCellReuseIdentifier: "ReviewCell")
+        reviewsTableView.register(UINib(nibName: "ReviewTableViewCell",
+                                        bundle: .none),
+                                  forCellReuseIdentifier: "ReviewCell")
     }
     
     private func loadReviews() {
@@ -157,5 +166,34 @@ extension ProductDetailViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ProductDetailViewController: ProductDetailViewControllerDelegate {
+    
+    func addProductToBasket() {
+        let basket = RequestFactory.shared.makeBasketRequestFactory()
+        
+        basket.addToBasket(productId: product.id, quantity: 1) { response in
+            switch response.result {
+            case .success(let result):
+                switch result.result {
+                case 1:
+                    UserBasketManager.shared.addBasketItem(from: self.product)
+                    log(message: "\(result)", .Success)
+                default:
+                    DispatchQueue.main.async {
+                        showAlert(forController: self, message: "Add to cart failed")
+                    }
+                    log(message: "\(result)", .Error)
+                }
+                
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    showAlert(forController: self, message: error.localizedDescription)
+                }
+                log(message: error.localizedDescription, .Error)
+            }
+        }
     }
 }
