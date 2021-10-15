@@ -42,8 +42,11 @@ class ProductHeaderView: UIView {
     private lazy var addToBasketButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "cart.fill.badge.plus"), for: .normal)
-        button.addTarget(self, action: #selector(addToBasketButtonHandler(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "cart.fill.badge.plus"),
+                        for: .normal)
+        button.addTarget(self,
+                         action: #selector(addToBasketButtonHandler(_:)),
+                         for: .touchUpInside)
         return button
     }()
     

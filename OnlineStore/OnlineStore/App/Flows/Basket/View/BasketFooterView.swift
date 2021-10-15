@@ -40,8 +40,11 @@ class BasketFooterView: UIView {
     private lazy var payButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "creditcard.circle.fill"), for: .normal)
-        button.addTarget(self, action: #selector(payButtonHandler(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "creditcard.circle.fill"),
+                        for: .normal)
+        button.addTarget(self,
+                         action: #selector(payButtonHandler(_:)),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -53,7 +56,7 @@ class BasketFooterView: UIView {
         
         self.setupView()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         

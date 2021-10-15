@@ -86,31 +86,34 @@ class OnlineStoreUITests: XCTestCase {
         let elementsQuery = scrollViewsQuery.otherElements
         
         elementsQuery.buttons["person.crop.square.filled.and.at.rectangle"].tap()
-        
-        let returnButton = app.buttons["Return"]
+ 
+        let doneButton = app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards",".buttons[\"done\"]",".buttons[\"Done\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
         
         let loginTextField = app.textFields["user name"]
         loginTextField.tap()
-        loginTextField.tap()
         loginTextField.typeText("Kipelov")
-        returnButton.tap()
+        doneButton.tap()
         
         let passwordSecureTextField = app.secureTextFields["password"]
+        passwordSecureTextField.tap()
         passwordSecureTextField.typeText("Sw!ft1109")
-        returnButton.tap()
+        doneButton.tap()
         
         let emailTextField = app.textFields["email"]
+        emailTextField.tap()
         emailTextField.typeText("FireCurve@october.ru")
-        returnButton.tap()
+        doneButton.tap()
         
         
         let creditCardNumberTextField = app.textFields["credit card number"]
+        creditCardNumberTextField.tap()
         creditCardNumberTextField.typeText("1234-5678-1357-2468")
-        returnButton.tap()
+        doneButton.tap()
 
         let bioTextField = app.textFields["bio"]
+        bioTextField.tap()
         bioTextField.typeText("Release")
-        returnButton.tap()
+        doneButton.tap()
         
         app.buttons["person.fill.checkmark"].tap()
         

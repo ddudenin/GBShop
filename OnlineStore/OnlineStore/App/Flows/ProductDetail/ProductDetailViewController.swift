@@ -67,9 +67,7 @@ class ProductDetailViewController: UIViewController {
     
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),

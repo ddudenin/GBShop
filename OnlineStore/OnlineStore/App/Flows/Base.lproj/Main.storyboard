@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1226" y="-1153"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="Ebe-yH-PdM">
             <objects>
-                <viewController id="p2S-YF-IIL" customClass="LoginViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartScreen" modalPresentationStyle="fullScreen" id="p2S-YF-IIL" customClass="AuthViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KQn-wo-Qn5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,131 +39,18 @@
             </objects>
             <point key="canvasLocation" x="-1226" y="-294"/>
         </scene>
-        <!--Signup View Controller-->
-        <scene sceneID="tjQ-xM-Lzq">
+        <!--Sign Up View Controller-->
+        <scene sceneID="dXi-ZL-TYR">
             <objects>
-                <viewController storyboardIdentifier="SignUpScreen" id="5wn-fB-cvU" customClass="SignupViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wze-jg-4gk">
+                <viewController storyboardIdentifier="SignUpScreen" id="naO-a0-8eA" customClass="SignUpViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pa6-vC-DAf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I1a-4b-gbb">
-                                <rect key="frame" x="30" y="312.5" width="354" height="281.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se1-jJ-qpC">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JpV-rq-xRY" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="30.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="person" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="5wn-fB-cvU" id="L9c-Ba-ESi"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPR-mK-6dI" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="key" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="5wn-fB-cvU" id="m6v-ek-DYv"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-Zu-Fpo" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="118.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="envelope.circle" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="5wn-fB-cvU" id="kie-0W-te5"/>
-                                        </connections>
-                                    </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-yh-OIF">
-                                        <rect key="frame" x="0.0" y="162.5" width="354" height="32"/>
-                                        <segments>
-                                            <segment title="male"/>
-                                            <segment title="female"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="credit card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-dI-9HU" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="203.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="creditcard" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="5wn-fB-cvU" id="kse-7h-h1Z"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xh7-hm-S1Z" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="247.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="text.bubble" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="5wn-fB-cvU" id="vdV-AY-Acm"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uc-Jn-9Sm">
-                                <rect key="frame" x="195" y="624" width="24.5" height="22"/>
-                                <state key="normal" image="person.fill.checkmark" catalog="system"/>
-                                <connections>
-                                    <action selector="finishRegisterButtonHandler:" destination="5wn-fB-cvU" eventType="touchUpInside" id="O9x-wY-KU6"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="IRn-B9-Y75"/>
+                        <viewLayoutGuide key="safeArea" id="9cm-G1-GWZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="I1a-4b-gbb" firstAttribute="centerY" secondItem="IRn-B9-Y75" secondAttribute="centerY" id="Lnd-ON-dX2"/>
-                            <constraint firstItem="I1a-4b-gbb" firstAttribute="leading" secondItem="wze-jg-4gk" secondAttribute="leadingMargin" constant="10" id="RAF-1J-hfE"/>
-                            <constraint firstItem="I1a-4b-gbb" firstAttribute="centerX" secondItem="IRn-B9-Y75" secondAttribute="centerX" id="VMI-5a-hpi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="I1a-4b-gbb" secondAttribute="trailing" constant="10" id="g8V-pN-lQv"/>
-                            <constraint firstItem="6uc-Jn-9Sm" firstAttribute="centerX" secondItem="I1a-4b-gbb" secondAttribute="centerX" id="h1X-g9-Ubc"/>
-                            <constraint firstItem="6uc-Jn-9Sm" firstAttribute="top" secondItem="I1a-4b-gbb" secondAttribute="bottom" constant="30" id="wDr-HQ-Thb"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="bioTextField" destination="xh7-hm-S1Z" id="Yio-v9-9pN"/>
-                        <outlet property="cardNumberTextField" destination="hIe-dI-9HU" id="IlE-BA-6Wk"/>
-                        <outlet property="emailTextField" destination="4pk-Zu-Fpo" id="BCV-zu-OiB"/>
-                        <outlet property="genderSegmentControl" destination="RUX-yh-OIF" id="BoW-yM-neW"/>
-                        <outlet property="passwordTextField" destination="rPR-mK-6dI" id="Mjx-Jp-1tj"/>
-                        <outlet property="usernameTextField" destination="JpV-rq-xRY" id="LeY-B4-DWQ"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Olv-Dp-sUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTa-Tb-eng" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-459" y="60"/>
         </scene>
@@ -395,20 +282,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="4pk-Zu-Fpo">
-            <size key="intrinsicContentSize" width="92.5" height="34"/>
-        </designable>
         <designable name="FBY-2g-7v8">
             <size key="intrinsicContentSize" width="185.5" height="34"/>
         </designable>
-        <designable name="JpV-rq-xRY">
-            <size key="intrinsicContentSize" width="124.5" height="34"/>
-        </designable>
         <designable name="Utc-Gb-f2h">
             <size key="intrinsicContentSize" width="115" height="34"/>
-        </designable>
-        <designable name="hIe-dI-9HU">
-            <size key="intrinsicContentSize" width="185.5" height="34"/>
         </designable>
         <designable name="lPY-PI-S4i">
             <size key="intrinsicContentSize" width="124.5" height="34"/>
@@ -416,13 +294,7 @@
         <designable name="mK5-Zw-nCe">
             <size key="intrinsicContentSize" width="92.5" height="34"/>
         </designable>
-        <designable name="rPR-mK-6dI">
-            <size key="intrinsicContentSize" width="115" height="34"/>
-        </designable>
         <designable name="wlQ-cK-V1z">
-            <size key="intrinsicContentSize" width="80" height="34"/>
-        </designable>
-        <designable name="xh7-hm-S1Z">
             <size key="intrinsicContentSize" width="80" height="34"/>
         </designable>
     </designables>
@@ -435,7 +307,6 @@
         <image name="key" catalog="system" width="86" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
         <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">

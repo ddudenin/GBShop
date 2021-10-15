@@ -28,8 +28,11 @@
 		0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */; };
 		0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */; };
 		0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */; };
-		0A3503132719D16E0060939A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503122719D16E0060939A /* LoginViewController.swift */; };
+		0A3503132719D16E0060939A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503122719D16E0060939A /* AuthViewController.swift */; };
 		0A3503152719D2110060939A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503142719D2110060939A /* LoginView.swift */; };
+		0A3503192719EC0B0060939A /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503182719EC0B0060939A /* UserDataView.swift */; };
+		0A35031B2719EC4C0060939A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35031A2719EC4C0060939A /* SignUpViewController.swift */; };
+		0A35031F271A1E620060939A /* SignUpButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35031E271A1E620060939A /* SignUpButtonView.swift */; };
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
 		0A36240426FBB247002B31EE /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240326FBB247002B31EE /* SignInButton.swift */; };
 		0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240626FBB288002B31EE /* Ext+UIColor.swift */; };
@@ -106,8 +109,11 @@
 		0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
-		0A3503122719D16E0060939A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A3503122719D16E0060939A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0A3503142719D2110060939A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		0A3503182719EC0B0060939A /* UserDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataView.swift; sourceTree = "<group>"; };
+		0A35031A2719EC4C0060939A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0A35031E271A1E620060939A /* SignUpButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpButtonView.swift; sourceTree = "<group>"; };
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A36240326FBB247002B31EE /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		0A36240626FBB288002B31EE /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
@@ -252,19 +258,37 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		0A3503102719D1310060939A /* Login */ = {
+		0A3503102719D1310060939A /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0A3503112719D1430060939A /* View */,
-				0A3503122719D16E0060939A /* LoginViewController.swift */,
+				0A3503112719D1430060939A /* Views */,
+				0A3503122719D16E0060939A /* AuthViewController.swift */,
 			);
-			path = Login;
+			path = Auth;
 			sourceTree = "<group>";
 		};
-		0A3503112719D1430060939A /* View */ = {
+		0A3503112719D1430060939A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0A3503142719D2110060939A /* LoginView.swift */,
+				0A35031E271A1E620060939A /* SignUpButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A3503162719EBB90060939A /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				0A3503172719EBE30060939A /* View */,
+				0A35031A2719EC4C0060939A /* SignUpViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		0A3503172719EBE30060939A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A3503182719EC0B0060939A /* UserDataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,7 +468,8 @@
 			isa = PBXGroup;
 			children = (
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
-				0A3503102719D1310060939A /* Login */,
+				0A3503102719D1310060939A /* Auth */,
+				0A3503162719EBB90060939A /* SignUp */,
 				0A5BB61A271095EC00C78583 /* ProductList */,
 				0A5BB6182710959400C78583 /* ProductDetail */,
 				0A23356727174E0B00891BBC /* Basket */,
@@ -754,6 +779,7 @@
 				0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */,
 				0A783F6426F5EC9F00F976C2 /* BasketRequestFactory.swift in Sources */,
 				0A251F6A26C8F36F00F46226 /* AbstractRequestFactory.swift in Sources */,
+				0A35031F271A1E620060939A /* SignUpButtonView.swift in Sources */,
 				0AE12C56270F5D8F006D18D5 /* ProductHeaderView.swift in Sources */,
 				0A36240426FBB247002B31EE /* SignInButton.swift in Sources */,
 				0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */,
@@ -765,6 +791,7 @@
 				0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */,
 				0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */,
 				0AAE390026CEB85800873823 /* CatalogManager.swift in Sources */,
+				0A3503192719EC0B0060939A /* UserDataView.swift in Sources */,
 				0A23357527177E6B00891BBC /* Observeable.swift in Sources */,
 				0A251F6626C8F29000F46226 /* ErrorParser.swift in Sources */,
 				0A36240B26FBD33B002B31EE /* EditUserDataViewController.swift in Sources */,
@@ -783,12 +810,13 @@
 				0A23356927174E3300891BBC /* BasketViewController.swift in Sources */,
 				0A251F6E26C8F49D00F46226 /* LoginResult.swift in Sources */,
 				0A251F6426C8F23A00F46226 /* AbstractErrorParser.swift in Sources */,
+				0A35031B2719EC4C0060939A /* SignUpViewController.swift in Sources */,
 				0A251F7F26C9032A00F46226 /* UserData.swift in Sources */,
 				0AE12C5C270F64EE006D18D5 /* ProductInfoView.swift in Sources */,
 				0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */,
 				0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */,
 				0A251F7026C8F4BC00F46226 /* User.swift in Sources */,
-				0A3503132719D16E0060939A /* LoginViewController.swift in Sources */,
+				0A3503132719D16E0060939A /* AuthViewController.swift in Sources */,
 				0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */,
 				0AAE38FC26CEB70700873823 /* Product.swift in Sources */,
 				0A783F6626F5EDB700F976C2 /* BasketManager.swift in Sources */,

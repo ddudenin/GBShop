@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  AuthViewController.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 15.10.2021.
@@ -7,21 +7,35 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: AnyObject {
+protocol AuthViewControllerDelegate: AnyObject {
     func SignIn(login: String, password: String)
-    func ShowRegisterViewController()
+    func PresentSignUpViewController()
     func ShowAlert(text: String)
 }
 
-class LoginViewController: UIViewController {
+class AuthViewController: UIViewController {
     
     // MARK: - Subviews
     private lazy var loginView = LoginView()
+    private lazy var signUpButtonView = SignUpButtonView()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.textColor = UIColor.rgba(1.0,
+                                       0.5,
+                                       0,
+                                       alpha: 1.0)
+        label.text = "Online Store"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        return label
     }()
     
     // MARK: - Lifecycle
@@ -31,7 +45,8 @@ class LoginViewController: UIViewController {
         configureView()
         setGradientBackground()
         
-        loginView.loginDelegate = self
+        loginView.authDelegate = self
+        signUpButtonView.authDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,9 +75,7 @@ class LoginViewController: UIViewController {
     @objc private func keyboardWillBeShown(notification: Notification) {
         guard let userInfo = notification.userInfo as NSDictionary?,
               let frame = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
-        else {
-            return
-        }
+        else { return }
         
         let keyboardSize = frame
             .cgRectValue
@@ -95,14 +108,14 @@ class LoginViewController: UIViewController {
     private func configureView() {
         self.view.backgroundColor = .systemBackground
         configureScrollView()
+        configureTitleLabel()
         
         addLoginView()
+        addSignUpButtonView()
     }
     
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -112,20 +125,45 @@ class LoginViewController: UIViewController {
         ])
     }
     
+    private func configureTitleLabel() {
+        scrollView.addSubview(titleLabel)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
+    }
+    
     private func addLoginView() {
         scrollView.addSubview(loginView)
         
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            loginView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 5),
+            loginView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
             loginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            loginView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            loginView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+    }
+    
+    private func addSignUpButtonView() {
+        scrollView.addSubview(signUpButtonView)
+        
+        signUpButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            signUpButtonView.topAnchor.constraint(equalTo: loginView.bottomAnchor, constant: 16),
+            signUpButtonView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            signUpButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            signUpButtonView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
     }
     
     private func setGradientBackground() {
+        let viewFrameSize = self.view
+            .frame
+            .size
+        
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.gradientBegin.cgColor, UIColor.gradientEnd.cgColor]
         gradient.locations = [0.0 , 1.0]
@@ -133,15 +171,17 @@ class LoginViewController: UIViewController {
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradient.frame = CGRect(x: 0.0,
                                 y: 0.0,
-                                width: self.view.frame.size.width,
-                                height: self.view.frame.size.height)
+                                width: viewFrameSize.width,
+                                height: viewFrameSize.height)
         
-        self.view.layer.insertSublayer(gradient, at: 0)
+        self.view
+            .layer
+            .insertSublayer(gradient, at: 0)
     }
 }
 
-// MARK: - LoginViewController + LoginViewControllerDelegate
-extension LoginViewController: LoginViewControllerDelegate {
+// MARK: - AuthViewController + AuthViewControllerDelegate
+extension AuthViewController: AuthViewControllerDelegate {
     func SignIn(login: String, password: String) {
         let auth = RequestFactory.shared.makeAuthRequestFactory()
         
@@ -150,42 +190,48 @@ extension LoginViewController: LoginViewControllerDelegate {
             case .success(let login):
                 if login.result == 0 {
                     let messageText = "Введены неверные данные авторизации"
-                    DispatchQueue.main.async {
-                        showAlert(forController: self, message: messageText)
-                    }
+                    DispatchQueue.main
+                        .async {
+                            showAlert(forController: self, message: messageText)
+                        }
                     log(message: messageText, .Warning)
                 } else {
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Main", bundle: .none)
-                        let mainTabController = storyboard.instantiateViewController(withIdentifier: "MainTabController")
-                        self.present(mainTabController,
-                                     animated: true,
-                                     completion: .none)
-                    }
+                    DispatchQueue.main
+                        .async {
+                            let storyboard = UIStoryboard(name: "Main", bundle: .none)
+                            let mainTabController = storyboard
+                                .instantiateViewController(withIdentifier: "MainTabController")
+                            self.present(mainTabController,
+                                         animated: true,
+                                         completion: .none)
+                        }
                     
                     log(message: "\(login)", .Success)
                 }
+                
             case .failure(let error):
-                DispatchQueue.main.async {
-                    showAlert(forController: self, message: error.localizedDescription)
-                }
+                DispatchQueue.main
+                    .async {
+                        showAlert(forController: self, message: error.localizedDescription)
+                    }
                 log(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func ShowRegisterViewController() {
+    func PresentSignUpViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
-        let signupViewController = storyboard.instantiateViewController(withIdentifier: "SignUpScreen")
-        self.present(signupViewController,
+        let signUpViewController = storyboard
+            .instantiateViewController(withIdentifier: "SignUpScreen")
+        self.present(signUpViewController,
                      animated: true,
                      completion: .none)
     }
     
     func ShowAlert(text: String) {
-        DispatchQueue.main.async {
-            showAlert(forController: self, message: text)
-        }
-        log(message: "Ошибка чтения введенных данных", .Error)
+        DispatchQueue.main
+            .async {
+                showAlert(forController: self, message: text)
+            }
     }
 }
