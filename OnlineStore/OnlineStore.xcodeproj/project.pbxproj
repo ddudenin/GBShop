@@ -28,7 +28,8 @@
 		0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */; };
 		0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */; };
 		0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */; };
-		0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */; };
+		0A3503132719D16E0060939A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503122719D16E0060939A /* LoginViewController.swift */; };
+		0A3503152719D2110060939A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503142719D2110060939A /* LoginView.swift */; };
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
 		0A36240426FBB247002B31EE /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240326FBB247002B31EE /* SignInButton.swift */; };
 		0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240626FBB288002B31EE /* Ext+UIColor.swift */; };
@@ -105,7 +106,8 @@
 		0A32A5AD2709B3D800C061B2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
-		0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
+		0A3503122719D16E0060939A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A3503142719D2110060939A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A36240326FBB247002B31EE /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		0A36240626FBB288002B31EE /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
@@ -248,6 +250,23 @@
 				0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A3503102719D1310060939A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0A3503112719D1430060939A /* View */,
+				0A3503122719D16E0060939A /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0A3503112719D1430060939A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A3503142719D2110060939A /* LoginView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0A36240026FBB151002B31EE /* CustomItemsUI */ = {
@@ -425,11 +444,11 @@
 			isa = PBXGroup;
 			children = (
 				0A36240026FBB151002B31EE /* CustomItemsUI */,
+				0A3503102719D1310060939A /* Login */,
 				0A5BB61A271095EC00C78583 /* ProductList */,
 				0A5BB6182710959400C78583 /* ProductDetail */,
 				0A23356727174E0B00891BBC /* Basket */,
 				0AEA84B526BA686900D4DF77 /* Main.storyboard */,
-				0A3623FE26FBAF7C002B31EE /* LoginFormController.swift */,
 				0A36240826FBC48E002B31EE /* SignupViewController.swift */,
 				0A36240A26FBD33B002B31EE /* EditUserDataViewController.swift */,
 				0AEA84E026BA69E100D4DF77 /* Core */,
@@ -744,7 +763,6 @@
 				0A3C740C26E3722D008CACBA /* Review.swift in Sources */,
 				0A36240926FBC48E002B31EE /* SignupViewController.swift in Sources */,
 				0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */,
-				0A3623FF26FBAF7C002B31EE /* LoginFormController.swift in Sources */,
 				0A32A5AE2709B3D800C061B2 /* ProductsTableViewController.swift in Sources */,
 				0AAE390026CEB85800873823 /* CatalogManager.swift in Sources */,
 				0A23357527177E6B00891BBC /* Observeable.swift in Sources */,
@@ -759,6 +777,7 @@
 				0AEA84B226BA686900D4DF77 /* SceneDelegate.swift in Sources */,
 				0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */,
 				0ACB0A6A26DE865100798B0D /* ReviewRequestFactory.swift in Sources */,
+				0A3503152719D2110060939A /* LoginView.swift in Sources */,
 				0A2335732717659500891BBC /* BasketItem.swift in Sources */,
 				0AE12C5F270F7C60006D18D5 /* ReviewTableViewCell.swift in Sources */,
 				0A23356927174E3300891BBC /* BasketViewController.swift in Sources */,
@@ -769,6 +788,7 @@
 				0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */,
 				0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */,
 				0A251F7026C8F4BC00F46226 /* User.swift in Sources */,
+				0A3503132719D16E0060939A /* LoginViewController.swift in Sources */,
 				0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */,
 				0AAE38FC26CEB70700873823 /* Product.swift in Sources */,
 				0A783F6626F5EDB700F976C2 /* BasketManager.swift in Sources */,
