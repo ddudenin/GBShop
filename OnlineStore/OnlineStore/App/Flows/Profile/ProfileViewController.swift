@@ -74,9 +74,9 @@ class ProfileViewController: UIViewController {
     
     private func addButtonsView() {
         self.view.addSubview(buttonsView)
-        
+
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             buttonsView
                 .topAnchor

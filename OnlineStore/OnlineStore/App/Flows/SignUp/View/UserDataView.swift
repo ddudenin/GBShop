@@ -101,8 +101,8 @@ class UserDataView: UIView {
         ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.distribution = .fill
-        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.alignment =  .fill
         stack.spacing = 10
         stack.contentMode = .scaleToFill
         return stack

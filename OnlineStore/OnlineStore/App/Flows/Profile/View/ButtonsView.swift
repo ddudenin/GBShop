@@ -44,7 +44,7 @@ class ButtonsView: UIView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = 5
-        stack.distribution = .fillEqually
+        stack.distribution = .fill
         stack.alignment = .fill
         return stack
     }()
@@ -75,8 +75,41 @@ class ButtonsView: UIView {
                 .constraint(equalTo: self.topAnchor),
             signUpStackView
                 .bottomAnchor
-                .constraint(equalTo: self.bottomAnchor)
+                .constraint(equalTo: self.bottomAnchor),
+            
+            exitButton
+                .heightAnchor
+                .constraint(equalToConstant: 50),
+            exitButton
+                .widthAnchor
+                .constraint(equalToConstant: 50),
+            
+            updateUserDataButton
+                .heightAnchor
+                .constraint(equalToConstant: 50),
+            updateUserDataButton
+                .widthAnchor
+                .constraint(equalToConstant: 50)
         ])
+    }
+    
+    override func hitTest(_ point: CGPoint,
+                          with event: UIEvent?) -> UIView? {
+        guard !clipsToBounds
+                && !isHidden
+                && alpha > 0 else {
+                    return nil
+                }
+        
+        for member in subviews.reversed() {
+            let subPoint = member.convert(point, from: self)
+            
+            guard let result = member.hitTest(subPoint, with: event) else { continue }
+            
+            return result
+        }
+        
+        return nil
     }
     
     @objc private func exitButtonHandler(_ sender: Any) {
