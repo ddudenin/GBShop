@@ -42,15 +42,16 @@ class LoginView: UIView {
     }()
     
     private lazy var textFieldsStackView: UIStackView = {
-        let stack = UIStackView()
+        let stack = UIStackView(arrangedSubviews: [
+            loginTextField,
+            passwordTextField
+        ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fillEqually
         stack.spacing = 10
         stack.alignment = .fill
         stack.contentMode = .scaleToFill
-        stack.addArrangedSubview(loginTextField)
-        stack.addArrangedSubview(passwordTextField)
         return stack
     }()
     

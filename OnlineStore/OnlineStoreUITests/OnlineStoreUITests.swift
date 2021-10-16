@@ -119,6 +119,6 @@ class OnlineStoreUITests: XCTestCase {
         
         XCTAssertTrue(elementsQuery
                         .staticTexts["Online Store"]
-                        .waitForExistence(timeout: 3.0))
+                        .waitForExistence(timeout: 3.0))        
     }
 }

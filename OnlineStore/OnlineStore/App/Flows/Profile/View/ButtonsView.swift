@@ -21,7 +21,7 @@ class ButtonsView: UIView {
                         for: .normal)
         button.addTarget(self,
                          action: #selector(updateUserDataButtonHandler(_:)),
-                         for: .touchUpInside)
+                         for: .allEvents)
         return button
     }()
     
@@ -32,20 +32,20 @@ class ButtonsView: UIView {
                         for: .normal)
         button.addTarget(self,
                          action: #selector(exitButtonHandler(_:)),
-                         for: .touchUpInside)
+                         for: .allEvents)
         return button
     }()
     
     private lazy var signUpStackView: UIStackView = {
-        let stack = UIStackView()
+        let stack = UIStackView(arrangedSubviews: [
+            updateUserDataButton,
+            exitButton
+        ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = 5
         stack.distribution = .fillEqually
         stack.alignment = .fill
-        stack.contentMode = .scaleToFill
-        stack.addArrangedSubview(updateUserDataButton)
-        stack.addArrangedSubview(exitButton)
         return stack
     }()
     

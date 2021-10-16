@@ -36,6 +36,12 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -46,7 +52,46 @@ class SignUpViewController: UIViewController {
         userDataView.signUpDelegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
+    }
+    
     // MARK: - Attributes @objc
+    @objc private func keyboardWillBeShown(notification: Notification) {
+        guard let userInfo = notification.userInfo as NSDictionary?,
+              let frame = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
+        else { return }
+        
+        let keyboardSize = frame
+            .cgRectValue
+            .size
+        let contentInsets = UIEdgeInsets(top: 0.0,
+                                         left: 0.0,
+                                         bottom: keyboardSize.height,
+                                         right: 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func keyboardWillBeHidden(notification: Notification) {
+        self.scrollView.contentInset = UIEdgeInsets.zero
+    }
+    
     @objc func signUpButtonHandler(_ sender: Any) {
         guard let userData = userDataView.getUserData() else { return }
         
@@ -93,10 +138,31 @@ class SignUpViewController: UIViewController {
     private func configureView() {
         self.view.backgroundColor = .systemBackground
         
+        configureScrollView()
+        
         addUserDataView()
         
         configureTitleLabel()
         configureSignUpButton()
+    }
+    
+    private func configureScrollView() {
+        self.view.addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView
+                .topAnchor
+                .constraint(equalTo: self.view.topAnchor),
+            scrollView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            scrollView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            scrollView
+                .bottomAnchor
+                .constraint(equalTo: self.view.bottomAnchor),
+        ])
     }
     
     private func addUserDataView() {
@@ -107,17 +173,17 @@ class SignUpViewController: UIViewController {
         NSLayoutConstraint.activate([
             userDataView
                 .centerXAnchor
-                .constraint(equalTo: self.view.centerXAnchor),
+                .constraint(equalTo: scrollView.centerXAnchor),
             userDataView
                 .centerYAnchor
                 .constraint(equalTo: self.view.centerYAnchor),
             userDataView
                 .leadingAnchor
-                .constraint(equalTo: self.view.leadingAnchor,
+                .constraint(equalTo: scrollView.leadingAnchor,
                             constant: 10),
             userDataView
                 .trailingAnchor
-                .constraint(equalTo: self.view.trailingAnchor,
+                .constraint(equalTo: scrollView.trailingAnchor,
                             constant: -10)
         ])
     }

@@ -36,6 +36,8 @@ class ProfileViewController: UIViewController {
         configureView()
         
         buttonsView.profileDelegate = self
+        
+        setUserData()
     }
     
     // MARK: - Private methods
@@ -44,7 +46,7 @@ class ProfileViewController: UIViewController {
         
         addUserDataView()
         configureTitleLabel()
-        //addButtonsView()
+        addButtonsView()
     }
     
     private func addUserDataView() {
@@ -73,6 +75,8 @@ class ProfileViewController: UIViewController {
     private func addButtonsView() {
         self.view.addSubview(buttonsView)
         
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             buttonsView
                 .topAnchor
@@ -96,6 +100,17 @@ class ProfileViewController: UIViewController {
                 .centerXAnchor
                 .constraint(equalTo: userDataView.centerXAnchor),
         ])
+    }
+    
+    private func setUserData() {
+        let userData = UserData(id: 123,
+                                username: "Somebody",
+                                password: "mYp@ssw0rd",
+                                email: "some@some.ru",
+                                gender: "m",
+                                card: "9872389-2424-234224-234",
+                                bio: "This is good! I think I will switch to another language")
+        userDataView.setUserData(userData: userData)
     }
 }
 extension ProfileViewController: ProfileViewControllerDelegate {

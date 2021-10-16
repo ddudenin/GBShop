@@ -25,22 +25,23 @@ class BasketFooterView: UIView {
     }()
     
     private lazy var priceStackView: UIStackView = {
-        let stack = UIStackView()
+        let stack = UIStackView(arrangedSubviews: [
+            textLabel,
+            priceLabel
+        ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.spacing = 5
         stack.alignment = .fill
         stack.contentMode = .scaleToFill
-        stack.addArrangedSubview(textLabel)
-        stack.addArrangedSubview(priceLabel)
         return stack
     }()
     
     private lazy var payButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "creditcard.circle.fill"),
+        button.setImage(UIImage(systemName: "rublesign.circle.fill"),
                         for: .normal)
         button.addTarget(self,
                          action: #selector(payButtonHandler(_:)),

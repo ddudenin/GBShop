@@ -38,15 +38,16 @@ class SignUpButtonView: UIView {
     }()
     
     private lazy var signUpStackView: UIStackView = {
-        let stack = UIStackView()
+        let stack = UIStackView(arrangedSubviews: [
+            signUpLabel,
+            signUpButton
+        ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = 5
         stack.distribution = .fill
         stack.alignment = .fill
         stack.contentMode = .scaleToFill
-        stack.addArrangedSubview(signUpLabel)
-        stack.addArrangedSubview(signUpButton)
         return stack
     }()
     

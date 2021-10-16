@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p2S-YF-IIL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PNU-oR-DqQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,21 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1226" y="-1153"/>
-        </scene>
         <!--Profile-->
         <scene sceneID="cJP-QS-HwX">
             <objects>
@@ -70,136 +55,6 @@
             </objects>
             <point key="canvasLocation" x="-459" y="60"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="njY-Pl-mG1">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="d3b-0V-NCj" customClass="EditUserDataViewController" customModule="OnlineStore" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="grp-0e-yNK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-15-ELd">
-                                <rect key="frame" x="30" y="312.5" width="354" height="281.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-y1-lyq">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="user name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-PI-S4i" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="30.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="person" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Utc-Gb-f2h" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="key" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-Zw-nCe" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="118.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="envelope.circle" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-5S-b7N">
-                                        <rect key="frame" x="0.0" y="162.5" width="354" height="32"/>
-                                        <segments>
-                                            <segment title="male"/>
-                                            <segment title="female"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="credit card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FBY-2g-7v8" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="203.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="creditcard" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wlQ-cK-V1z" customClass="TextFieldWithImage" customModule="OnlineStore" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="247.5" width="354" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="text.bubble" catalog="system"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="V89-jl-aeO">
-                                <rect key="frame" x="180.5" y="614" width="53" height="22"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-nq-0zi">
-                                        <rect key="frame" x="0.0" y="0.0" width="24" height="22"/>
-                                        <state key="normal" image="arrow.clockwise.icloud.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="changeUserDataButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="F6M-Sb-4PZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Go-Pg-dPw">
-                                        <rect key="frame" x="29" y="0.0" width="24" height="22"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="rectangle.portrait.and.arrow.right.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="buttonHandler:" destination="TPr-du-JqJ" eventType="touchUpInside" id="bwc-WS-r1e"/>
-                                            <action selector="exitButtonHandler:" destination="d3b-0V-NCj" eventType="touchUpInside" id="hc7-Hy-DWf"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="rJ6-0C-E7a"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="2M0-15-ELd" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="8Cl-Pu-fZr"/>
-                            <constraint firstItem="2M0-15-ELd" firstAttribute="leading" secondItem="grp-0e-yNK" secondAttribute="leadingMargin" constant="10" id="8jd-zD-U1s"/>
-                            <constraint firstItem="2M0-15-ELd" firstAttribute="centerY" secondItem="rJ6-0C-E7a" secondAttribute="centerY" id="DSb-uf-BWe"/>
-                            <constraint firstItem="V89-jl-aeO" firstAttribute="centerX" secondItem="rJ6-0C-E7a" secondAttribute="centerX" id="JL5-Fk-2br"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2M0-15-ELd" secondAttribute="trailing" constant="10" id="b1w-PU-ADE"/>
-                            <constraint firstItem="V89-jl-aeO" firstAttribute="top" secondItem="2M0-15-ELd" secondAttribute="bottom" constant="20" id="b5y-wC-3YC"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="wWt-a7-y09"/>
-                    <navigationItem key="navigationItem" id="P0f-uT-n2W"/>
-                    <connections>
-                        <outlet property="bioTextField" destination="wlQ-cK-V1z" id="bbD-hP-37Q"/>
-                        <outlet property="cardNumberTextField" destination="FBY-2g-7v8" id="ggh-zE-Lt7"/>
-                        <outlet property="emailTextField" destination="mK5-Zw-nCe" id="c04-v6-BoW"/>
-                        <outlet property="genderSegmentControl" destination="GsX-5S-b7N" id="kek-EN-Lyf"/>
-                        <outlet property="passwordTextField" destination="Utc-Gb-f2h" id="ZK4-Cf-E5O"/>
-                        <outlet property="usernameTextField" destination="lPY-PI-S4i" id="Ckt-q7-9mY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6km-Tv-UcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="TPr-du-JqJ" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-2365" y="-1"/>
-        </scene>
         <!--Basket-->
         <scene sceneID="G9B-bf-dxc">
             <objects>
@@ -235,11 +90,11 @@
             </objects>
             <point key="canvasLocation" x="-459" y="-687"/>
         </scene>
-        <!--Products-->
+        <!--Catalog-->
         <scene sceneID="0Nz-4x-5CX">
             <objects>
                 <navigationController id="Y7H-0b-SIr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Products" image="bag.fill" catalog="system" id="TKD-uH-9Kg"/>
+                    <tabBarItem key="tabBarItem" title="Catalog" image="bag.fill" catalog="system" id="TKD-uH-9Kg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fla-GP-F1x">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -297,34 +152,10 @@
             <point key="canvasLocation" x="2112" y="-1383"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="FBY-2g-7v8">
-            <size key="intrinsicContentSize" width="185.5" height="34"/>
-        </designable>
-        <designable name="Utc-Gb-f2h">
-            <size key="intrinsicContentSize" width="115" height="34"/>
-        </designable>
-        <designable name="lPY-PI-S4i">
-            <size key="intrinsicContentSize" width="124.5" height="34"/>
-        </designable>
-        <designable name="mK5-Zw-nCe">
-            <size key="intrinsicContentSize" width="92.5" height="34"/>
-        </designable>
-        <designable name="wlQ-cK-V1z">
-            <size key="intrinsicContentSize" width="80" height="34"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="arrow.clockwise.icloud.fill" catalog="system" width="128" height="88"/>
         <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
-        <image name="creditcard" catalog="system" width="128" height="88"/>
-        <image name="envelope.circle" catalog="system" width="128" height="121"/>
-        <image name="key" catalog="system" width="86" height="128"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
-        <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

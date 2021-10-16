@@ -91,21 +91,20 @@ class UserDataView: UIView {
     }()
     
     private lazy var userInputsStackView: UIStackView = {
-        let stack = UIStackView()
+        let stack = UIStackView(arrangedSubviews: [
+            usernameTextField,
+            passwordTextField,
+            emailTextField,
+            genderSegmentControl,
+            cardNumberTextField,
+            bioTextField
+        ])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fill
         stack.alignment = .fill
         stack.spacing = 10
         stack.contentMode = .scaleToFill
-        
-        stack.addArrangedSubview(usernameTextField)
-        stack.addArrangedSubview(passwordTextField)
-        stack.addArrangedSubview(emailTextField)
-        stack.addArrangedSubview(genderSegmentControl)
-        stack.addArrangedSubview(cardNumberTextField)
-        stack.addArrangedSubview(bioTextField)
-        
         return stack
     }()
     
