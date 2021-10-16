@@ -18,7 +18,7 @@ protocol BasketViewControllerDelegate: AnyObject {
 class BasketViewController: UIViewController {
     
     private lazy var basketTableView = UITableView()
-    private lazy var footerView = BasketFooterView()
+    private lazy var paymentView = PaymentView()
     
     private var totalBasketCost: Observable<Int> = Observable(0)
     private let userBasketInstance = UserBasketManager.shared
@@ -29,13 +29,13 @@ class BasketViewController: UIViewController {
         // Do any additional setup after loading the view.
         configureView()
         
-        footerView.basketDelegate = self
+        paymentView.basketDelegate = self
         
         totalBasketCost.addObserver(self,
                                     options: [.initial, .new],
                                     closure: {
             [weak self] value, _ in
-            self?.footerView.setTotalPrice(price: value)
+            self?.paymentView.setTotalPrice(price: value)
         })
     }
     
@@ -49,10 +49,10 @@ class BasketViewController: UIViewController {
     private func configureView() {
         self.view.backgroundColor = .systemBackground
         
+        addPaymentView()
+        
         addBasketTableView()
         configureBasketTableView()
-        
-        addBasketFooterView()
     }
     
     private func addBasketTableView() {
@@ -71,29 +71,36 @@ class BasketViewController: UIViewController {
             basketTableView
                 .trailingAnchor
                 .constraint(equalTo: self.view.trailingAnchor),
+            basketTableView
+                .bottomAnchor
+                .constraint(equalTo: paymentView.topAnchor,
+                            constant: -10)
         ])
     }
     
-    private func addBasketFooterView() {
-        self.view.addSubview(footerView)
+    private func addPaymentView() {
+        self.view.addSubview(paymentView)
         
-        footerView.translatesAutoresizingMaskIntoConstraints = false
+        paymentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let tabBarHeight: CGFloat = self.tabBarController?
+            .tabBar
+            .frame
+            .size
+            .height ?? 0
+        let constraint: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            footerView
-                .topAnchor
-                .constraint(equalTo: basketTableView.bottomAnchor,
-                            constant: 10),
-            footerView
+            paymentView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor),
-            footerView
+            paymentView
                 .trailingAnchor
                 .constraint(equalTo: self.view.trailingAnchor),
-            footerView
+            paymentView
                 .bottomAnchor
                 .constraint(equalTo: self.view.bottomAnchor,
-                            constant: -75),
+                            constant: -(tabBarHeight + constraint)),
         ])
     }
     
@@ -145,13 +152,13 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                 case .success(let result):
                     switch result.result {
                     case 1:
-                        self.userBasketInstance.deleteBasketItem(at: indexPath.row)
+                        UserBasketManager.shared.deleteBasketItem(at: indexPath.row)
                         
                         DispatchQueue
                             .main
                             .async {
                                 tableView.reloadData()
-                                self.totalBasketCost.value = self.userBasketInstance.getBasketCost()
+                                self.totalBasketCost.value = UserBasketManager.shared.getBasketCost()
                             }
                         
                         log(message: "\(result)", .Success)
@@ -193,7 +200,7 @@ extension BasketViewController: BasketViewControllerDelegate {
             case .success(let result):
                 switch result.result {
                 case 1:
-                    self.userBasketInstance.clearBasket()
+                    UserBasketManager.shared.clearBasket()
                     
                     DispatchQueue
                         .main

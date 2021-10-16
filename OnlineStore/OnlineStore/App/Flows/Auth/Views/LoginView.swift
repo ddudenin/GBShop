@@ -55,7 +55,7 @@ class LoginView: UIView {
         return stack
     }()
     
-    private(set) lazy var signInButton: SignInButton = {
+    private lazy var signInButton: SignInButton = {
         let button = SignInButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.text = "Sign in"
@@ -101,11 +101,12 @@ class LoginView: UIView {
                 .constraint(equalTo: self.centerXAnchor),
             textFieldsStackView
                 .topAnchor
-                .constraint(equalTo: self.topAnchor),
+                .constraint(equalTo: self.topAnchor,
+                            constant: 10),
             textFieldsStackView
                 .bottomAnchor
                 .constraint(equalTo: signInButton.topAnchor,
-                            constant: -35),
+                            constant: -25),
             textFieldsStackView
                 .leadingAnchor
                 .constraint(lessThanOrEqualTo: self.leadingAnchor,
@@ -126,7 +127,8 @@ class LoginView: UIView {
                 .constraint(equalToConstant: 100),
             signInButton
                 .bottomAnchor
-                .constraint(equalTo: self.bottomAnchor)
+                .constraint(equalTo: self.bottomAnchor,
+                            constant: -10)
         ])
     }
     

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A23356927174E3300891BBC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356827174E3300891BBC /* BasketViewController.swift */; };
-		0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356B27174EED00891BBC /* BasketFooterView.swift */; };
+		0A23356C27174EED00891BBC /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356B27174EED00891BBC /* PaymentView.swift */; };
 		0A2335702717515E00891BBC /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356E2717515E00891BBC /* BasketTableViewCell.swift */; };
 		0A2335712717515E00891BBC /* BasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A23356F2717515E00891BBC /* BasketTableViewCell.xib */; };
 		0A2335732717659500891BBC /* BasketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2335722717659500891BBC /* BasketItem.swift */; };
@@ -89,7 +89,7 @@
 
 /* Begin PBXFileReference section */
 		0A23356827174E3300891BBC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
-		0A23356B27174EED00891BBC /* BasketFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterView.swift; sourceTree = "<group>"; };
+		0A23356B27174EED00891BBC /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		0A23356E2717515E00891BBC /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		0A23356F2717515E00891BBC /* BasketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketTableViewCell.xib; sourceTree = "<group>"; };
 		0A2335722717659500891BBC /* BasketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketItem.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		0A23356A27174E3E00891BBC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0A23356B27174EED00891BBC /* BasketFooterView.swift */,
+				0A23356B27174EED00891BBC /* PaymentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -829,7 +829,7 @@
 				0A35031B2719EC4C0060939A /* SignUpViewController.swift in Sources */,
 				0A251F7F26C9032A00F46226 /* UserData.swift in Sources */,
 				0AE12C5C270F64EE006D18D5 /* ProductInfoView.swift in Sources */,
-				0A23356C27174EED00891BBC /* BasketFooterView.swift in Sources */,
+				0A23356C27174EED00891BBC /* PaymentView.swift in Sources */,
 				0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */,
 				0A251F7026C8F4BC00F46226 /* User.swift in Sources */,
 				0A3503132719D16E0060939A /* AuthViewController.swift in Sources */,

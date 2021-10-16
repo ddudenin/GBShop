@@ -175,7 +175,7 @@ class AuthViewController: UIViewController {
             signUpButtonView
                 .topAnchor
                 .constraint(equalTo: loginView.bottomAnchor,
-                            constant: 16),
+                            constant: 10),
             signUpButtonView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor),

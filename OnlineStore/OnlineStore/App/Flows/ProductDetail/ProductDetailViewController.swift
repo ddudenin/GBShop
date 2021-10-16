@@ -113,7 +113,7 @@ class ProductDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             productInfoView
                 .topAnchor
-                .constraint(equalTo: self.productHeaderView.bottomAnchor),
+                .constraint(equalTo: productHeaderView.bottomAnchor),
             productInfoView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor),
@@ -131,13 +131,16 @@ class ProductDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             reviewsTableView
                 .topAnchor
-                .constraint(equalTo: productInfoView.bottomAnchor),
+                .constraint(equalTo: productInfoView.bottomAnchor,
+                           constant: 10),
             reviewsTableView
                 .leadingAnchor
-                .constraint(equalTo: self.view.leadingAnchor),
+                .constraint(equalTo: self.view.leadingAnchor,
+                            constant: 10),
             reviewsTableView
                 .trailingAnchor
-                .constraint(equalTo: self.view.trailingAnchor),
+                .constraint(equalTo: self.view.trailingAnchor,
+                            constant: -10),
             reviewsTableView
                 .bottomAnchor
                 .constraint(equalTo: scrollView.bottomAnchor),

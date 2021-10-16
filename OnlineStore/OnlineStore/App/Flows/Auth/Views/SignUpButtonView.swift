@@ -81,10 +81,10 @@ class SignUpButtonView: UIView {
             
             signUpButton
                 .heightAnchor
-                .constraint(equalToConstant: 30),
+                .constraint(equalToConstant: 25),
             signUpButton
                 .widthAnchor
-                .constraint(equalToConstant: 30)
+                .constraint(equalToConstant: 25)
         ])
     }
     

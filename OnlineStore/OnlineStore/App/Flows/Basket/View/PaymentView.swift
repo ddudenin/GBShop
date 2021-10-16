@@ -1,5 +1,5 @@
 //
-//  BasketFooterView.swift
+//  PaymentView.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 13.10.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class BasketFooterView: UIView {
+class PaymentView: UIView {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,11 +73,11 @@ class BasketFooterView: UIView {
             priceStackView
                 .leadingAnchor
                 .constraint(equalTo: self.leadingAnchor,
-                            constant: 16),
+                            constant: 10),
             priceStackView
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
-                            constant: -16),
+                            constant: -10),
             priceStackView
                 .bottomAnchor
                 .constraint(equalTo: payButton.topAnchor,
@@ -85,7 +85,7 @@ class BasketFooterView: UIView {
             priceStackView
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
-                            constant: 16),
+                            constant: 10),
             
             payButton
                 .centerXAnchor
@@ -105,9 +105,9 @@ class BasketFooterView: UIView {
     }
 }
 
-struct BasketFooterView_Preview: PreviewProvider {
+struct PaymentView_Preview: PreviewProvider {
     static var previews: some View {
-        let view = BasketFooterView()
+        let view = PaymentView()
         view.priceLabel.text = ConvertPriceToString(price: 45000)
         return UIPreviewView(view)
             .preferredColorScheme(.dark)

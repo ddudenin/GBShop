@@ -63,12 +63,10 @@ class ProfileViewController: UIViewController {
                 .constraint(equalTo: self.view.centerYAnchor),
             userDataView
                 .leadingAnchor
-                .constraint(equalTo: self.view.leadingAnchor,
-                            constant: 10),
+                .constraint(equalTo: self.view.leadingAnchor),
             userDataView
                 .trailingAnchor
-                .constraint(equalTo: self.view.trailingAnchor,
-                            constant: -10)
+                .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
@@ -81,7 +79,7 @@ class ProfileViewController: UIViewController {
             buttonsView
                 .topAnchor
                 .constraint(equalTo: userDataView.bottomAnchor,
-                            constant: 20),
+                            constant: 10),
             buttonsView
                 .centerXAnchor
                 .constraint(equalTo: self.view.centerXAnchor),
@@ -95,7 +93,7 @@ class ProfileViewController: UIViewController {
             titleLabel
                 .bottomAnchor
                 .constraint(equalTo: userDataView.topAnchor,
-                            constant: -20),
+                            constant: -10),
             titleLabel
                 .centerXAnchor
                 .constraint(equalTo: userDataView.centerXAnchor),

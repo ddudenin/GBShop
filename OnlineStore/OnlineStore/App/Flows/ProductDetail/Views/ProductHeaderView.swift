@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class ProductHeaderView: UIView {
-    private(set) lazy var artworkImageView: UIImageView = {
+    private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.secondarySystemFill
@@ -65,7 +65,7 @@ class ProductHeaderView: UIView {
     }
     
     func configure(product: ProductInfo) {
-        self.artworkImageView.image = UIImage(systemName: "tag.circle")
+        self.productImageView.image = UIImage(systemName: "tag.circle")
         self.nameLabel.text = product.name
         self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
@@ -73,72 +73,72 @@ class ProductHeaderView: UIView {
     // MARK: - Private
     
     private func setupView() {
-        self.addSubview(artworkImageView)
+        self.addSubview(productImageView)
         self.addSubview(nameLabel)
         self.addSubview(priceLabel)
         self.addSubview(addToBasketButton)
         
         NSLayoutConstraint.activate([
-            artworkImageView
+            productImageView
                 .heightAnchor
                 .constraint(equalToConstant: 100),
-            artworkImageView
+            productImageView
                 .widthAnchor
                 .constraint(equalToConstant: 100),
-            artworkImageView
+            productImageView
                 .leadingAnchor
                 .constraint(equalTo: self.leadingAnchor,
-                            constant: 16),
-            artworkImageView
+                            constant: 15),
+            productImageView
                 .bottomAnchor
                 .constraint(lessThanOrEqualTo: self.bottomAnchor,
-                            constant: -16),
-            artworkImageView
+                            constant: -10),
+            productImageView
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
-                            constant: 16),
+                            constant: 10),
             
             nameLabel
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
-                            constant: 16),
+                            constant: 10),
             nameLabel
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
-                            constant: -16),
+                            constant: -10),
             nameLabel
                 .leadingAnchor
-                .constraint(equalTo: artworkImageView.trailingAnchor,
-                            constant: 16),
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10),
             nameLabel
                 .bottomAnchor
                 .constraint(equalTo: priceLabel.topAnchor,
-                            constant: -4),
+                            constant: -5),
             
             priceLabel
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
-                            constant: -16),
+                            constant: -10),
             priceLabel
                 .leadingAnchor
-                .constraint(equalTo: artworkImageView.trailingAnchor,
-                            constant: 16),
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10),
             priceLabel
                 .bottomAnchor
                 .constraint(equalTo: addToBasketButton.topAnchor,
-                            constant: -15),
+                            constant: -10),
             
             addToBasketButton
                 .leadingAnchor
-                .constraint(equalTo: artworkImageView.trailingAnchor,
-                            constant: 16),
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10),
         ])
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        artworkImageView
+        productImageView
             .layer
             .borderColor = UIColor.systemGray2.cgColor
     }

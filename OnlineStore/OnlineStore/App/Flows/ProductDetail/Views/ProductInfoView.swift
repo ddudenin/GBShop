@@ -60,32 +60,32 @@ class ProductInfoView: UIView {
             titleLabel
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
-                            constant: 4),
+                            constant: 10),
             titleLabel
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
-                            constant: -16),
+                            constant: -10),
             titleLabel
                 .leadingAnchor
                 .constraint(equalTo: self.leadingAnchor,
-                            constant: 16),
+                            constant: 10),
             titleLabel
                 .bottomAnchor
                 .constraint(equalTo: descriptionLabel.topAnchor,
-                            constant: -7),
+                            constant: -10),
             
             descriptionLabel
                 .leadingAnchor
                 .constraint(equalTo: self.leadingAnchor,
-                            constant: 16),
+                            constant: 15),
             descriptionLabel
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
-                            constant: -16),
+                            constant: -10),
             descriptionLabel
                 .bottomAnchor
                 .constraint(equalTo: self.bottomAnchor,
-                            constant: -16)
+                            constant: -10)
         ])
     }
     

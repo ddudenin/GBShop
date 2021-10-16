@@ -179,12 +179,10 @@ class SignUpViewController: UIViewController {
                 .constraint(equalTo: self.view.centerYAnchor),
             userDataView
                 .leadingAnchor
-                .constraint(equalTo: scrollView.leadingAnchor,
-                            constant: 10),
+                .constraint(equalTo: scrollView.leadingAnchor),
             userDataView
                 .trailingAnchor
-                .constraint(equalTo: scrollView.trailingAnchor,
-                            constant: -10)
+                .constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
     
@@ -195,7 +193,7 @@ class SignUpViewController: UIViewController {
             titleLabel
                 .bottomAnchor
                 .constraint(equalTo: userDataView.topAnchor,
-                            constant: -20),
+                            constant: -10),
             titleLabel
                 .centerXAnchor
                 .constraint(equalTo: userDataView.centerXAnchor),
@@ -209,7 +207,7 @@ class SignUpViewController: UIViewController {
             signUpButton
                 .topAnchor
                 .constraint(equalTo: userDataView.bottomAnchor,
-                            constant: 30),
+                            constant: 20),
             signUpButton
                 .centerXAnchor
                 .constraint(equalTo: userDataView.centerXAnchor),

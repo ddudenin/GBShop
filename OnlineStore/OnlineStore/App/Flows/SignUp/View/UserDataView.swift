@@ -167,16 +167,20 @@ class UserDataView: UIView {
         NSLayoutConstraint.activate([
             userInputsStackView
                 .topAnchor
-                .constraint(equalTo: self.topAnchor),
+                .constraint(equalTo: self.topAnchor,
+                            constant: 10),
             userInputsStackView
                 .bottomAnchor
-                .constraint(equalTo: self.bottomAnchor),
+                .constraint(equalTo: self.bottomAnchor,
+                            constant: -10),
             userInputsStackView
                 .leadingAnchor
-                .constraint(equalTo: self.leadingAnchor),
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 10),
             userInputsStackView
                 .trailingAnchor
-                .constraint(equalTo: self.trailingAnchor)
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -10)
         ])
     }
 }
