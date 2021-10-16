@@ -18,16 +18,6 @@ class UserDataView: UIView {
     private let genderStrings = ["m", "f"]
     
     // MARK: - Subviews
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.text = "Enter your data"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textAlignment = .center
-        return label
-    }()
-    
     private lazy var usernameTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +99,6 @@ class UserDataView: UIView {
         stack.spacing = 10
         stack.contentMode = .scaleToFill
         
-        stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(usernameTextField)
         stack.addArrangedSubview(passwordTextField)
         stack.addArrangedSubview(emailTextField)
@@ -142,7 +131,7 @@ class UserDataView: UIView {
             let cardNumber = cardNumberTextField.text,
             let bio = bioTextField.text
         else {
-            signUpDelegate?.ShowAlert(text: "Не удалось зарегестрироваться")
+            signUpDelegate?.showAlert(userMessage: "Не удалось зарегестрироваться")
             log(message: "Ошибка чтения данных регистрации", .Error)
             return nil
         }
@@ -177,10 +166,18 @@ class UserDataView: UIView {
         self.addSubview(userInputsStackView)
         
         NSLayoutConstraint.activate([
-            userInputsStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            userInputsStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            userInputsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            userInputsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            userInputsStackView
+                .topAnchor
+                .constraint(equalTo: self.topAnchor),
+            userInputsStackView
+                .bottomAnchor
+                .constraint(equalTo: self.bottomAnchor),
+            userInputsStackView
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor),
+            userInputsStackView
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor)
         ])
     }
 }

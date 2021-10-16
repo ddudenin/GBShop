@@ -1,5 +1,5 @@
 //
-//  ProductsTableViewController.swift
+//  CatalogTableViewController.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 03.10.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductsTableViewController: UITableViewController {
+class CatalogTableViewController: UITableViewController {
     
     private var products = [Product]()
     
@@ -64,10 +64,13 @@ class ProductsTableViewController: UITableViewController {
     
     private func loadProductList() {
         let catalog = RequestFactory.shared.makeCatalogRequestFactory()
-        catalog.getProducts(page: 1, category: 1) { response in
+        catalog.getProducts(page: 1,
+                            category: 1) { response in
             switch response.result {
             case .success(let products):
-                DispatchQueue.main.async {
+                DispatchQueue
+                    .main
+                    .async {
                     self.products = products
                     self.tableView.reloadData()
                 }

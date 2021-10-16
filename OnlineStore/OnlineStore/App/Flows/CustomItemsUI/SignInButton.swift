@@ -16,7 +16,8 @@ class SignInButton: UIButton {
             var g: CGFloat = 0
             var b: CGFloat = 0
             var a: CGFloat = 0
-            self.bgColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+            self.bgColor
+                .getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
             
             self.backgroundColor = color
@@ -29,7 +30,8 @@ class SignInButton: UIButton {
             var g: CGFloat = 0
             var b: CGFloat = 0
             var a: CGFloat = 0
-            self.borderColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+            self.borderColor
+                .getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
             
             self.layer.borderColor = color.cgColor
@@ -42,7 +44,8 @@ class SignInButton: UIButton {
             var g: CGFloat = 0
             var b: CGFloat = 0
             var a: CGFloat = 0
-            self.textColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+            self.textColor
+                .getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
             
             self.setTitleColor(color, for: .normal)
@@ -69,8 +72,12 @@ class SignInButton: UIButton {
         self.layer.cornerRadius = 20.0
         self.layer.borderWidth = 0.25
         self.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        self.setImage(UIImage(systemName: "chevron.forward.circle"), for: .normal)
-        self.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 12)
+        self.setImage(UIImage(systemName: "chevron.forward.circle"),
+                      for: .normal)
+        self.imageEdgeInsets = UIEdgeInsets.init(top: 0,
+                                                 left: 0,
+                                                 bottom: 0,
+                                                 right: 12)
     }
 }
 

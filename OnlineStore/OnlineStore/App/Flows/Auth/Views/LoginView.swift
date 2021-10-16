@@ -93,18 +93,39 @@ class LoginView: UIView {
     private func setupView() {
         self.addSubview(textFieldsStackView)
         self.addSubview(signInButton)
-
+        
         NSLayoutConstraint.activate([
-            textFieldsStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            textFieldsStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            textFieldsStackView.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -35),
-            textFieldsStackView.leadingAnchor.constraint(lessThanOrEqualTo: self.leadingAnchor, constant: 10),
-            textFieldsStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -10),
+            textFieldsStackView
+                .centerXAnchor
+                .constraint(equalTo: self.centerXAnchor),
+            textFieldsStackView
+                .topAnchor
+                .constraint(equalTo: self.topAnchor),
+            textFieldsStackView
+                .bottomAnchor
+                .constraint(equalTo: signInButton.topAnchor,
+                            constant: -35),
+            textFieldsStackView
+                .leadingAnchor
+                .constraint(lessThanOrEqualTo: self.leadingAnchor,
+                            constant: 10),
+            textFieldsStackView
+                .trailingAnchor
+                .constraint(lessThanOrEqualTo: self.trailingAnchor,
+                            constant: -10),
             
-            signInButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            signInButton.heightAnchor.constraint(equalToConstant: 40),
-            signInButton.widthAnchor.constraint(equalToConstant: 100),
-            signInButton.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            signInButton
+                .centerXAnchor
+                .constraint(equalTo: self.centerXAnchor),
+            signInButton
+                .heightAnchor
+                .constraint(equalToConstant: 40),
+            signInButton
+                .widthAnchor
+                .constraint(equalToConstant: 100),
+            signInButton
+                .bottomAnchor
+                .constraint(equalTo: self.bottomAnchor)
         ])
     }
     
@@ -113,12 +134,12 @@ class LoginView: UIView {
             let login = loginTextField.text,
             let password = passwordTextField.text
         else {
-            authDelegate?.ShowAlert(text: "Не удалось прочитать данные авторизации")
+            authDelegate?.showAlert(userMessage: "Не удалось прочитать данные авторизации")
             log(message: "Ошибка чтения введенных данных", .Error)
             return
         }
         
-        authDelegate?.SignIn(login: login, password: password)
+        authDelegate?.signIn(login: login, password: password)
     }
 }
 

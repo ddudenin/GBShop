@@ -12,7 +12,7 @@ class ReviewManager: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
-    let baseUrl = URL(string: "https://cryptic-citadel-85782.herokuapp.com/")!
+    private let baseUrl = URL(string: "https://cryptic-citadel-85782.herokuapp.com/")!
 
     init(
         errorParser: AbstractErrorParser,

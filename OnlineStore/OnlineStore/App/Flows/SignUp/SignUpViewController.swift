@@ -8,12 +8,22 @@
 import UIKit
 
 protocol SignUpViewControllerDelegate: AnyObject {
-    func ShowAlert(text: String)
+    func showAlert(userMessage: String)
 }
 
 class SignUpViewController: UIViewController {
     
     // MARK: - Subviews
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.text = "Enter your data"
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textAlignment = .center
+        return label
+    }()
+    
     private lazy var userDataView = UserDataView()
     
     private lazy var signUpButton: UIButton = {
@@ -25,6 +35,7 @@ class SignUpViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,26 +56,34 @@ class SignUpViewController: UIViewController {
             switch response.result {
             case .success(let signup):
                 if signup.result == 0 {
-                    DispatchQueue.main.async {
-                        showAlert(forController: self, message: signup.userMessage)
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            showAlertController(forController: self,
+                                                message: signup.userMessage)
+                        }
                     log(message: signup.userMessage, .Warning)
                 } else {
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Main", bundle: .none)
-                        let mainViewController = storyboard.instantiateViewController(withIdentifier: "StartScreen")
-                        self.present(mainViewController,
-                                     animated: true,
-                                     completion: .none)
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            let storyboard = UIStoryboard(name: "Main", bundle: .none)
+                            let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")
+                            self.present(mainViewController,
+                                         animated: true,
+                                         completion: .none)
+                        }
                     
                     log(message: "\(signup)", .Success)
                 }
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    showAlert(forController: self, message: error.localizedDescription)
-                }
+                DispatchQueue
+                    .main
+                    .async {
+                        showAlertController(forController: self,
+                                            message: error.localizedDescription)
+                    }
                 log(message: error.localizedDescription, .Error)
             }
         }
@@ -75,6 +94,8 @@ class SignUpViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         
         addUserDataView()
+        
+        configureTitleLabel()
         configureSignUpButton()
     }
     
@@ -84,10 +105,34 @@ class SignUpViewController: UIViewController {
         userDataView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            userDataView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            userDataView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            userDataView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10),
-            userDataView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10)
+            userDataView
+                .centerXAnchor
+                .constraint(equalTo: self.view.centerXAnchor),
+            userDataView
+                .centerYAnchor
+                .constraint(equalTo: self.view.centerYAnchor),
+            userDataView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor,
+                            constant: 10),
+            userDataView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor,
+                            constant: -10)
+        ])
+    }
+    
+    private func configureTitleLabel() {
+        self.view.addSubview(titleLabel)
+        
+        NSLayoutConstraint.activate([
+            titleLabel
+                .bottomAnchor
+                .constraint(equalTo: userDataView.topAnchor,
+                            constant: -20),
+            titleLabel
+                .centerXAnchor
+                .constraint(equalTo: userDataView.centerXAnchor),
         ])
     }
     
@@ -95,14 +140,20 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(signUpButton)
         
         NSLayoutConstraint.activate([
-            signUpButton.topAnchor.constraint(equalTo: userDataView.bottomAnchor, constant: 30),
-            signUpButton.centerXAnchor.constraint(equalTo: userDataView.centerXAnchor),
+            signUpButton
+                .topAnchor
+                .constraint(equalTo: userDataView.bottomAnchor,
+                            constant: 30),
+            signUpButton
+                .centerXAnchor
+                .constraint(equalTo: userDataView.centerXAnchor),
         ])
     }
 }
 
 extension SignUpViewController: SignUpViewControllerDelegate {
-    func ShowAlert(text: String) {
-        showAlert(forController: self, message: text)
+    func showAlert(userMessage: String) {
+        showAlertController(forController: self,
+                            message: userMessage)
     }
 }

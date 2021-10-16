@@ -10,9 +10,9 @@ import UIKit
 var gBasket = [BasketItem]()
 
 protocol BasketViewControllerDelegate: AnyObject {
-    func IncreaseBasketCost(by price: Int)
-    func DecreaseBasketCost(by price: Int)
-    func MakePayment()
+    func increaseBasketCost(by price: Int)
+    func decreaseBasketCost(by price: Int)
+    func makePayment()
 }
 
 class BasketViewController: UIViewController {
@@ -61,9 +61,16 @@ class BasketViewController: UIViewController {
         basketTableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            basketTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
-            basketTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            basketTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            basketTableView
+                .topAnchor
+                .constraint(equalTo: self.view.topAnchor,
+                            constant: 50),
+            basketTableView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            basketTableView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
         ])
     }
     
@@ -73,10 +80,20 @@ class BasketViewController: UIViewController {
         footerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            footerView.topAnchor.constraint(equalTo: basketTableView.bottomAnchor, constant: 10),
-            footerView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            footerView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -75),
+            footerView
+                .topAnchor
+                .constraint(equalTo: basketTableView.bottomAnchor,
+                            constant: 10),
+            footerView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            footerView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            footerView
+                .bottomAnchor
+                .constraint(equalTo: self.view.bottomAnchor,
+                            constant: -75),
         ])
     }
     
@@ -101,7 +118,8 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = basketTableView.dequeueReusableCell(withIdentifier: "BasketCell", for: indexPath) as? BasketTableViewCell else {
+        guard let cell = basketTableView.dequeueReusableCell(withIdentifier: "BasketCell",
+                                                             for: indexPath) as? BasketTableViewCell else {
             return UITableViewCell()
         }
         
@@ -119,24 +137,31 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let id = userBasketInstance.basket[indexPath.row].product.id
             let basket = RequestFactory.shared.makeBasketRequestFactory()
-            basket.removeFromBasket(productId: userBasketInstance.basket[indexPath.row].product.id) { response in
+            
+            basket.removeFromBasket(productId: id) { response in
                 switch response.result {
                 case .success(let result):
                     switch result.result {
                     case 1:
                         self.userBasketInstance.deleteBasketItem(at: indexPath.row)
                         
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
-                            self.totalBasketCost.value = self.userBasketInstance.getBasketCost()
-                        }
+                        DispatchQueue
+                            .main
+                            .async {
+                                tableView.reloadData()
+                                self.totalBasketCost.value = self.userBasketInstance.getBasketCost()
+                            }
                         
                         log(message: "\(result)", .Success)
                     default:
-                        DispatchQueue.main.async {
-                            showAlert(forController: self, message: "Remove from cart failed")
-                        }
+                        DispatchQueue
+                            .main
+                            .async {
+                                showAlertController(forController: self,
+                                                    message: "Remove from cart failed")
+                            }
                         log(message: "\(result)", .Error)
                     }
                     
@@ -149,35 +174,42 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension BasketViewController: BasketViewControllerDelegate {
-    func IncreaseBasketCost(by price: Int) {
+    func increaseBasketCost(by price: Int) {
         totalBasketCost.value += price
     }
     
-    func DecreaseBasketCost(by price: Int) {
+    func decreaseBasketCost(by price: Int) {
         totalBasketCost.value -= price
     }
     
-    func MakePayment() {
+    func makePayment() {
         guard !userBasketInstance.basket.isEmpty else { return }
         
         let basket = RequestFactory.shared.makeBasketRequestFactory()
-        basket.payBasket(userId: 123, basketCost: totalBasketCost.value, userBalance: 170000) { response in
+        basket.payBasket(userId: 123,
+                         basketCost: totalBasketCost.value,
+                         userBalance: 170000) { response in
             switch response.result {
             case .success(let result):
                 switch result.result {
                 case 1:
                     self.userBasketInstance.clearBasket()
                     
-                    DispatchQueue.main.async {
-                        self.basketTableView.reloadData()
-                        self.totalBasketCost.value = 0
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            self.basketTableView.reloadData()
+                            self.totalBasketCost.value = 0
+                        }
                     
                     log(message: "\(result)", .Success)
                 default:
-                    DispatchQueue.main.async {
-                        showAlert(forController: self, message: result.userMessage)
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            showAlertController(forController: self,
+                                                message: result.userMessage)
+                        }
                     log(message: "\(result)", .Error)
                 }
             case .failure(let error):

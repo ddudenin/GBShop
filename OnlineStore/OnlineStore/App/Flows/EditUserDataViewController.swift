@@ -53,9 +53,12 @@ final class EditUserDataViewController: UIViewController {
             let cardNumber = cardNumberTextField.text,
             let bio = bioTextField.text
         else {
-            DispatchQueue.main.async {
-                showAlert(forController: self, message: "Не удалось обновить данные")
-            }
+            DispatchQueue
+                .main
+                .async {
+                    showAlertController(forController: self,
+                                        message: "Не удалось обновить данные")
+                }
             log(message: "Ошибка введенных данных", .Error)
             return
         }
@@ -75,17 +78,23 @@ final class EditUserDataViewController: UIViewController {
             switch response.result {
             case .success(let changedData):
                 if changedData.result == 0 {
-                    DispatchQueue.main.async {
-                        showAlert(forController: self, message: "Не удалось обновить данные")
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            showAlertController(forController: self,
+                                                message: "Не удалось обновить данные")
+                        }
                     log(message: "Не удалось обновить данные", .Warning)
                 } else {
                     log(message: "\(changedData)", .Success)
                 }
             case .failure(let error):
-                DispatchQueue.main.async {
-                    showAlert(forController: self, message: error.localizedDescription)
-                }
+                DispatchQueue
+                    .main
+                    .async {
+                        showAlertController(forController: self,
+                                            message: error.localizedDescription)
+                    }
                 log(message: error.localizedDescription, .Error)
             }
         }
@@ -93,7 +102,7 @@ final class EditUserDataViewController: UIViewController {
     
     @IBAction func exitButtonHandler(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "StartScreen")
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")
         self.present(mainViewController,
                      animated: true,
                      completion: .none)

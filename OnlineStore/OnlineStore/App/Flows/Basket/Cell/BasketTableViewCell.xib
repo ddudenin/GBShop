@@ -40,7 +40,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" continuous="NO" autorepeat="NO" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="sjv-Eu-pnY">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" continuous="NO" autorepeat="NO" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="sjv-Eu-pnY">
                                 <rect key="frame" x="37" y="34.5" width="94" height="32"/>
                                 <connections>
                                     <action selector="stepperValueChangedHandler:" destination="KGk-i7-Jjw" eventType="valueChanged" id="dVH-RO-0th"/>

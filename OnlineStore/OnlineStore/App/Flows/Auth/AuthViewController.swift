@@ -8,9 +8,9 @@
 import UIKit
 
 protocol AuthViewControllerDelegate: AnyObject {
-    func SignIn(login: String, password: String)
-    func PresentSignUpViewController()
-    func ShowAlert(text: String)
+    func signIn(login: String, password: String)
+    func presentSignUpViewController()
+    func showAlert(userMessage: String)
 }
 
 class AuthViewController: UIViewController {
@@ -118,10 +118,18 @@ class AuthViewController: UIViewController {
         self.view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView
+                .topAnchor
+                .constraint(equalTo: self.view.topAnchor),
+            scrollView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            scrollView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            scrollView
+                .bottomAnchor
+                .constraint(equalTo: self.view.bottomAnchor),
         ])
     }
     
@@ -129,8 +137,13 @@ class AuthViewController: UIViewController {
         scrollView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
-            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+            titleLabel
+                .topAnchor
+                .constraint(equalTo: scrollView.topAnchor,
+                            constant: 100),
+            titleLabel
+                .centerXAnchor
+                .constraint(equalTo: scrollView.centerXAnchor)
         ])
     }
     
@@ -140,9 +153,16 @@ class AuthViewController: UIViewController {
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            loginView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
-            loginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            loginView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            loginView
+                .topAnchor
+                .constraint(equalTo: titleLabel.bottomAnchor,
+                            constant: 50),
+            loginView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            loginView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
@@ -152,10 +172,19 @@ class AuthViewController: UIViewController {
         signUpButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signUpButtonView.topAnchor.constraint(equalTo: loginView.bottomAnchor, constant: 16),
-            signUpButtonView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            signUpButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            signUpButtonView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            signUpButtonView
+                .topAnchor
+                .constraint(equalTo: loginView.bottomAnchor,
+                            constant: 16),
+            signUpButtonView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            signUpButtonView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            signUpButtonView
+                .bottomAnchor
+                .constraint(equalTo: scrollView.bottomAnchor),
         ])
     }
     
@@ -182,25 +211,28 @@ class AuthViewController: UIViewController {
 
 // MARK: - AuthViewController + AuthViewControllerDelegate
 extension AuthViewController: AuthViewControllerDelegate {
-    func SignIn(login: String, password: String) {
+    func signIn(login: String, password: String) {
         let auth = RequestFactory.shared.makeAuthRequestFactory()
         
-        auth.login(userName: login, password: password) { response in
+        auth.login(userName: login,
+                   password: password) { response in
             switch response.result {
             case .success(let login):
                 if login.result == 0 {
                     let messageText = "Введены неверные данные авторизации"
-                    DispatchQueue.main
+                    DispatchQueue
+                        .main
                         .async {
-                            showAlert(forController: self, message: messageText)
+                            showAlertController(forController: self,
+                                                message: messageText)
                         }
                     log(message: messageText, .Warning)
                 } else {
-                    DispatchQueue.main
+                    DispatchQueue
+                        .main
                         .async {
                             let storyboard = UIStoryboard(name: "Main", bundle: .none)
-                            let mainTabController = storyboard
-                                .instantiateViewController(withIdentifier: "MainTabController")
+                            let mainTabController = storyboard.instantiateViewController(withIdentifier: "MainTabController")
                             self.present(mainTabController,
                                          animated: true,
                                          completion: .none)
@@ -210,16 +242,18 @@ extension AuthViewController: AuthViewControllerDelegate {
                 }
                 
             case .failure(let error):
-                DispatchQueue.main
+                DispatchQueue
+                    .main
                     .async {
-                        showAlert(forController: self, message: error.localizedDescription)
+                        showAlertController(forController: self,
+                                            message: error.localizedDescription)
                     }
                 log(message: error.localizedDescription, .Error)
             }
         }
     }
     
-    func PresentSignUpViewController() {
+    func presentSignUpViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         let signUpViewController = storyboard
             .instantiateViewController(withIdentifier: "SignUpScreen")
@@ -228,10 +262,8 @@ extension AuthViewController: AuthViewControllerDelegate {
                      completion: .none)
     }
     
-    func ShowAlert(text: String) {
-        DispatchQueue.main
-            .async {
-                showAlert(forController: self, message: text)
-            }
+    func showAlert(userMessage: String) {
+        showAlertController(forController: self,
+                            message: userMessage)
     }
 }

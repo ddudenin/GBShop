@@ -1,38 +1,37 @@
 //
-//  SignUpButtonView.swift
+//  ButtonsView.swift
 //  OnlineStore
 //
-//  Created by Дмитрий Дуденин on 15.10.2021.
+//  Created by Дмитрий Дуденин on 16.10.2021.
 //
 
 import UIKit
 import SwiftUI
 
-class SignUpButtonView: UIView {
+class ButtonsView: UIView {
     
     // MARK: - Public properties
-    weak var authDelegate: AuthViewControllerDelegate?
+    weak var profileDelegate: ProfileViewControllerDelegate?
     
     // MARK: - Subviews
-    private lazy var signUpLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textColor = UIColor.rgba(0.149,
-                                       0.149,
-                                       0.384,
-                                       alpha: 1.0)
-        label.text = "Sign up |"
-        return label
-    }()
-    
-    private lazy var signUpButton: UIButton = {
+    private lazy var updateUserDataButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "person.crop.square.filled.and.at.rectangle"),
+        button.setImage(UIImage(systemName: "arrow.clockwise.icloud.fill"),
                         for: .normal)
         button.addTarget(self,
-                         action: #selector(signUpButtonHandler(_:)),
+                         action: #selector(updateUserDataButtonHandler(_:)),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var exitButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.right.fill"),
+                        for: .normal)
+        button.addTarget(self,
+                         action: #selector(exitButtonHandler(_:)),
                          for: .touchUpInside)
         return button
     }()
@@ -42,11 +41,11 @@ class SignUpButtonView: UIView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = 5
-        stack.distribution = .fill
+        stack.distribution = .fillEqually
         stack.alignment = .fill
         stack.contentMode = .scaleToFill
-        stack.addArrangedSubview(signUpLabel)
-        stack.addArrangedSubview(signUpButton)
+        stack.addArrangedSubview(updateUserDataButton)
+        stack.addArrangedSubview(exitButton)
         return stack
     }()
     
@@ -76,25 +75,22 @@ class SignUpButtonView: UIView {
                 .constraint(equalTo: self.topAnchor),
             signUpStackView
                 .bottomAnchor
-                .constraint(equalTo: self.bottomAnchor),
-            
-            signUpButton
-                .heightAnchor
-                .constraint(equalToConstant: 30),
-            signUpButton
-                .widthAnchor
-                .constraint(equalToConstant: 30)
+                .constraint(equalTo: self.bottomAnchor)
         ])
     }
     
-    @objc private func signUpButtonHandler(_ sender: Any) {
-        authDelegate?.presentSignUpViewController()
+    @objc private func exitButtonHandler(_ sender: Any) {
+        profileDelegate?.logout()
+    }
+    
+    @objc private func updateUserDataButtonHandler(_ sender: Any) {
+        profileDelegate?.updateUserData()
     }
 }
 
-struct SignUpButtonView_Preview: PreviewProvider {
+struct ButtonsView_Preview: PreviewProvider {
     static var previews: some View {
-        let view = SignUpButtonView()
+        let view = ButtonsView()
         return Group {
             return Group {
                 UIPreviewView(view)

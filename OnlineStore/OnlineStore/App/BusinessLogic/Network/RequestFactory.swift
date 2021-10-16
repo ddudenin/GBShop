@@ -17,7 +17,7 @@ class RequestFactory {
         return ErrorParser()
     }
     
-    lazy var commonSession: Session = {
+    private lazy var commonSession: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
         configuration.headers = .default

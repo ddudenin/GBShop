@@ -43,10 +43,12 @@ class ProductDetailViewController: UIViewController {
         catalog.getProduct(by: product.id) { response in
             switch response.result {
             case .success(let data):
-                DispatchQueue.main.async {
-                    self.productHeaderView.configure(product: data.productInfo)
-                    self.productInfoView.configure(description: data.productInfo.description)
-                }
+                DispatchQueue
+                    .main
+                    .async {
+                        self.productHeaderView.configure(product: data.productInfo)
+                        self.productInfoView.configure(description: data.productInfo.description)
+                    }
                 log(message: "\(product)", .Success)
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
@@ -67,12 +69,20 @@ class ProductDetailViewController: UIViewController {
     
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-
+        
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            scrollView
+                .topAnchor
+                .constraint(equalTo: self.view.topAnchor),
+            scrollView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            scrollView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            scrollView
+                .bottomAnchor
+                .constraint(equalTo: self.view.bottomAnchor),
         ])
     }
     
@@ -82,9 +92,16 @@ class ProductDetailViewController: UIViewController {
         productHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            productHeaderView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 5),
-            productHeaderView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            productHeaderView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            productHeaderView
+                .topAnchor
+                .constraint(equalTo: self.scrollView.topAnchor,
+                            constant: 5),
+            productHeaderView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            productHeaderView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
@@ -94,24 +111,38 @@ class ProductDetailViewController: UIViewController {
         productInfoView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            productInfoView.topAnchor.constraint(equalTo: self.productHeaderView.bottomAnchor),
-            productInfoView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            productInfoView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            productInfoView
+                .topAnchor
+                .constraint(equalTo: self.productHeaderView.bottomAnchor),
+            productInfoView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            productInfoView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
         ])
     }
     
     private func addReviewsTableView() {
         scrollView.addSubview(reviewsTableView)
         
-        reviewsTableView.separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
         reviewsTableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            reviewsTableView.topAnchor.constraint(equalTo: productInfoView.bottomAnchor),
-            reviewsTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            reviewsTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            reviewsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            reviewsTableView.heightAnchor.constraint(equalToConstant: 350)
+            reviewsTableView
+                .topAnchor
+                .constraint(equalTo: productInfoView.bottomAnchor),
+            reviewsTableView
+                .leadingAnchor
+                .constraint(equalTo: self.view.leadingAnchor),
+            reviewsTableView
+                .trailingAnchor
+                .constraint(equalTo: self.view.trailingAnchor),
+            reviewsTableView
+                .bottomAnchor
+                .constraint(equalTo: scrollView.bottomAnchor),
+            reviewsTableView
+                .heightAnchor.constraint(equalToConstant: 350)
         ])
     }
     
@@ -130,10 +161,12 @@ class ProductDetailViewController: UIViewController {
             switch response.result {
             case .success(let reviews):
                 log(message: "\(reviews)", .Success)
-                DispatchQueue.main.async {
-                    self.reviews = reviews
-                    self.reviewsTableView.reloadData()
-                }
+                DispatchQueue
+                    .main
+                    .async {
+                        self.reviews = reviews
+                        self.reviewsTableView.reloadData()
+                    }
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
             }
@@ -172,7 +205,8 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
     func addProductToBasket() {
         let basket = RequestFactory.shared.makeBasketRequestFactory()
         
-        basket.addToBasket(productId: product.id, quantity: 1) { response in
+        basket.addToBasket(productId: product.id,
+                           quantity: 1) { response in
             switch response.result {
             case .success(let result):
                 switch result.result {
@@ -180,16 +214,22 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                     UserBasketManager.shared.addBasketItem(from: self.product)
                     log(message: "\(result)", .Success)
                 default:
-                    DispatchQueue.main.async {
-                        showAlert(forController: self, message: "Add to cart failed")
-                    }
+                    DispatchQueue
+                        .main
+                        .async {
+                            showAlertController(forController: self,
+                                                message: "Add to cart failed")
+                        }
                     log(message: "\(result)", .Error)
                 }
                 
             case .failure(let error):
-                DispatchQueue.main.async {
-                    showAlert(forController: self, message: error.localizedDescription)
-                }
+                DispatchQueue
+                    .main
+                    .async {
+                        showAlertController(forController: self,
+                                            message: error.localizedDescription)
+                    }
                 log(message: error.localizedDescription, .Error)
             }
         }

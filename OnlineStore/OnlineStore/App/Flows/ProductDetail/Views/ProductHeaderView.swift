@@ -79,29 +79,68 @@ class ProductHeaderView: UIView {
         self.addSubview(addToBasketButton)
         
         NSLayoutConstraint.activate([
-            artworkImageView.heightAnchor.constraint(equalToConstant: 100),
-            artworkImageView.widthAnchor.constraint(equalToConstant: 100),
-            artworkImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            artworkImageView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
-            artworkImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            artworkImageView
+                .heightAnchor
+                .constraint(equalToConstant: 100),
+            artworkImageView
+                .widthAnchor
+                .constraint(equalToConstant: 100),
+            artworkImageView
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 16),
+            artworkImageView
+                .bottomAnchor
+                .constraint(lessThanOrEqualTo: self.bottomAnchor,
+                            constant: -16),
+            artworkImageView
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 16),
             
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            nameLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
-            nameLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -4),
+            nameLabel
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 16),
+            nameLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -16),
+            nameLabel
+                .leadingAnchor
+                .constraint(equalTo: artworkImageView.trailingAnchor,
+                            constant: 16),
+            nameLabel
+                .bottomAnchor
+                .constraint(equalTo: priceLabel.topAnchor,
+                            constant: -4),
             
-            priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            priceLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
-            priceLabel.bottomAnchor.constraint(equalTo: addToBasketButton.topAnchor, constant: -15),
+            priceLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -16),
+            priceLabel
+                .leadingAnchor
+                .constraint(equalTo: artworkImageView.trailingAnchor,
+                            constant: 16),
+            priceLabel
+                .bottomAnchor
+                .constraint(equalTo: addToBasketButton.topAnchor,
+                            constant: -15),
             
-            addToBasketButton.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
+            addToBasketButton
+                .leadingAnchor
+                .constraint(equalTo: artworkImageView.trailingAnchor,
+                            constant: 16),
         ])
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        artworkImageView.layer.borderColor = UIColor.systemGray2.cgColor
+        artworkImageView
+            .layer
+            .borderColor = UIColor.systemGray2.cgColor
     }
     
     @objc func addToBasketButtonHandler(_ sender: Any) {

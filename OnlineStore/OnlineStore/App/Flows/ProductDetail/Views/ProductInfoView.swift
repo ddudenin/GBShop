@@ -23,13 +23,13 @@ class ProductInfoView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.numberOfLines = defaultNumOfLines
+        label.numberOfLines = defaultNumberOfLines
         label.textColor = .label
         return label
     }()
     
     private var isExpanded = false
-    private var defaultNumOfLines = 5
+    private var defaultNumberOfLines = 5
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,19 +57,36 @@ class ProductInfoView: UIView {
         self.addGestureRecognizer(tapGesture)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -7),
+            titleLabel
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 4),
+            titleLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -16),
+            titleLabel
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 16),
+            titleLabel
+                .bottomAnchor
+                .constraint(equalTo: descriptionLabel.topAnchor,
+                            constant: -7),
             
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            descriptionLabel
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 16),
+            descriptionLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -16),
+            descriptionLabel
+                .bottomAnchor
+                .constraint(equalTo: self.bottomAnchor,
+                            constant: -16)
         ])
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
     }
     
     override func layoutSubviews() {
@@ -79,7 +96,7 @@ class ProductInfoView: UIView {
     @objc private func tappedEvent(tapGestureRecognizer: UITapGestureRecognizer) {
         if self.isExpanded {
             self.isExpanded = false
-            descriptionLabel.numberOfLines = defaultNumOfLines
+            descriptionLabel.numberOfLines = defaultNumberOfLines
         } else {
             self.isExpanded = true
             descriptionLabel.numberOfLines = 0

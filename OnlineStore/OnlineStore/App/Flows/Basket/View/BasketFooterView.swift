@@ -64,19 +64,34 @@ class BasketFooterView: UIView {
     }
     
     // MARK: - Private
-    
     private func setupView() {
         self.addSubview(priceStackView)
         self.addSubview(payButton)
         
         NSLayoutConstraint.activate([
-            priceStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            priceStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            priceStackView.bottomAnchor.constraint(equalTo: payButton.topAnchor, constant: -5),
-            priceStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            priceStackView
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 16),
+            priceStackView
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -16),
+            priceStackView
+                .bottomAnchor
+                .constraint(equalTo: payButton.topAnchor,
+                            constant: -5),
+            priceStackView
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 16),
             
-            payButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            payButton.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            payButton
+                .centerXAnchor
+                .constraint(equalTo: self.centerXAnchor),
+            payButton
+                .bottomAnchor
+                .constraint(equalTo: self.bottomAnchor)
         ])
     }
     
@@ -85,7 +100,7 @@ class BasketFooterView: UIView {
     }
     
     @objc func payButtonHandler(_ sender: Any) {
-        basketDelegate?.MakePayment()
+        basketDelegate?.makePayment()
     }
 }
 

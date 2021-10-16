@@ -17,7 +17,7 @@ class UserBasketManager {
         
     }
     
-    func getBasketCost() -> Int{
+    func getBasketCost() -> Int {
         var basketCost = 0
         
         for item in basket {
