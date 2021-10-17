@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A20678F271C709600DB1350 /* SecureTextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20678E271C709600DB1350 /* SecureTextFieldWithImage.swift */; };
 		0A23356927174E3300891BBC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356827174E3300891BBC /* BasketViewController.swift */; };
 		0A23356C27174EED00891BBC /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356B27174EED00891BBC /* PaymentView.swift */; };
 		0A2335702717515E00891BBC /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356E2717515E00891BBC /* BasketTableViewCell.swift */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A20678E271C709600DB1350 /* SecureTextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A23356827174E3300891BBC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		0A23356B27174EED00891BBC /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		0A23356E2717515E00891BBC /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */,
+				0A20678E271C709600DB1350 /* SecureTextFieldWithImage.swift */,
 				0A36240326FBB247002B31EE /* SignInButton.swift */,
 			);
 			path = CustomItemsUI;
@@ -796,6 +799,7 @@
 				0A251F7326C8F4F600F46226 /* AuthRequestFactory.swift in Sources */,
 				0AD0D2BA26D586ED00E7D98F /* Logger.swift in Sources */,
 				0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */,
+				0A20678F271C709600DB1350 /* SecureTextFieldWithImage.swift in Sources */,
 				0A783F6426F5EC9F00F976C2 /* BasketRequestFactory.swift in Sources */,
 				0A251F6A26C8F36F00F46226 /* AbstractRequestFactory.swift in Sources */,
 				0A350325271A24F40060939A /* ButtonsView.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable
 class TextFieldWithImage: UITextField {
 
+    // MARK: - Public properties
     @IBInspectable var leftImage: UIImage? {
         didSet {
             updateView()
@@ -39,7 +40,8 @@ class TextFieldWithImage: UITextField {
         return textRect
     }
 
-    func updateView() {
+    // MARK: - Private methods
+    private func updateView() {
         if let image = leftImage {
             self.leftViewMode = UITextField.ViewMode.always
             let imageView = UIImageView(frame: CGRect(x: 0,
