@@ -90,7 +90,7 @@ class SignInView: UIView {
         setupView()
     }
     
-    // MARK: - Private
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(textFieldsStackView)
         self.addSubview(signInButton)

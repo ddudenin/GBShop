@@ -52,23 +52,44 @@ class AuthViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(UpdateBackgroundLayerFrame), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(keyboardWillBeShown),
+                         name: UIResponder.keyboardWillShowNotification,
+                         object: nil)
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(keyboardWillBeHidden(notification:)),
+                         name: UIResponder.keyboardWillHideNotification,
+                         object: nil)
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(UpdateBackgroundLayerFrame),
+                         name: UIDevice.orientationDidChangeNotification,
+                         object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIDevice.orientationDidChangeNotification,
-                                                  object: nil)
+        NotificationCenter
+            .default
+            .removeObserver(self,
+                            name: UIResponder.keyboardWillShowNotification,
+                            object: nil)
+        NotificationCenter
+            .default
+            .removeObserver(self,
+                            name: UIResponder.keyboardWillHideNotification,
+                            object: nil)
+        NotificationCenter
+            .default
+            .removeObserver(self,
+                            name: UIDevice.orientationDidChangeNotification,
+                            object: nil)
     }
     
     // MARK: - Attributes @objc
@@ -98,10 +119,13 @@ class AuthViewController: UIViewController {
             .frame
             .size
         
-        self.view.layer.sublayers?[0].frame = CGRect(x: 0.0,
-                                                     y: 0.0,
-                                                     width: viewFrameSize.width,
-                                                     height: viewFrameSize.height)
+        self.view
+            .layer
+            .sublayers?[0]
+            .frame = CGRect(x: 0.0,
+                            y: 0.0,
+                            width: viewFrameSize.width,
+                            height: viewFrameSize.height)
     }
     
     // MARK: - Private methods

@@ -88,8 +88,7 @@ public class Observable<Type> {
         callbacks = callbacks.filter { $0.observer !== observer }
     }
     
-    // MARK: - Private
-    
+    // MARK: - Private methods
     private func removeNilObserverCallbacks() {
         callbacks = callbacks.filter { $0.observer != nil }
     }

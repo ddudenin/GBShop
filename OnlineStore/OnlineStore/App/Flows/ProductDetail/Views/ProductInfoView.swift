@@ -47,8 +47,7 @@ class ProductInfoView: UIView {
         descriptionLabel.text = description
     }
     
-    // MARK: - Private
-    
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(titleLabel)
         self.addSubview(descriptionLabel)

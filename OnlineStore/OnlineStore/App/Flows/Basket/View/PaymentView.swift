@@ -9,6 +9,11 @@ import UIKit
 import SwiftUI
 
 class PaymentView: UIView {
+    
+    // MARK: - Public properties
+    weak var basketDelegate: BasketViewControllerDelegate?
+    
+    // MARK: - Subviews
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,10 +53,8 @@ class PaymentView: UIView {
                          for: .touchUpInside)
         return button
     }()
-    
-    weak var basketDelegate: BasketViewControllerDelegate?
-    
-    
+
+    // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -64,7 +67,12 @@ class PaymentView: UIView {
         self.setupView()
     }
     
-    // MARK: - Private
+    // MARK: - Public methods
+    func setTotalPrice(price value: Int) {
+        priceLabel.text = ConvertPriceToString(price: value)
+    }
+    
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(priceStackView)
         self.addSubview(payButton)
@@ -95,12 +103,8 @@ class PaymentView: UIView {
                 .constraint(equalTo: self.bottomAnchor)
         ])
     }
-    
-    func setTotalPrice(price value: Int) {
-        priceLabel.text = ConvertPriceToString(price: value)
-    }
-    
-    @objc func payButtonHandler(_ sender: Any) {
+        
+    @objc private func payButtonHandler(_ sender: Any) {
         basketDelegate?.makePayment()
     }
 }

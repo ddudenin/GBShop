@@ -111,6 +111,7 @@ class ProfileViewController: UIViewController {
         userDataView.setUserData(userData: userData)
     }
 }
+
 extension ProfileViewController: ProfileViewControllerDelegate {
     func updateUserData() {
         guard let userData = userDataView.getUserData() else {

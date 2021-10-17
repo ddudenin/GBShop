@@ -9,15 +9,18 @@ import UIKit
 import SwiftUI
 
 class ProductHeaderView: UIView {
+    
+    // MARK: - Subviews
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.secondarySystemFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
         imageView.contentMode = .scaleToFill
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.systemGray2.cgColor
+        let imageLayer = imageView.layer
+        imageLayer.cornerRadius = 12
+        imageLayer.borderWidth = 1
+        imageLayer.borderColor = UIColor.systemGray2.cgColor
         return imageView
     }()
     
@@ -50,6 +53,7 @@ class ProductHeaderView: UIView {
         return button
     }()
     
+    // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -70,8 +74,7 @@ class ProductHeaderView: UIView {
         self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
     
-    // MARK: - Private
-    
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(productImageView)
         self.addSubview(nameLabel)
@@ -143,7 +146,7 @@ class ProductHeaderView: UIView {
             .borderColor = UIColor.systemGray2.cgColor
     }
     
-    @objc func addToBasketButtonHandler(_ sender: Any) {
+    @objc private func addToBasketButtonHandler(_ sender: Any) {
         productDelegate?.addProductToBasket()
     }
 }

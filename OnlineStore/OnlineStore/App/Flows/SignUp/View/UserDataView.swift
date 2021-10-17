@@ -160,7 +160,7 @@ class UserDataView: UIView {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(userInputsStackView)
         

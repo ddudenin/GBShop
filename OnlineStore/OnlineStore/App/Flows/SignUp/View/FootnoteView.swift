@@ -48,7 +48,7 @@ class FootnoteView: UIView {
         setupView()
     }
     
-    // MARK: - Private
+    // MARK: - Private methods
     private func setupView() {
         self.addSubview(agreementLabel)
         self.addSubview(signUpButton)

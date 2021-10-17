@@ -52,14 +52,15 @@ class BasketTableViewCell: UITableViewCell {
         
         countTextField.text = newCount.description
         
-        if oldCount < newCount {
-            basketDelegate?.increaseBasketCost(by: basketItem.product.price)
-            UserBasketManager.shared
-                .changeCount(at: basketItemIndex, increase: true)
-        } else {
-            basketDelegate?.decreaseBasketCost(by: basketItem.product.price)
-            UserBasketManager.shared
-                .changeCount(at: basketItemIndex, increase: false)
-        }
+        let isIncreaseCount = oldCount < newCount
+        
+        isIncreaseCount ?
+        basketDelegate?
+            .increaseBasketCost(by: basketItem.product.price)
+        : basketDelegate?
+            .decreaseBasketCost(by: basketItem.product.price)
+        
+        UserBasketManager.shared
+            .changeCount(at: basketItemIndex, increase: isIncreaseCount)
     }
 }
