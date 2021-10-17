@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class ProductHeaderView: UIView {
-    
+
     // MARK: - Subviews
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +23,7 @@ class ProductHeaderView: UIView {
         imageLayer.borderColor = UIColor.systemGray2.cgColor
         return imageView
     }()
-    
+
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ class ProductHeaderView: UIView {
         label.textColor = .label
         return label
     }()
-    
+
     private(set) lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class ProductHeaderView: UIView {
         label.textColor = .secondaryLabel
         return label
     }()
-    
+
     private lazy var addToBasketButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,35 +52,35 @@ class ProductHeaderView: UIView {
                          for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.setupView()
     }
-    
+
     weak var productDelegate: ProductDetailViewControllerDelegate?
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         self.setupView()
     }
-    
+
     func configure(product: ProductInfo) {
         self.productImageView.image = UIImage(systemName: "tag.circle")
         self.nameLabel.text = product.name
         self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(productImageView)
         self.addSubview(nameLabel)
         self.addSubview(priceLabel)
         self.addSubview(addToBasketButton)
-        
+
         NSLayoutConstraint.activate([
             productImageView
                 .heightAnchor
@@ -100,7 +100,7 @@ class ProductHeaderView: UIView {
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
                             constant: 10),
-            
+
             nameLabel
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
@@ -117,7 +117,7 @@ class ProductHeaderView: UIView {
                 .bottomAnchor
                 .constraint(equalTo: priceLabel.topAnchor,
                             constant: -5),
-            
+
             priceLabel
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
@@ -130,22 +130,22 @@ class ProductHeaderView: UIView {
                 .bottomAnchor
                 .constraint(equalTo: addToBasketButton.topAnchor,
                             constant: -10),
-            
+
             addToBasketButton
                 .leadingAnchor
                 .constraint(equalTo: productImageView.trailingAnchor,
-                            constant: 10),
+                            constant: 10)
         ])
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         productImageView
             .layer
             .borderColor = UIColor.systemGray2.cgColor
     }
-    
+
     @objc private func addToBasketButtonHandler(_ sender: Any) {
         productDelegate?.addProductToBasket()
     }
@@ -161,4 +161,3 @@ struct ProductHeaderView_Preview: PreviewProvider {
             .previewLayout(.fixed(width: 375, height: 150))
     }
 }
-

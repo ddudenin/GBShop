@@ -8,14 +8,14 @@
 import Alamofire
 
 protocol BasketRequestFactory {
-    
+
     func addToBasket(productId: Int,
                      quantity: Int,
                      completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void)
-    
+
     func removeFromBasket(productId: Int,
                           completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void)
-    
+
     func payBasket(userId: Int,
                    basketCost: Int,
                    userBalance: Int,

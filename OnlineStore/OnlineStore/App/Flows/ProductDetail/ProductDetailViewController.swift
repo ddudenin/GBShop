@@ -12,33 +12,33 @@ protocol ProductDetailViewControllerDelegate: AnyObject {
 }
 
 class ProductDetailViewController: UIViewController {
-    
+
     private lazy var productHeaderView = ProductHeaderView()
     private lazy var productInfoView = ProductInfoView()
     private lazy var reviewsTableView = UITableView()
-    
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private var product = Product(id: -1, name: "", price: 0)
     private var reviews = [Review]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureView()
-        
+
         loadReviews()
-        
+
         productHeaderView.productDelegate = self
     }
-    
+
     func configure(product: Product) {
         self.product = product
-        
+
         let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProduct(by: product.id) { response in
             switch response.result {
@@ -55,21 +55,21 @@ class ProductDetailViewController: UIViewController {
             }
         }
     }
-    
+
     func configureView() {
         self.view.backgroundColor = .systemBackground
         configureScrollView()
-        
+
         addHeaderView()
         addInfoView()
-        
+
         addReviewsTableView()
         configureReviewsTableView()
     }
-    
+
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-        
+
         NSLayoutConstraint.activate([
             scrollView
                 .topAnchor
@@ -82,15 +82,15 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.leadingAnchor),
             scrollView
                 .bottomAnchor
-                .constraint(equalTo: self.view.bottomAnchor),
+                .constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-    
+
     private func addHeaderView() {
         scrollView.addSubview(productHeaderView)
-        
+
         productHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             productHeaderView
                 .topAnchor
@@ -104,12 +104,12 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-    
+
     private func addInfoView() {
         scrollView.addSubview(productInfoView)
-        
+
         productInfoView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             productInfoView
                 .topAnchor
@@ -119,15 +119,15 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.leadingAnchor),
             productInfoView
                 .trailingAnchor
-                .constraint(equalTo: self.view.trailingAnchor),
+                .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-    
+
     private func addReviewsTableView() {
         scrollView.addSubview(reviewsTableView)
-        
+
         reviewsTableView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             reviewsTableView
                 .topAnchor
@@ -148,16 +148,16 @@ class ProductDetailViewController: UIViewController {
                 .heightAnchor.constraint(equalToConstant: 350)
         ])
     }
-    
+
     private func configureReviewsTableView() {
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
-        
+
         reviewsTableView.register(UINib(nibName: "ReviewTableViewCell",
                                         bundle: .none),
                                   forCellReuseIdentifier: "ReviewCell")
     }
-    
+
     private func loadReviews() {
         let review = RequestFactory.shared.makeReviewRequestFactory()
         review.getReviewsForProduct(withId: 2707) { response in
@@ -178,36 +178,36 @@ class ProductDetailViewController: UIViewController {
 }
 
 extension ProductDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = reviewsTableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewTableViewCell else {
             return UITableViewCell()
         }
-        
+
         let review = reviews[indexPath.row]
         cell.configure(review: review)
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension ProductDetailViewController: ProductDetailViewControllerDelegate {
-    
+
     func addProductToBasket() {
         let basket = RequestFactory.shared.makeBasketRequestFactory()
-        
+
         basket.addToBasket(productId: product.id,
                            quantity: 1) { response in
             switch response.result {
@@ -225,7 +225,7 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                         }
                     log(message: "\(result)", .Error)
                 }
-                
+
             case .failure(let error):
                 DispatchQueue
                     .main

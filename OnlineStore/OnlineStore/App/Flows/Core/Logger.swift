@@ -42,7 +42,7 @@ class Logger {
     var verbosityLevel: LoggerLevels = .Custom
     private let pathLength: PathLengths = .Short
     private let timeStampState: Bool = false
-    
+
     private init() {}
 
     func logMessage(message: String,

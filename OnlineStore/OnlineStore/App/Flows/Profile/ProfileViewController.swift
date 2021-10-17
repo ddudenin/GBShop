@@ -13,7 +13,7 @@ protocol ProfileViewControllerDelegate: AnyObject {
 }
 
 class ProfileViewController: UIViewController {
-    
+
     // MARK: - Subviews
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -24,36 +24,36 @@ class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var userDataView = UserDataView()
-    
+
     private lazy var buttonsView = ButtonsView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         configureView()
-        
+
         buttonsView.profileDelegate = self
-        
+
         setUserData()
     }
-    
+
     // MARK: - Private methods
     private func configureView() {
         self.view.backgroundColor = .systemBackground
-        
+
         addUserDataView()
         configureTitleLabel()
         addButtonsView()
     }
-    
+
     private func addUserDataView() {
         self.view.addSubview(userDataView)
-        
+
         userDataView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             userDataView
                 .centerXAnchor
@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-    
+
     private func addButtonsView() {
         self.view.addSubview(buttonsView)
 
@@ -82,13 +82,13 @@ class ProfileViewController: UIViewController {
                             constant: 10),
             buttonsView
                 .centerXAnchor
-                .constraint(equalTo: self.view.centerXAnchor),
+                .constraint(equalTo: self.view.centerXAnchor)
         ])
     }
-    
+
     private func configureTitleLabel() {
         self.view.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel
                 .bottomAnchor
@@ -96,10 +96,10 @@ class ProfileViewController: UIViewController {
                             constant: -10),
             titleLabel
                 .centerXAnchor
-                .constraint(equalTo: userDataView.centerXAnchor),
+                .constraint(equalTo: userDataView.centerXAnchor)
         ])
     }
-    
+
     private func setUserData() {
         let userData = UserData(id: 123,
                                 username: "Somebody",
@@ -120,9 +120,9 @@ extension ProfileViewController: ProfileViewControllerDelegate {
             log(message: "Ошибка чтения введенных данных", .Error)
             return
         }
-        
+
         let auth = RequestFactory.shared.makeAuthRequestFactory()
-        
+
         auth.changeUserData(data: userData) { response in
             switch response.result {
             case .success(let changedData):
@@ -137,7 +137,7 @@ extension ProfileViewController: ProfileViewControllerDelegate {
                 } else {
                     log(message: "\(changedData)", .Success)
                 }
-                
+
             case .failure(let error):
                 DispatchQueue
                     .main
@@ -149,7 +149,7 @@ extension ProfileViewController: ProfileViewControllerDelegate {
             }
         }
     }
-    
+
     func logout() {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")

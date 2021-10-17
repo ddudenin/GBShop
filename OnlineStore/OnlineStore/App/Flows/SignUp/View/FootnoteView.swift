@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 
 class FootnoteView: UIView {
-    
+
     // MARK: - Public properties
     weak var signUpDelegate: SignUpViewControllerDelegate?
-    
+
     // MARK: - Subviews
     private lazy var agreementLabel: UILabel = {
         let label = UILabel()
@@ -23,7 +23,7 @@ class FootnoteView: UIView {
         label.textAlignment = .justified
         return label
     }()
-    
+
     private lazy var signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -34,25 +34,25 @@ class FootnoteView: UIView {
                          for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         setupView()
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(agreementLabel)
         self.addSubview(signUpButton)
-        
+
         NSLayoutConstraint.activate([
             agreementLabel
                 .topAnchor
@@ -66,7 +66,7 @@ class FootnoteView: UIView {
                 .trailingAnchor
                 .constraint(equalTo: self.trailingAnchor,
                             constant: -15),
-            
+
             signUpButton
                 .topAnchor
                 .constraint(equalTo: agreementLabel.bottomAnchor,
@@ -80,7 +80,7 @@ class FootnoteView: UIView {
                             constant: -10)
         ])
     }
-    
+
     @objc private func signUpButtonHandler(_ sender: Any) {
         signUpDelegate?.signUp()
     }
@@ -98,5 +98,3 @@ struct FootnoteView_Preview: PreviewProvider {
         }
     }
 }
-
-

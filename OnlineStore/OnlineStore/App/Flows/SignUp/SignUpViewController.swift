@@ -13,7 +13,7 @@ protocol SignUpViewControllerDelegate: AnyObject {
 }
 
 class SignUpViewController: UIViewController {
-    
+
     // MARK: - Subviews
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -24,30 +24,29 @@ class SignUpViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var userDataView = UserDataView()
     private lazy var footnoteView = FootnoteView()
-    
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureView()
-        
+
         userDataView.signUpDelegate = self
         footnoteView.signUpDelegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         NotificationCenter
             .default
             .addObserver(self,
@@ -61,10 +60,10 @@ class SignUpViewController: UIViewController {
                          name: UIResponder.keyboardWillHideNotification,
                          object: nil)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         NotificationCenter
             .default
             .removeObserver(self,
@@ -76,13 +75,13 @@ class SignUpViewController: UIViewController {
                             name: UIResponder.keyboardWillHideNotification,
                             object: nil)
     }
-    
+
     // MARK: - Attributes @objc
     @objc private func keyboardWillBeShown(notification: Notification) {
         guard let userInfo = notification.userInfo as NSDictionary?,
               let frame = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
         else { return }
-        
+
         let keyboardSize = frame
             .cgRectValue
             .size
@@ -90,30 +89,30 @@ class SignUpViewController: UIViewController {
                                          left: 0.0,
                                          bottom: keyboardSize.height,
                                          right: 0.0)
-        
+
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
     }
-    
+
     @objc private func keyboardWillBeHidden(notification: Notification) {
         self.scrollView.contentInset = UIEdgeInsets.zero
     }
-        
+
     // MARK: - Private methods
     private func configureView() {
         self.view.backgroundColor = .systemBackground
-        
+
         configureScrollView()
-        
+
         addUserDataView()
-        
+
         configureTitleLabel()
         configureFootnoteView()
     }
-    
+
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-        
+
         NSLayoutConstraint.activate([
             scrollView
                 .topAnchor
@@ -126,15 +125,15 @@ class SignUpViewController: UIViewController {
                 .constraint(equalTo: self.view.leadingAnchor),
             scrollView
                 .bottomAnchor
-                .constraint(equalTo: self.view.bottomAnchor),
+                .constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-    
+
     private func addUserDataView() {
         self.view.addSubview(userDataView)
-        
+
         userDataView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             userDataView
                 .centerXAnchor
@@ -150,10 +149,10 @@ class SignUpViewController: UIViewController {
                 .constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
-    
+
     private func configureTitleLabel() {
         self.view.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel
                 .bottomAnchor
@@ -161,15 +160,15 @@ class SignUpViewController: UIViewController {
                             constant: -10),
             titleLabel
                 .centerXAnchor
-                .constraint(equalTo: userDataView.centerXAnchor),
+                .constraint(equalTo: userDataView.centerXAnchor)
         ])
     }
-    
+
     private func configureFootnoteView() {
         self.view.addSubview(footnoteView)
-        
+
         footnoteView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             footnoteView
                 .topAnchor
@@ -190,12 +189,12 @@ extension SignUpViewController: SignUpViewControllerDelegate {
         showAlertController(forController: self,
                             message: userMessage)
     }
-    
+
     func signUp() {
         guard let userData = userDataView.getUserData() else { return }
-        
+
         let auth = RequestFactory.shared.makeAuthRequestFactory()
-        
+
         auth.signup(data: userData) { response in
             switch response.result {
             case .success(let signup):
@@ -220,7 +219,7 @@ extension SignUpViewController: SignUpViewControllerDelegate {
                         }
                     log(message: "\(signup)", .Success)
                 }
-                
+
             case .failure(let error):
                 DispatchQueue
                     .main

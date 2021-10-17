@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 
 class PaymentView: UIView {
-    
+
     // MARK: - Public properties
     weak var basketDelegate: BasketViewControllerDelegate?
-    
+
     // MARK: - Subviews
     private lazy var textLabel: UILabel = {
         let label = UILabel()
@@ -21,14 +21,14 @@ class PaymentView: UIView {
         label.text = "Total: "
         return label
     }()
-    
+
     private(set) lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         return label
     }()
-    
+
     private lazy var priceStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             textLabel,
@@ -42,7 +42,7 @@ class PaymentView: UIView {
         stack.contentMode = .scaleToFill
         return stack
     }()
-    
+
     private lazy var payButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,26 +57,26 @@ class PaymentView: UIView {
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         self.setupView()
     }
-    
+
     // MARK: - Public methods
     func setTotalPrice(price value: Int) {
         priceLabel.text = ConvertPriceToString(price: value)
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(priceStackView)
         self.addSubview(payButton)
-        
+
         NSLayoutConstraint.activate([
             priceStackView
                 .leadingAnchor
@@ -94,7 +94,7 @@ class PaymentView: UIView {
                 .topAnchor
                 .constraint(equalTo: self.topAnchor,
                             constant: 10),
-            
+
             payButton
                 .centerXAnchor
                 .constraint(equalTo: self.centerXAnchor),
@@ -103,7 +103,7 @@ class PaymentView: UIView {
                 .constraint(equalTo: self.bottomAnchor)
         ])
     }
-        
+
     @objc private func payButtonHandler(_ sender: Any) {
         basketDelegate?.makePayment()
     }
@@ -118,6 +118,3 @@ struct PaymentView_Preview: PreviewProvider {
             .previewLayout(.fixed(width: 375, height: 150))
     }
 }
-
-
-

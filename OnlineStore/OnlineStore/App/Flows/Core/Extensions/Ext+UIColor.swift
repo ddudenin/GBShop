@@ -9,14 +9,14 @@ import UIKit
 
 extension UIColor {
     private static var colorsCache: [String: UIColor] = [:]
-    
+
     public static func rgba(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, alpha: CGFloat) -> UIColor {
         let key = "\(red), \(green), \(blue), \(alpha)"
-        
+
         if let cachedColor = self.colorsCache[key] {
             return cachedColor
         }
-        
+
         self.clearColorsCacheIfNeeded()
         let color = UIColor(red: red,
                             green: green,
@@ -25,7 +25,7 @@ extension UIColor {
         self.colorsCache[key] = color
         return color
     }
-    
+
     private static func clearColorsCacheIfNeeded() {
         guard self.colorsCache.count >= 100 else { return }
         colorsCache = [:]
@@ -33,7 +33,7 @@ extension UIColor {
 }
 
 extension UIColor {
-    
+
     static let gradientBegin = UIColor(red: 0.69,
                                        green: 0.95,
                                        blue: 0.95,

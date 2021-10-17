@@ -8,12 +8,12 @@
 import Alamofire
 
 class BasketManager: AbstractRequestFactory {
-    
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     private let baseUrl = URL(string: "https://cryptic-citadel-85782.herokuapp.com/")!
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -25,7 +25,7 @@ class BasketManager: AbstractRequestFactory {
 }
 
 extension BasketManager: BasketRequestFactory {
-    
+
     func addToBasket(productId: Int,
                      quantity: Int,
                      completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void) {
@@ -34,13 +34,13 @@ extension BasketManager: BasketRequestFactory {
                                         quantity: quantity)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
-    
+
     func removeFromBasket(productId: Int, completionHandler: @escaping (AFDataResponse<RequestResult>) -> Void) {
         let requestModel = RemovingBasket(baseUrl: baseUrl,
                                           productId: productId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
-    
+
     func payBasket(userId: Int,
                    basketCost: Int,
                    userBalance: Int,
@@ -54,15 +54,15 @@ extension BasketManager: BasketRequestFactory {
 }
 
 extension BasketManager {
-    
+
     struct AddingBasket: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "addToBasket"
-        
+
         let productId: Int
         let quantity: Int
-        
+
         var parameters: Parameters? {
             return [
                 "productId": productId,
@@ -70,30 +70,30 @@ extension BasketManager {
             ]
         }
     }
-    
+
     struct RemovingBasket: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "removeFromBasket"
-        
+
         let productId: Int
-        
+
         var parameters: Parameters? {
             return [
-                "productId": productId,
+                "productId": productId
             ]
         }
     }
-    
+
     struct PayingBasket: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .post
         let path: String = "payBasket"
-        
+
         let userId: Int
         let basketCost: Int
         let userBalance: Int
-        
+
         var parameters: Parameters? {
             return [
                 "userId": userId,

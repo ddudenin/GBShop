@@ -8,15 +8,15 @@
 import Alamofire
 
 class RequestFactory {
-    
+
     static let shared = RequestFactory()
-    
+
     private init() {}
-    
+
     func makeErrorParser() -> AbstractErrorParser {
         return ErrorParser()
     }
-    
+
     private lazy var commonSession: Session = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
@@ -24,30 +24,30 @@ class RequestFactory {
         let manager = Session(configuration: configuration)
         return manager
     }()
-    
+
     let sessionQueue = DispatchQueue.global(qos: .utility)
-    
+
     func makeAuthRequestFactory() -> AuthRequestFactory {
         let errorParser = makeErrorParser()
         return Auth(errorParser: errorParser,
                     sessionManager: commonSession,
                     queue: sessionQueue)
     }
-    
+
     func makeCatalogRequestFactory() -> CatalogRequestFactory {
         let errorParser = makeErrorParser()
         return CatalogManager(errorParser: errorParser,
                               sessionManager: commonSession,
                               queue: sessionQueue)
     }
-    
+
     func makeReviewRequestFactory() -> ReviewRequestFactory {
         let errorParser = makeErrorParser()
         return ReviewManager(errorParser: errorParser,
                              sessionManager: commonSession,
                              queue: sessionQueue)
     }
-    
+
     func makeBasketRequestFactory() -> BasketRequestFactory {
         let errorParser = makeErrorParser()
         return BasketManager(errorParser: errorParser,

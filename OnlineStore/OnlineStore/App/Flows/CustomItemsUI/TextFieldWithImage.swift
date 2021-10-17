@@ -9,15 +9,15 @@ import UIKit
 
 @IBDesignable
 class TextFieldWithImage: UITextField {
-    
+
     @IBInspectable var leftImage: UIImage? {
         didSet {
             updateView()
         }
     }
-    
+
     @IBInspectable var leftPadding: CGFloat = 0
-    
+
     @IBInspectable var color: UIColor = UIColor.lightGray {
         didSet {
             var r: CGFloat = 0
@@ -26,19 +26,19 @@ class TextFieldWithImage: UITextField {
             var a: CGFloat = 0
             self.color.getRed(&r, green: &g, blue: &b, alpha: &a)
             let color = UIColor.rgba(r, g, b, alpha: a)
-            
+
             self.color = color
-            
+
             updateView()
         }
     }
-    
+
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var textRect = super.leftViewRect(forBounds: bounds)
         textRect.origin.x += self.leftPadding
         return textRect
     }
-    
+
     func updateView() {
         if let image = leftImage {
             self.leftViewMode = UITextField.ViewMode.always
@@ -54,11 +54,10 @@ class TextFieldWithImage: UITextField {
             self.leftViewMode = UITextField.ViewMode.never
             self.leftView = nil
         }
-        
+
         self.attributedPlaceholder = NSAttributedString(
             string: self.placeholder ?? "",
-            attributes:[NSAttributedString.Key
+            attributes: [NSAttributedString.Key
                             .foregroundColor: color])
     }
 }
-

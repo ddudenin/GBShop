@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 
 class SignUpView: UIView {
-    
+
     // MARK: - Public properties
     weak var authDelegate: AuthViewControllerDelegate?
-    
+
     // MARK: - Subviews
     private lazy var signUpLabel: UILabel = {
         let label = UILabel()
@@ -25,7 +25,7 @@ class SignUpView: UIView {
         label.text = "Don't have an account? Sign up |"
         return label
     }()
-    
+
     private lazy var signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class SignUpView: UIView {
                          for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var signUpStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             signUpLabel,
@@ -50,24 +50,24 @@ class SignUpView: UIView {
         stack.contentMode = .scaleToFill
         return stack
     }()
-    
+
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         setupView()
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(signUpStackView)
-        
+
         NSLayoutConstraint.activate([
             signUpStackView
                 .centerXAnchor
@@ -78,7 +78,7 @@ class SignUpView: UIView {
             signUpStackView
                 .bottomAnchor
                 .constraint(equalTo: self.bottomAnchor),
-            
+
             signUpButton
                 .heightAnchor
                 .constraint(equalToConstant: 25),
@@ -87,7 +87,7 @@ class SignUpView: UIView {
                 .constraint(equalToConstant: 25)
         ])
     }
-    
+
     @objc private func signUpButtonHandler(_ sender: Any) {
         authDelegate?.presentSignUpViewController()
     }

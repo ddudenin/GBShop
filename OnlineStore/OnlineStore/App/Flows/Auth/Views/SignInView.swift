@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 
 class SignInView: UIView {
-    
+
     // MARK: - Public properties
     weak var authDelegate: AuthViewControllerDelegate?
-    
+
     // MARK: - Subviews
     private lazy var loginTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
@@ -26,7 +26,7 @@ class SignInView: UIView {
         textfield.returnKeyType = .continue
         return textfield
     }()
-    
+
     private lazy var passwordTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class SignInView: UIView {
         textfield.returnKeyType = .done
         return textfield
     }()
-    
+
     private lazy var textFieldsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             loginTextField,
@@ -54,7 +54,7 @@ class SignInView: UIView {
         stack.contentMode = .scaleToFill
         return stack
     }()
-    
+
     private lazy var signInButton: SignInButton = {
         let button = SignInButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -76,25 +76,25 @@ class SignInView: UIView {
                          for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         setupView()
     }
-    
+
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(textFieldsStackView)
         self.addSubview(signInButton)
-        
+
         NSLayoutConstraint.activate([
             textFieldsStackView
                 .centerXAnchor
@@ -115,7 +115,7 @@ class SignInView: UIView {
                 .trailingAnchor
                 .constraint(lessThanOrEqualTo: self.trailingAnchor,
                             constant: -10),
-            
+
             signInButton
                 .centerXAnchor
                 .constraint(equalTo: self.centerXAnchor),
@@ -131,7 +131,7 @@ class SignInView: UIView {
                             constant: -10)
         ])
     }
-    
+
     @objc private func signInButtonHandler(_ sender: Any) {
         guard
             let login = loginTextField.text,
@@ -141,14 +141,14 @@ class SignInView: UIView {
             log(message: "Ошибка чтения введенных данных", .Error)
             return
         }
-        
+
         authDelegate?.signIn(login: login,
                              password: password)
     }
 }
 
 extension SignInView: UITextFieldDelegate {
-    
+
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
         case loginTextField:
@@ -157,7 +157,7 @@ extension SignInView: UITextFieldDelegate {
             passwordTextField.resignFirstResponder()
         }
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switchBasedNextTextField(textField)
         return false

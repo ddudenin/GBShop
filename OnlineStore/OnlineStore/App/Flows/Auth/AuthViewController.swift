@@ -14,17 +14,17 @@ protocol AuthViewControllerDelegate: AnyObject {
 }
 
 class AuthViewController: UIViewController {
-    
+
     // MARK: - Subviews
     private lazy var signInView = SignInView()
     private lazy var signUpView = SignUpView()
-    
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,21 +37,21 @@ class AuthViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
     }()
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureView()
         setGradientBackground()
-        
+
         signInView.authDelegate = self
         signUpView.authDelegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         NotificationCenter
             .default
             .addObserver(self,
@@ -71,10 +71,10 @@ class AuthViewController: UIViewController {
                          name: UIDevice.orientationDidChangeNotification,
                          object: nil)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         NotificationCenter
             .default
             .removeObserver(self,
@@ -91,13 +91,13 @@ class AuthViewController: UIViewController {
                             name: UIDevice.orientationDidChangeNotification,
                             object: nil)
     }
-    
+
     // MARK: - Attributes @objc
     @objc private func keyboardWillBeShown(notification: Notification) {
         guard let userInfo = notification.userInfo as NSDictionary?,
               let frame = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
         else { return }
-        
+
         let keyboardSize = frame
             .cgRectValue
             .size
@@ -105,20 +105,20 @@ class AuthViewController: UIViewController {
                                          left: 0.0,
                                          bottom: keyboardSize.height,
                                          right: 0.0)
-        
+
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
     }
-    
+
     @objc private func keyboardWillBeHidden(notification: Notification) {
         self.scrollView.contentInset = UIEdgeInsets.zero
     }
-    
+
     @objc private func UpdateBackgroundLayerFrame() {
         let viewFrameSize = self.view
             .frame
             .size
-        
+
         self.view
             .layer
             .sublayers?[0]
@@ -127,20 +127,20 @@ class AuthViewController: UIViewController {
                             width: viewFrameSize.width,
                             height: viewFrameSize.height)
     }
-    
+
     // MARK: - Private methods
     private func configureView() {
         self.view.backgroundColor = .systemBackground
         configureScrollView()
         configureTitleLabel()
-        
+
         addSignInView()
         addSignUpView()
     }
-    
+
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-        
+
         NSLayoutConstraint.activate([
             scrollView
                 .topAnchor
@@ -153,13 +153,13 @@ class AuthViewController: UIViewController {
                 .constraint(equalTo: self.view.leadingAnchor),
             scrollView
                 .bottomAnchor
-                .constraint(equalTo: self.view.bottomAnchor),
+                .constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-    
+
     private func configureTitleLabel() {
         scrollView.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel
                 .topAnchor
@@ -170,12 +170,12 @@ class AuthViewController: UIViewController {
                 .constraint(equalTo: scrollView.centerXAnchor)
         ])
     }
-    
+
     private func addSignInView() {
         scrollView.addSubview(signInView)
-        
+
         signInView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             signInView
                 .topAnchor
@@ -189,12 +189,12 @@ class AuthViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-    
+
     private func addSignUpView() {
         scrollView.addSubview(signUpView)
-        
+
         signUpView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             signUpView
                 .topAnchor
@@ -208,25 +208,25 @@ class AuthViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor),
             signUpView
                 .bottomAnchor
-                .constraint(equalTo: scrollView.bottomAnchor),
+                .constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
-    
+
     private func setGradientBackground() {
         let viewFrameSize = self.view
             .frame
             .size
-        
+
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.gradientBegin.cgColor, UIColor.gradientEnd.cgColor]
-        gradient.locations = [0.0 , 1.0]
+        gradient.locations = [0.0, 1.0]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradient.frame = CGRect(x: 0.0,
                                 y: 0.0,
                                 width: viewFrameSize.width,
                                 height: viewFrameSize.height)
-        
+
         self.view
             .layer
             .insertSublayer(gradient, at: 0)
@@ -237,7 +237,7 @@ class AuthViewController: UIViewController {
 extension AuthViewController: AuthViewControllerDelegate {
     func signIn(login: String, password: String) {
         let auth = RequestFactory.shared.makeAuthRequestFactory()
-        
+
         auth.login(userName: login,
                    password: password) { response in
             switch response.result {
@@ -261,10 +261,10 @@ extension AuthViewController: AuthViewControllerDelegate {
                                          animated: true,
                                          completion: .none)
                         }
-                    
+
                     log(message: "\(login)", .Success)
                 }
-                
+
             case .failure(let error):
                 DispatchQueue
                     .main
@@ -276,7 +276,7 @@ extension AuthViewController: AuthViewControllerDelegate {
             }
         }
     }
-    
+
     func presentSignUpViewController() {
         let storyboard = UIStoryboard(name: "Main",
                                       bundle: .none)
@@ -285,7 +285,7 @@ extension AuthViewController: AuthViewControllerDelegate {
                      animated: true,
                      completion: .none)
     }
-    
+
     func showAlert(userMessage: String) {
         showAlertController(forController: self,
                             message: userMessage)
