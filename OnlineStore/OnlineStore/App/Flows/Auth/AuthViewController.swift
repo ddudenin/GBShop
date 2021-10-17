@@ -16,8 +16,8 @@ protocol AuthViewControllerDelegate: AnyObject {
 class AuthViewController: UIViewController {
     
     // MARK: - Subviews
-    private lazy var loginView = LoginView()
-    private lazy var signUpButtonView = SignUpButtonView()
+    private lazy var signInView = SignInView()
+    private lazy var signUpView = SignUpView()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -45,8 +45,8 @@ class AuthViewController: UIViewController {
         configureView()
         setGradientBackground()
         
-        loginView.authDelegate = self
-        signUpButtonView.authDelegate = self
+        signInView.authDelegate = self
+        signUpView.authDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,8 +110,8 @@ class AuthViewController: UIViewController {
         configureScrollView()
         configureTitleLabel()
         
-        addLoginView()
-        addSignUpButtonView()
+        addSignInView()
+        addSignUpView()
     }
     
     private func configureScrollView() {
@@ -147,42 +147,42 @@ class AuthViewController: UIViewController {
         ])
     }
     
-    private func addLoginView() {
-        scrollView.addSubview(loginView)
+    private func addSignInView() {
+        scrollView.addSubview(signInView)
         
-        loginView.translatesAutoresizingMaskIntoConstraints = false
+        signInView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            loginView
+            signInView
                 .topAnchor
                 .constraint(equalTo: titleLabel.bottomAnchor,
                             constant: 50),
-            loginView
+            signInView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor),
-            loginView
+            signInView
                 .trailingAnchor
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
-    private func addSignUpButtonView() {
-        scrollView.addSubview(signUpButtonView)
+    private func addSignUpView() {
+        scrollView.addSubview(signUpView)
         
-        signUpButtonView.translatesAutoresizingMaskIntoConstraints = false
+        signUpView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signUpButtonView
+            signUpView
                 .topAnchor
-                .constraint(equalTo: loginView.bottomAnchor,
-                            constant: 10),
-            signUpButtonView
+                .constraint(equalTo: signInView.bottomAnchor,
+                            constant: 20),
+            signUpView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor),
-            signUpButtonView
+            signUpView
                 .trailingAnchor
                 .constraint(equalTo: self.view.trailingAnchor),
-            signUpButtonView
+            signUpView
                 .bottomAnchor
                 .constraint(equalTo: scrollView.bottomAnchor),
         ])
@@ -254,9 +254,9 @@ extension AuthViewController: AuthViewControllerDelegate {
     }
     
     func presentSignUpViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: .none)
-        let signUpViewController = storyboard
-            .instantiateViewController(withIdentifier: "SignUpScreen")
+        let storyboard = UIStoryboard(name: "Main",
+                                      bundle: .none)
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpScreen")
         self.present(signUpViewController,
                      animated: true,
                      completion: .none)

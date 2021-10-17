@@ -29,10 +29,10 @@
 		0A32A5B12709C7AD00C061B2 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */; };
 		0A32A5B22709C7AD00C061B2 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */; };
 		0A3503132719D16E0060939A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503122719D16E0060939A /* AuthViewController.swift */; };
-		0A3503152719D2110060939A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503142719D2110060939A /* LoginView.swift */; };
+		0A3503152719D2110060939A /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503142719D2110060939A /* SignInView.swift */; };
 		0A3503192719EC0B0060939A /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503182719EC0B0060939A /* UserDataView.swift */; };
 		0A35031B2719EC4C0060939A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35031A2719EC4C0060939A /* SignUpViewController.swift */; };
-		0A35031F271A1E620060939A /* SignUpButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35031E271A1E620060939A /* SignUpButtonView.swift */; };
+		0A35031F271A1E620060939A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35031E271A1E620060939A /* SignUpView.swift */; };
 		0A350323271A24D20060939A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A350322271A24D20060939A /* ProfileViewController.swift */; };
 		0A350325271A24F40060939A /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A350324271A24F40060939A /* ButtonsView.swift */; };
 		0A36240226FBB17E002B31EE /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */; };
@@ -40,6 +40,7 @@
 		0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240626FBB288002B31EE /* Ext+UIColor.swift */; };
 		0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740926E37206008CACBA /* ProductReviewsResult.swift */; };
 		0A3C740C26E3722D008CACBA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740B26E3722D008CACBA /* Review.swift */; };
+		0A47DBB5271C3EF6005F8AB2 /* FootnoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A47DBB4271C3EF6005F8AB2 /* FootnoteView.swift */; };
 		0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58DDB727188CCE009A9670 /* UserBasketManager.swift */; };
 		0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */; };
 		0A783F6226F5EA5F00F976C2 /* ResultWithMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F6126F5EA5F00F976C2 /* ResultWithMessage.swift */; };
@@ -110,10 +111,10 @@
 		0A32A5AF2709C7AD00C061B2 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		0A32A5B02709C7AD00C061B2 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		0A3503122719D16E0060939A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		0A3503142719D2110060939A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		0A3503142719D2110060939A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		0A3503182719EC0B0060939A /* UserDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataView.swift; sourceTree = "<group>"; };
 		0A35031A2719EC4C0060939A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		0A35031E271A1E620060939A /* SignUpButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpButtonView.swift; sourceTree = "<group>"; };
+		0A35031E271A1E620060939A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0A350322271A24D20060939A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A350324271A24F40060939A /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		0A36240126FBB17E002B31EE /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		0A36240626FBB288002B31EE /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		0A3C740926E37206008CACBA /* ProductReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsResult.swift; sourceTree = "<group>"; };
 		0A3C740B26E3722D008CACBA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		0A47DBB4271C3EF6005F8AB2 /* FootnoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteView.swift; sourceTree = "<group>"; };
 		0A58DDB727188CCE009A9670 /* UserBasketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBasketManager.swift; sourceTree = "<group>"; };
 		0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResult.swift; sourceTree = "<group>"; };
 		0A783F6126F5EA5F00F976C2 /* ResultWithMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWithMessage.swift; sourceTree = "<group>"; };
@@ -270,8 +272,8 @@
 		0A3503112719D1430060939A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0A3503142719D2110060939A /* LoginView.swift */,
-				0A35031E271A1E620060939A /* SignUpButtonView.swift */,
+				0A3503142719D2110060939A /* SignInView.swift */,
+				0A35031E271A1E620060939A /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3503182719EC0B0060939A /* UserDataView.swift */,
+				0A47DBB4271C3EF6005F8AB2 /* FootnoteView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -796,7 +799,7 @@
 				0A783F6426F5EC9F00F976C2 /* BasketRequestFactory.swift in Sources */,
 				0A251F6A26C8F36F00F46226 /* AbstractRequestFactory.swift in Sources */,
 				0A350325271A24F40060939A /* ButtonsView.swift in Sources */,
-				0A35031F271A1E620060939A /* SignUpButtonView.swift in Sources */,
+				0A35031F271A1E620060939A /* SignUpView.swift in Sources */,
 				0AE12C56270F5D8F006D18D5 /* ProductHeaderView.swift in Sources */,
 				0A36240426FBB247002B31EE /* SignInButton.swift in Sources */,
 				0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */,
@@ -814,13 +817,14 @@
 				0AE12C53270F5AB4006D18D5 /* ProductDetailViewController.swift in Sources */,
 				0A350323271A24D20060939A /* ProfileViewController.swift in Sources */,
 				0A251F6826C8F2AF00F46226 /* RequestRouter.swift in Sources */,
+				0A47DBB5271C3EF6005F8AB2 /* FootnoteView.swift in Sources */,
 				0AAE390526CEBD3700873823 /* ProductByIdResult.swift in Sources */,
 				0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */,
 				0AEA84B026BA686900D4DF77 /* AppDelegate.swift in Sources */,
 				0AEA84B226BA686900D4DF77 /* SceneDelegate.swift in Sources */,
 				0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */,
 				0ACB0A6A26DE865100798B0D /* ReviewRequestFactory.swift in Sources */,
-				0A3503152719D2110060939A /* LoginView.swift in Sources */,
+				0A3503152719D2110060939A /* SignInView.swift in Sources */,
 				0A2335732717659500891BBC /* BasketItem.swift in Sources */,
 				0AE12C5F270F7C60006D18D5 /* ReviewTableViewCell.swift in Sources */,
 				0A23356927174E3300891BBC /* BasketViewController.swift in Sources */,

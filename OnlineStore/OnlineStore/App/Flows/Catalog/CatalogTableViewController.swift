@@ -14,7 +14,9 @@ class CatalogTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(UINib(nibName: "ProductTableViewCell", bundle: .none), forCellReuseIdentifier: "ProductCell")
+        self.tableView.register(UINib(nibName: "ProductTableViewCell",
+                                      bundle: .none),
+                                forCellReuseIdentifier: "ProductCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,14 +54,15 @@ class CatalogTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailScreen") as? ProductDetailViewController else {
-            Logger.shared.logMessage(message: "Can not convert VC to ProductDetailViewController", .Error)
+            log(message: "Can not convert VC to ProductDetailViewController", .Error)
             return
         }
         
         detailViewController.configure(product: product)
         
         self.navigationController?
-            .pushViewController(detailViewController, animated: true)
+            .pushViewController(detailViewController,
+                                animated: true)
     }
     
     private func loadProductList() {

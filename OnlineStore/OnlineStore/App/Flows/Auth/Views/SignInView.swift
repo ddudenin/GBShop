@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  SignInView.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 15.10.2021.
@@ -8,12 +8,12 @@
 import UIKit
 import SwiftUI
 
-class LoginView: UIView {
+class SignInView: UIView {
     
     // MARK: - Public properties
     weak var authDelegate: AuthViewControllerDelegate?
     
-    // MARK: - Subviews    
+    // MARK: - Subviews
     private lazy var loginTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -142,11 +142,12 @@ class LoginView: UIView {
             return
         }
         
-        authDelegate?.signIn(login: login, password: password)
+        authDelegate?.signIn(login: login,
+                             password: password)
     }
 }
 
-extension LoginView: UITextFieldDelegate {
+extension SignInView: UITextFieldDelegate {
     
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
@@ -163,9 +164,9 @@ extension LoginView: UITextFieldDelegate {
     }
 }
 
-struct LoginView_Preview: PreviewProvider {
+struct SignInView_Preview: PreviewProvider {
     static var previews: some View {
-        let view = LoginView()
+        let view = SignInView()
         return Group {
             return Group {
                 UIPreviewView(view)

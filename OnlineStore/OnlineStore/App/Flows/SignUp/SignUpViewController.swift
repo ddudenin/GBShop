@@ -9,6 +9,7 @@ import UIKit
 
 protocol SignUpViewControllerDelegate: AnyObject {
     func showAlert(userMessage: String)
+    func signUp()
 }
 
 class SignUpViewController: UIViewController {
@@ -25,16 +26,7 @@ class SignUpViewController: UIViewController {
     }()
     
     private lazy var userDataView = UserDataView()
-    
-    private lazy var signUpButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "person.fill.checkmark"), for: .normal)
-        button.addTarget(self,
-                         action: #selector(signUpButtonHandler(_:)),
-                         for: .touchUpInside)
-        return button
-    }()
+    private lazy var footnoteView = FootnoteView()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -50,24 +42,39 @@ class SignUpViewController: UIViewController {
         configureView()
         
         userDataView.signUpDelegate = self
+        footnoteView.signUpDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(keyboardWillBeShown),
+                         name: UIResponder.keyboardWillShowNotification,
+                         object: nil)
+        NotificationCenter
+            .default
+            .addObserver(self,
+                         selector: #selector(keyboardWillBeHidden(notification:)),
+                         name: UIResponder.keyboardWillHideNotification,
+                         object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
+        NotificationCenter
+            .default
+            .removeObserver(self,
+                            name: UIResponder.keyboardWillShowNotification,
+                            object: nil)
+        NotificationCenter
+            .default
+            .removeObserver(self,
+                            name: UIResponder.keyboardWillHideNotification,
+                            object: nil)
     }
     
     // MARK: - Attributes @objc
@@ -91,49 +98,7 @@ class SignUpViewController: UIViewController {
     @objc private func keyboardWillBeHidden(notification: Notification) {
         self.scrollView.contentInset = UIEdgeInsets.zero
     }
-    
-    @objc func signUpButtonHandler(_ sender: Any) {
-        guard let userData = userDataView.getUserData() else { return }
         
-        let auth = RequestFactory.shared.makeAuthRequestFactory()
-        
-        auth.signup(data: userData) { response in
-            switch response.result {
-            case .success(let signup):
-                if signup.result == 0 {
-                    DispatchQueue
-                        .main
-                        .async {
-                            showAlertController(forController: self,
-                                                message: signup.userMessage)
-                        }
-                    log(message: signup.userMessage, .Warning)
-                } else {
-                    DispatchQueue
-                        .main
-                        .async {
-                            let storyboard = UIStoryboard(name: "Main", bundle: .none)
-                            let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")
-                            self.present(mainViewController,
-                                         animated: true,
-                                         completion: .none)
-                        }
-                    
-                    log(message: "\(signup)", .Success)
-                }
-                
-            case .failure(let error):
-                DispatchQueue
-                    .main
-                    .async {
-                        showAlertController(forController: self,
-                                            message: error.localizedDescription)
-                    }
-                log(message: error.localizedDescription, .Error)
-            }
-        }
-    }
-    
     // MARK: - Private methods
     private func configureView() {
         self.view.backgroundColor = .systemBackground
@@ -143,7 +108,7 @@ class SignUpViewController: UIViewController {
         addUserDataView()
         
         configureTitleLabel()
-        configureSignUpButton()
+        configureFootnoteView()
     }
     
     private func configureScrollView() {
@@ -200,17 +165,22 @@ class SignUpViewController: UIViewController {
         ])
     }
     
-    private func configureSignUpButton() {
-        self.view.addSubview(signUpButton)
+    private func configureFootnoteView() {
+        self.view.addSubview(footnoteView)
+        
+        footnoteView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signUpButton
+            footnoteView
                 .topAnchor
                 .constraint(equalTo: userDataView.bottomAnchor,
-                            constant: 20),
-            signUpButton
-                .centerXAnchor
-                .constraint(equalTo: userDataView.centerXAnchor),
+                            constant: 10),
+            footnoteView
+                .leadingAnchor
+                .constraint(equalTo: scrollView.leadingAnchor),
+            footnoteView
+                .trailingAnchor
+                .constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
 }
@@ -219,5 +189,47 @@ extension SignUpViewController: SignUpViewControllerDelegate {
     func showAlert(userMessage: String) {
         showAlertController(forController: self,
                             message: userMessage)
+    }
+    
+    func signUp() {
+        guard let userData = userDataView.getUserData() else { return }
+        
+        let auth = RequestFactory.shared.makeAuthRequestFactory()
+        
+        auth.signup(data: userData) { response in
+            switch response.result {
+            case .success(let signup):
+                if signup.result == 0 {
+                    DispatchQueue
+                        .main
+                        .async {
+                            showAlertController(forController: self,
+                                                message: signup.userMessage)
+                        }
+                    log(message: signup.userMessage, .Warning)
+                } else {
+                    DispatchQueue
+                        .main
+                        .async {
+                            let storyboard = UIStoryboard(name: "Main",
+                                                          bundle: .none)
+                            let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")
+                            self.present(mainViewController,
+                                         animated: true,
+                                         completion: .none)
+                        }
+                    log(message: "\(signup)", .Success)
+                }
+                
+            case .failure(let error):
+                DispatchQueue
+                    .main
+                    .async {
+                        showAlertController(forController: self,
+                                            message: error.localizedDescription)
+                    }
+                log(message: error.localizedDescription, .Error)
+            }
+        }
     }
 }

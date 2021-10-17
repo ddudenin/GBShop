@@ -1,5 +1,5 @@
 //
-//  SignUpButtonView.swift
+//  SignUpView.swift
 //  OnlineStore
 //
 //  Created by Дмитрий Дуденин on 15.10.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class SignUpButtonView: UIView {
+class SignUpView: UIView {
     
     // MARK: - Public properties
     weak var authDelegate: AuthViewControllerDelegate?
@@ -22,7 +22,7 @@ class SignUpButtonView: UIView {
                                        0.149,
                                        0.384,
                                        alpha: 1.0)
-        label.text = "Sign up |"
+        label.text = "Don't have an account? Sign up |"
         return label
     }()
     
@@ -93,9 +93,9 @@ class SignUpButtonView: UIView {
     }
 }
 
-struct SignUpButtonView_Preview: PreviewProvider {
+struct SignUpView_Preview: PreviewProvider {
     static var previews: some View {
-        let view = SignUpButtonView()
+        let view = SignUpView()
         return Group {
             return Group {
                 UIPreviewView(view)
