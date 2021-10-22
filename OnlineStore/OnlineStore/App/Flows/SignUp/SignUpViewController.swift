@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol SignUpViewControllerDelegate: AnyObject {
     func showAlert(userMessage: String)
@@ -182,6 +183,14 @@ class SignUpViewController: UIViewController {
                 .constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
+
+    private func logEventSignUp(success: Bool, content: String = "") {
+        Firebase.Analytics.logEvent(AnalyticsEventSignUp,
+                                    parameters: [
+                                        AnalyticsParameterSuccess: success,
+                                        AnalyticsParameterContent: content
+                                    ])
+    }
 }
 
 extension SignUpViewController: SignUpViewControllerDelegate {
@@ -206,6 +215,8 @@ extension SignUpViewController: SignUpViewControllerDelegate {
                                                 message: signup.userMessage)
                         }
                     log(message: signup.userMessage, .Warning)
+                    self.logEventSignUp(success: false,
+                                        content: signup.userMessage)
                 } else {
                     DispatchQueue
                         .main
@@ -218,6 +229,7 @@ extension SignUpViewController: SignUpViewControllerDelegate {
                                          completion: .none)
                         }
                     log(message: "\(signup)", .Success)
+                    self.logEventSignUp(success: true)
                 }
 
             case .failure(let error):
@@ -228,6 +240,8 @@ extension SignUpViewController: SignUpViewControllerDelegate {
                                             message: error.localizedDescription)
                     }
                 log(message: error.localizedDescription, .Error)
+                self.logEventSignUp(success: false,
+                                    content: error.localizedDescription)
             }
         }
     }

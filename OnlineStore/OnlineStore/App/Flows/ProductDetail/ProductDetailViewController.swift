@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ProductDetailViewControllerDelegate: AnyObject {
     func addProductToBasket()
@@ -50,8 +51,25 @@ class ProductDetailViewController: UIViewController {
                         self.productInfoView.configure(description: data.productInfo.description)
                     }
                 log(message: "\(product)", .Success)
+
+                let productDetails: [String: Any] = [
+                    AnalyticsParameterItemName: data.productInfo.name,
+                    AnalyticsParameterCurrency: "RUB",
+                    AnalyticsParameterPrice: data.productInfo.price
+                ]
+
+                Firebase.Analytics.logEvent(AnalyticsEventScreenView,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: true,
+                                                AnalyticsParameterItems: productDetails
+                                            ])
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
+                Firebase.Analytics.logEvent(AnalyticsEventScreenView,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: false,
+                                                AnalyticsParameterContent: error.localizedDescription
+                                            ])
             }
         }
     }
@@ -132,7 +150,7 @@ class ProductDetailViewController: UIViewController {
             reviewsTableView
                 .topAnchor
                 .constraint(equalTo: productInfoView.bottomAnchor,
-                           constant: 10),
+                            constant: 10),
             reviewsTableView
                 .leadingAnchor
                 .constraint(equalTo: self.view.leadingAnchor,
@@ -160,7 +178,7 @@ class ProductDetailViewController: UIViewController {
 
     private func loadReviews() {
         let review = RequestFactory.shared.makeReviewRequestFactory()
-        review.getReviewsForProduct(withId: 2707) { response in
+        review.getReviewsForProduct(withId: 1306) { response in
             switch response.result {
             case .success(let reviews):
                 log(message: "\(reviews)", .Success)
@@ -216,6 +234,12 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                 case 1:
                     UserBasketManager.shared.addBasketItem(from: self.product)
                     log(message: "\(result)", .Success)
+                    Firebase.Analytics.logEvent(AnalyticsEventAddToCart,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: true,
+                                                    AnalyticsParameterItemName: self.product.name,
+                                                    AnalyticsParameterItemID: self.product.id
+                                                ])
                 default:
                     DispatchQueue
                         .main
@@ -224,6 +248,11 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                                                 message: "Add to cart failed")
                         }
                     log(message: "\(result)", .Error)
+                    Firebase.Analytics.logEvent(AnalyticsEventAddToCart,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: false
+                                                ])
+
                 }
 
             case .failure(let error):
@@ -234,6 +263,11 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                                             message: error.localizedDescription)
                     }
                 log(message: error.localizedDescription, .Error)
+                Firebase.Analytics.logEvent(AnalyticsEventAddToCart,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: false,
+                                                AnalyticsParameterContent: error.localizedDescription
+                                            ])
             }
         }
     }

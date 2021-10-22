@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A0497522721EA6E0051FA33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A0497512721EA6E0051FA33 /* GoogleService-Info.plist */; };
+		0A0BD030272346C10055B453 /* CustomAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BD02F272346C10055B453 /* CustomAnalyticsEvent.swift */; };
 		0A20678F271C709600DB1350 /* SecureTextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20678E271C709600DB1350 /* SecureTextFieldWithImage.swift */; };
 		0A23356927174E3300891BBC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356827174E3300891BBC /* BasketViewController.swift */; };
 		0A23356C27174EED00891BBC /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23356B27174EED00891BBC /* PaymentView.swift */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		0A0497512721EA6E0051FA33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0A0BD02F272346C10055B453 /* CustomAnalyticsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnalyticsEvent.swift; sourceTree = "<group>"; };
 		0A20678E271C709600DB1350 /* SecureTextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWithImage.swift; sourceTree = "<group>"; };
 		0A23356827174E3300891BBC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		0A23356B27174EED00891BBC /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				0A36240526FBB261002B31EE /* Extensions */,
 				0A251F6226C8F1A400F46226 /* Network */,
 				0AD0D2B926D586ED00E7D98F /* Logger.swift */,
+				0A0BD02F272346C10055B453 /* CustomAnalyticsEvent.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				0A783F6426F5EC9F00F976C2 /* BasketRequestFactory.swift in Sources */,
 				0A251F6A26C8F36F00F46226 /* AbstractRequestFactory.swift in Sources */,
 				0A350325271A24F40060939A /* ButtonsView.swift in Sources */,
+				0A0BD030272346C10055B453 /* CustomAnalyticsEvent.swift in Sources */,
 				0A35031F271A1E620060939A /* SignUpView.swift in Sources */,
 				0AE12C56270F5D8F006D18D5 /* ProductHeaderView.swift in Sources */,
 				0A36240426FBB247002B31EE /* SignInButton.swift in Sources */,

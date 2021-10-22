@@ -13,11 +13,11 @@ func showAlertController(forController controller: UIViewController,
     let alert = UIAlertController(title: "Ошибка",
                                   message: text,
                                   preferredStyle: .alert)
-
+    
     alert.addAction(UIAlertAction(title: "OK",
                                   style: .cancel,
                                   handler: handler))
-
+    
     controller.present(alert,
                        animated: true,
                        completion: nil)

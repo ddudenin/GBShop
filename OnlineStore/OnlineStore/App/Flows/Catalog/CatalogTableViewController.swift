@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CatalogTableViewController: UITableViewController {
 
@@ -73,13 +74,23 @@ class CatalogTableViewController: UITableViewController {
                 DispatchQueue
                     .main
                     .async {
-                    self.products = products
-                    self.tableView.reloadData()
-                }
+                        self.products = products
+                        self.tableView.reloadData()
+                    }
 
                 log(message: "\(products)", .Success)
+                Firebase.Analytics.logEvent(AnalyticsEventScreenView,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: true,
+                                                AnalyticsParameterValue: products.count
+                                            ])
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
+                Firebase.Analytics.logEvent(AnalyticsEventScreenView,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: false,
+                                                AnalyticsParameterContent: error.localizedDescription
+                                            ])
             }
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol AuthViewControllerDelegate: AnyObject {
     func signIn(login: String, password: String)
@@ -231,6 +232,14 @@ class AuthViewController: UIViewController {
             .layer
             .insertSublayer(gradient, at: 0)
     }
+
+    private func logEventSignIn(success: Bool, content: String = "") {
+        Firebase.Analytics.logEvent(AnalyticsEventLogin,
+                                    parameters: [
+                                        AnalyticsParameterSuccess: success,
+                                        AnalyticsParameterContent: content
+                                    ])
+    }
 }
 
 // MARK: - AuthViewController + AuthViewControllerDelegate
@@ -251,6 +260,9 @@ extension AuthViewController: AuthViewControllerDelegate {
                                                 message: messageText)
                         }
                     log(message: messageText, .Warning)
+                    self.logEventSignIn(success: false,
+                                        content: messageText)
+
                 } else {
                     DispatchQueue
                         .main
@@ -263,6 +275,7 @@ extension AuthViewController: AuthViewControllerDelegate {
                         }
 
                     log(message: "\(login)", .Success)
+                    self.logEventSignIn(success: true)
                 }
 
             case .failure(let error):
@@ -273,6 +286,8 @@ extension AuthViewController: AuthViewControllerDelegate {
                                             message: error.localizedDescription)
                     }
                 log(message: error.localizedDescription, .Error)
+                self.logEventSignIn(success: false,
+                                    content: error.localizedDescription)
             }
         }
     }

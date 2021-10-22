@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 var gBasket = [BasketItem]()
 
@@ -112,6 +113,14 @@ class BasketViewController: UIViewController {
                                        bundle: .none),
                                  forCellReuseIdentifier: "BasketCell")
     }
+    
+    private func logEventRemoveFromCart(success: Bool, content: String = "") {
+        Firebase.Analytics.logEvent(AnalyticsEventRemoveFromCart,
+                                    parameters: [
+                                        AnalyticsParameterSuccess: success,
+                                        AnalyticsParameterContent: content
+                                    ])
+    }
 }
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
@@ -162,6 +171,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                             }
 
                         log(message: "\(result)", .Success)
+                        self.logEventRemoveFromCart(success: true)
                     default:
                         DispatchQueue
                             .main
@@ -170,10 +180,13 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                                                     message: "Remove from cart failed")
                             }
                         log(message: "\(result)", .Error)
+                        self.logEventRemoveFromCart(success: false)
                     }
 
                 case .failure(let error):
                     log(message: error.localizedDescription, .Error)
+                    self.logEventRemoveFromCart(success: false,
+                                                content: error.localizedDescription)
                 }
             }
         }
@@ -210,6 +223,12 @@ extension BasketViewController: BasketViewControllerDelegate {
                         }
 
                     log(message: "\(result)", .Success)
+                    Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: true,
+                                                    AnalyticsParameterCurrency: "RUB",
+                                                    AnalyticsParameterPrice: self.totalBasketCost.value
+                                                ])
                 default:
                     DispatchQueue
                         .main
@@ -218,9 +237,19 @@ extension BasketViewController: BasketViewControllerDelegate {
                                                 message: result.userMessage)
                         }
                     log(message: "\(result)", .Error)
+                    Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: false,
+                                                    AnalyticsParameterContent: result.userMessage
+                                                ])
                 }
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
+                Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: false,
+                                                AnalyticsParameterContent: error.localizedDescription
+                                            ])
             }
         }
     }

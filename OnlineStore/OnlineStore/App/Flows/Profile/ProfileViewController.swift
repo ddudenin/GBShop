@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ProfileViewControllerDelegate: AnyObject {
     func updateUserData()
@@ -110,6 +111,14 @@ class ProfileViewController: UIViewController {
                                 bio: "This is good! I think I will switch to another language")
         userDataView.setUserData(userData: userData)
     }
+
+    private func logEventChangeData(success: Bool, content: String = "") {
+        Analytics.logEvent(CustomAnalyticsEvent.changeUserData.rawValue,
+                           parameters: [
+                            AnalyticsParameterSuccess: success,
+                            AnalyticsParameterContent: content
+                           ])
+    }
 }
 
 extension ProfileViewController: ProfileViewControllerDelegate {
@@ -134,8 +143,11 @@ extension ProfileViewController: ProfileViewControllerDelegate {
                                                 message: "Не удалось обновить данные")
                         }
                     log(message: "Не удалось обновить данные", .Warning)
+                    self.logEventChangeData(success: false,
+                                            content: "Ошибка обновления пользовательских данных")
                 } else {
                     log(message: "\(changedData)", .Success)
+                    self.logEventChangeData(success: true)
                 }
 
             case .failure(let error):
@@ -146,6 +158,8 @@ extension ProfileViewController: ProfileViewControllerDelegate {
                                             message: error.localizedDescription)
                     }
                 log(message: error.localizedDescription, .Error)
+                self.logEventChangeData(success: false,
+                                        content: error.localizedDescription)
             }
         }
     }
@@ -156,5 +170,8 @@ extension ProfileViewController: ProfileViewControllerDelegate {
         self.present(mainViewController,
                      animated: true,
                      completion: .none)
+
+        Firebase.Analytics.logEvent("Logout",
+                                    parameters: nil)
     }
 }
