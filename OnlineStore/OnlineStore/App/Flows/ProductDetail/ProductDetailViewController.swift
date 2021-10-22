@@ -13,33 +13,33 @@ protocol ProductDetailViewControllerDelegate: AnyObject {
 }
 
 class ProductDetailViewController: UIViewController {
-
+    
     private lazy var productHeaderView = ProductHeaderView()
     private lazy var productInfoView = ProductInfoView()
     private lazy var reviewsTableView = UITableView()
-
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-
+    
     private var product = Product(id: -1, name: "", price: 0)
     private var reviews = [Review]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureView()
-
+        
         loadReviews()
-
+        
         productHeaderView.productDelegate = self
     }
-
+    
     func configure(product: Product) {
         self.product = product
-
+        
         let catalog = RequestFactory.shared.makeCatalogRequestFactory()
         catalog.getProduct(by: product.id) { response in
             switch response.result {
@@ -51,13 +51,13 @@ class ProductDetailViewController: UIViewController {
                         self.productInfoView.configure(description: data.productInfo.description)
                     }
                 log(message: "\(product)", .Success)
-
+                
                 let productDetails: [String: Any] = [
                     AnalyticsParameterItemName: data.productInfo.name,
                     AnalyticsParameterCurrency: "RUB",
                     AnalyticsParameterPrice: data.productInfo.price
                 ]
-
+                
                 Firebase.Analytics.logEvent(AnalyticsEventScreenView,
                                             parameters: [
                                                 AnalyticsParameterSuccess: true,
@@ -73,21 +73,21 @@ class ProductDetailViewController: UIViewController {
             }
         }
     }
-
+    
     func configureView() {
         self.view.backgroundColor = .systemBackground
         configureScrollView()
-
+        
         addHeaderView()
         addInfoView()
-
+        
         addReviewsTableView()
         configureReviewsTableView()
     }
-
+    
     private func configureScrollView() {
         self.view.addSubview(scrollView)
-
+        
         NSLayoutConstraint.activate([
             scrollView
                 .topAnchor
@@ -103,12 +103,12 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-
+    
     private func addHeaderView() {
         scrollView.addSubview(productHeaderView)
-
+        
         productHeaderView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             productHeaderView
                 .topAnchor
@@ -122,12 +122,12 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-
+    
     private func addInfoView() {
         scrollView.addSubview(productInfoView)
-
+        
         productInfoView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             productInfoView
                 .topAnchor
@@ -140,12 +140,12 @@ class ProductDetailViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-
+    
     private func addReviewsTableView() {
         scrollView.addSubview(reviewsTableView)
-
+        
         reviewsTableView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             reviewsTableView
                 .topAnchor
@@ -166,16 +166,16 @@ class ProductDetailViewController: UIViewController {
                 .heightAnchor.constraint(equalToConstant: 350)
         ])
     }
-
+    
     private func configureReviewsTableView() {
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
-
+        
         reviewsTableView.register(UINib(nibName: "ReviewTableViewCell",
                                         bundle: .none),
                                   forCellReuseIdentifier: "ReviewCell")
     }
-
+    
     private func loadReviews() {
         let review = RequestFactory.shared.makeReviewRequestFactory()
         review.getReviewsForProduct(withId: 1306) { response in
@@ -196,36 +196,39 @@ class ProductDetailViewController: UIViewController {
 }
 
 extension ProductDetailViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = reviewsTableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewTableViewCell else {
+            let message = "Ошибка создания ячейки отзыва"
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return UITableViewCell()
         }
-
+        
         let review = reviews[indexPath.row]
         cell.configure(review: review)
-
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension ProductDetailViewController: ProductDetailViewControllerDelegate {
-
+    
     func addProductToBasket() {
         let basket = RequestFactory.shared.makeBasketRequestFactory()
-
+        
         basket.addToBasket(productId: product.id,
                            quantity: 1) { response in
             switch response.result {
@@ -252,9 +255,9 @@ extension ProductDetailViewController: ProductDetailViewControllerDelegate {
                                                 parameters: [
                                                     AnalyticsParameterSuccess: false
                                                 ])
-
+                    
                 }
-
+                
             case .failure(let error):
                 DispatchQueue
                     .main

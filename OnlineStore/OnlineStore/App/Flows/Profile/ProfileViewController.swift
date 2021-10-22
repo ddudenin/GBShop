@@ -14,7 +14,7 @@ protocol ProfileViewControllerDelegate: AnyObject {
 }
 
 class ProfileViewController: UIViewController {
-
+    
     // MARK: - Subviews
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -25,36 +25,36 @@ class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
+    
     private lazy var userDataView = UserDataView()
-
+    
     private lazy var buttonsView = ButtonsView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         configureView()
-
+        
         buttonsView.profileDelegate = self
-
+        
         setUserData()
     }
-
+    
     // MARK: - Private methods
     private func configureView() {
         self.view.backgroundColor = .systemBackground
-
+        
         addUserDataView()
         configureTitleLabel()
         addButtonsView()
     }
-
+    
     private func addUserDataView() {
         self.view.addSubview(userDataView)
-
+        
         userDataView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             userDataView
                 .centerXAnchor
@@ -70,12 +70,12 @@ class ProfileViewController: UIViewController {
                 .constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-
+    
     private func addButtonsView() {
         self.view.addSubview(buttonsView)
-
+        
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             buttonsView
                 .topAnchor
@@ -86,10 +86,10 @@ class ProfileViewController: UIViewController {
                 .constraint(equalTo: self.view.centerXAnchor)
         ])
     }
-
+    
     private func configureTitleLabel() {
         self.view.addSubview(titleLabel)
-
+        
         NSLayoutConstraint.activate([
             titleLabel
                 .bottomAnchor
@@ -100,7 +100,7 @@ class ProfileViewController: UIViewController {
                 .constraint(equalTo: userDataView.centerXAnchor)
         ])
     }
-
+    
     private func setUserData() {
         let userData = UserData(id: 123,
                                 username: "Somebody",
@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
                                 bio: "This is good! I think I will switch to another language")
         userDataView.setUserData(userData: userData)
     }
-
+    
     private func logEventChangeData(success: Bool, content: String = "") {
         Analytics.logEvent(CustomAnalyticsEvent.changeUserData.rawValue,
                            parameters: [
@@ -126,12 +126,15 @@ extension ProfileViewController: ProfileViewControllerDelegate {
         guard let userData = userDataView.getUserData() else {
             showAlertController(forController: self,
                                 message: "Не удалось прочитать обновленные данные")
-            log(message: "Ошибка чтения введенных данных", .Error)
+            let message = "Ошибка чтения обновленных данных пользователя"
+            log(message: message, .Error)
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return
         }
-
+        
         let auth = RequestFactory.shared.makeAuthRequestFactory()
-
+        
         auth.changeUserData(data: userData) { response in
             switch response.result {
             case .success(let changedData):
@@ -149,7 +152,7 @@ extension ProfileViewController: ProfileViewControllerDelegate {
                     log(message: "\(changedData)", .Success)
                     self.logEventChangeData(success: true)
                 }
-
+                
             case .failure(let error):
                 DispatchQueue
                     .main
@@ -163,14 +166,14 @@ extension ProfileViewController: ProfileViewControllerDelegate {
             }
         }
     }
-
+    
     func logout() {
         let storyboard = UIStoryboard(name: "Main", bundle: .none)
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "AuthScreen")
         self.present(mainViewController,
                      animated: true,
                      completion: .none)
-
+        
         Firebase.Analytics.logEvent("Logout",
                                     parameters: nil)
     }

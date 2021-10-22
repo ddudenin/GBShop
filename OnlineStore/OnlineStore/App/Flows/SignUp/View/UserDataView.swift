@@ -7,16 +7,17 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class UserDataView: UIView {
-
+    
     // MARK: - Public properties
     weak var signUpDelegate: SignUpViewControllerDelegate?
     // weak var editDataDelegate: SignUpViewControllerDelegate?
-
+    
     // MARK: - Private properties
     private let genderStrings = ["m", "f"]
-
+    
     // MARK: - Subviews
     private lazy var usernameTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
@@ -30,7 +31,7 @@ class UserDataView: UIView {
         textfield.delegate = self
         return textfield
     }()
-
+    
     private lazy var passwordTextField: SecureTextFieldWithImage = {
         let textfield = SecureTextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +45,7 @@ class UserDataView: UIView {
         textfield.delegate = self
         return textfield
     }()
-
+    
     private lazy var emailTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -57,13 +58,13 @@ class UserDataView: UIView {
         textfield.delegate = self
         return textfield
     }()
-
+    
     private lazy var genderSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["male", "female"])
         control.selectedSegmentIndex = 0
         return control
     }()
-
+    
     private lazy var cardNumberTextField: SecureTextFieldWithImage = {
         let textfield = SecureTextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +77,7 @@ class UserDataView: UIView {
         textfield.delegate = self
         return textfield
     }()
-
+    
     private lazy var bioTextField: TextFieldWithImage = {
         let textfield = TextFieldWithImage()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +90,7 @@ class UserDataView: UIView {
         textfield.delegate = self
         return textfield
     }()
-
+    
     private lazy var userInputsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             usernameTextField,
@@ -107,20 +108,20 @@ class UserDataView: UIView {
         stack.contentMode = .scaleToFill
         return stack
     }()
-
+    
     // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupView()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
+        
         setupView()
     }
-
+    
     // MARK: - Public methods
     func getUserData() -> UserData? {
         guard
@@ -131,12 +132,15 @@ class UserDataView: UIView {
             let bio = bioTextField.text
         else {
             signUpDelegate?.showAlert(userMessage: "Не удалось зарегестрироваться")
-            log(message: "Ошибка чтения данных регистрации", .Error)
+            let message = "Ошибка чтения данных регистрации"
+            log(message: message, .Error)
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return nil
         }
-
+        
         let gender = genderStrings[genderSegmentControl.selectedSegmentIndex]
-
+        
         return UserData(id: 123,
                         username: username,
                         password: password,
@@ -145,25 +149,25 @@ class UserDataView: UIView {
                         card: cardNumber,
                         bio: bio)
     }
-
+    
     func setUserData(userData: UserData) {
         usernameTextField.text = userData.username
         passwordTextField.text = userData.password
         emailTextField.text = userData.email
         cardNumberTextField.text = userData.card
         bioTextField.text = userData.bio
-
+        
         if let genderIndex = genderStrings.firstIndex(of: userData.gender) {
             genderSegmentControl.selectedSegmentIndex = genderIndex
         } else {
             log(message: "Не удалось выбрать пол пользователя", .Error)
         }
     }
-
+    
     // MARK: - Private methods
     private func setupView() {
         self.addSubview(userInputsStackView)
-
+        
         NSLayoutConstraint.activate([
             userInputsStackView
                 .topAnchor
@@ -186,7 +190,7 @@ class UserDataView: UIView {
 }
 
 extension UserDataView: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
