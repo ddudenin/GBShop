@@ -25,6 +25,8 @@ class SignInView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.delegate = self
         textfield.returnKeyType = .continue
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign in login"
         return textfield
     }()
     
@@ -39,6 +41,8 @@ class SignInView: UIView {
         textfield.isSecureTextEntry = true
         textfield.delegate = self
         textfield.returnKeyType = .done
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign in password"
         return textfield
     }()
     
@@ -75,6 +79,8 @@ class SignInView: UIView {
         button.addTarget(self,
                          action: #selector(signInButtonHandler(_:)),
                          for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityIdentifier = "sign in"
         return button
     }()
     

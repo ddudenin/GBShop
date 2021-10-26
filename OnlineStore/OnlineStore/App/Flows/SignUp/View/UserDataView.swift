@@ -29,6 +29,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "username"
         return textfield
     }()
     
@@ -43,6 +45,8 @@ class UserDataView: UIView {
         textfield.isSecureTextEntry = true
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign up password"
         return textfield
     }()
     
@@ -56,6 +60,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "email"
         return textfield
     }()
     
@@ -75,6 +81,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "credit card"
         return textfield
     }()
     
@@ -88,6 +96,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "bio"
         return textfield
     }()
     
