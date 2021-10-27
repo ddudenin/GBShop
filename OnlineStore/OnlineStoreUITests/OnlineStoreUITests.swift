@@ -22,21 +22,102 @@ class OnlineStoreUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSuccessLogin() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let scrollViewQuery = app.scrollViews
+
+        let loginTextField = scrollViewQuery
+            .otherElements
+            .textFields["Enter your login"]
+        loginTextField.tap()
+        loginTextField.typeText("Somebody")
+
+        let passwordSecureTextField = scrollViewQuery
+            .otherElements
+            .secureTextFields["Enter your password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("mypassword")
+
+        let signinButton = scrollViewQuery
+            .otherElements
+        /*@START_MENU_TOKEN@*/.staticTexts["Sign in"]/*[[".buttons[\"Sign in\"].staticTexts[\"Sign in\"]",".staticTexts[\"Sign in\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        signinButton.tap()
+
+        XCTAssertTrue(app
+                        .tabBars["Tab Bar"]
+                        .buttons["Basket"]
+                        .waitForExistence(timeout: 3.0))
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testFailureLogin() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let scrollViewQuery = app.scrollViews
+
+        let loginTextField = scrollViewQuery
+            .otherElements
+            .textFields["Enter your login"]
+        loginTextField.tap()
+        loginTextField.typeText("Somebody")
+
+        let passwordSecureTextField = scrollViewQuery
+            .otherElements
+            .secureTextFields["Enter your password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("mypassword1")
+
+        let signinButton = scrollViewQuery
+            .otherElements
+        /*@START_MENU_TOKEN@*/.staticTexts["Sign in"]/*[[".buttons[\"Sign in\"].staticTexts[\"Sign in\"]",".staticTexts[\"Sign in\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        signinButton.tap()
+
+        app.alerts["Ошибка"].scrollViews.otherElements.buttons["OK"].tap()
+    }
+
+    func testSuccessSignup() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let scrollViewsQuery = app.scrollViews
+
+        let elementsQuery = scrollViewsQuery.otherElements
+
+        elementsQuery.buttons["person.crop.square.filled.and.at.rectangle"].tap()
+
+        let doneButton = app/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".keyboards",".buttons[\"done\"]",".buttons[\"Done\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+
+        let loginTextField = app.textFields["user name"]
+        loginTextField.tap()
+        loginTextField.typeText("Kipelov")
+        doneButton.tap()
+
+        let passwordSecureTextField = app.secureTextFields["password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("Sw!ft1109")
+        doneButton.tap()
+
+        let emailTextField = app.textFields["email"]
+        emailTextField.tap()
+        emailTextField.typeText("FireCurve@october.ru")
+        doneButton.tap()
+
+        let creditCardNumberTextField = app.textFields["credit card number"]
+        creditCardNumberTextField.tap()
+        creditCardNumberTextField.typeText("1234-5678-1357-2468")
+        doneButton.tap()
+
+        let bioTextField = app.textFields["bio"]
+        bioTextField.tap()
+        bioTextField.typeText("Release")
+        doneButton.tap()
+
+        app.buttons["person.fill.checkmark"].tap()
+
+        XCTAssertTrue(elementsQuery
+                        .staticTexts["Online Store"]
+                        .waitForExistence(timeout: 3.0))
     }
 }

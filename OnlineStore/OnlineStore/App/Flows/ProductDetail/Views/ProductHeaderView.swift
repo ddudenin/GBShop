@@ -6,23 +6,24 @@
 //
 
 import UIKit
-#if DEBUG
 import SwiftUI
-#endif
 
 class ProductHeaderView: UIView {
-    private(set) lazy var artworkImageView: UIImageView = {
+
+    // MARK: - Subviews
+    private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.secondarySystemFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
         imageView.contentMode = .scaleToFill
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.systemGray2.cgColor
+        let imageLayer = imageView.layer
+        imageLayer.cornerRadius = 12
+        imageLayer.borderWidth = 1
+        imageLayer.borderColor = UIColor.systemGray2.cgColor
         return imageView
     }()
-    
+
     private(set) lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +32,7 @@ class ProductHeaderView: UIView {
         label.textColor = .label
         return label
     }()
-    
+
     private(set) lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,58 +41,115 @@ class ProductHeaderView: UIView {
         label.textColor = .secondaryLabel
         return label
     }()
-    
+
+    private lazy var addToBasketButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "cart.fill.badge.plus"),
+                        for: .normal)
+        button.addTarget(self,
+                         action: #selector(addToBasketButtonHandler(_:)),
+                         for: .touchUpInside)
+        return button
+    }()
+
+    // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.setupView()
     }
-    
+
+    weak var productDelegate: ProductDetailViewControllerDelegate?
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         self.setupView()
     }
-    
+
     func configure(product: ProductInfo) {
-        self.artworkImageView.image = UIImage(systemName: "tag.circle")
+        self.productImageView.image = UIImage(systemName: "tag.circle")
         self.nameLabel.text = product.name
         self.priceLabel.text = ConvertPriceToString(price: product.price)
     }
-    
-    // MARK: - Private
-    
+
+    // MARK: - Private methods
     private func setupView() {
-        self.addSubview(artworkImageView)
+        self.addSubview(productImageView)
         self.addSubview(nameLabel)
         self.addSubview(priceLabel)
-        
+        self.addSubview(addToBasketButton)
+
         NSLayoutConstraint.activate([
-            artworkImageView.heightAnchor.constraint(equalToConstant: 100),
-            artworkImageView.widthAnchor.constraint(equalToConstant: 100),
-            artworkImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            artworkImageView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -16),
-            artworkImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            nameLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
-            nameLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -4),
-            
-            
-            priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            priceLabel.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 16),
+            productImageView
+                .heightAnchor
+                .constraint(equalToConstant: 100),
+            productImageView
+                .widthAnchor
+                .constraint(equalToConstant: 100),
+            productImageView
+                .leadingAnchor
+                .constraint(equalTo: self.leadingAnchor,
+                            constant: 15),
+            productImageView
+                .bottomAnchor
+                .constraint(lessThanOrEqualTo: self.bottomAnchor,
+                            constant: -10),
+            productImageView
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 10),
+
+            nameLabel
+                .topAnchor
+                .constraint(equalTo: self.topAnchor,
+                            constant: 10),
+            nameLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -10),
+            nameLabel
+                .leadingAnchor
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10),
+            nameLabel
+                .bottomAnchor
+                .constraint(equalTo: priceLabel.topAnchor,
+                            constant: -5),
+
+            priceLabel
+                .trailingAnchor
+                .constraint(equalTo: self.trailingAnchor,
+                            constant: -10),
+            priceLabel
+                .leadingAnchor
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10),
+            priceLabel
+                .bottomAnchor
+                .constraint(equalTo: addToBasketButton.topAnchor,
+                            constant: -10),
+
+            addToBasketButton
+                .leadingAnchor
+                .constraint(equalTo: productImageView.trailingAnchor,
+                            constant: 10)
         ])
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
-        artworkImageView.layer.borderColor = UIColor.systemGray2.cgColor
+
+        productImageView
+            .layer
+            .borderColor = UIColor.systemGray2.cgColor
+    }
+
+    @objc private func addToBasketButtonHandler(_ sender: Any) {
+        productDelegate?.addProductToBasket()
     }
 }
-
-#if DEBUG
 
 struct ProductHeaderView_Preview: PreviewProvider {
     static var previews: some View {
@@ -103,6 +161,3 @@ struct ProductHeaderView_Preview: PreviewProvider {
             .previewLayout(.fixed(width: 375, height: 150))
     }
 }
-
-#endif
-

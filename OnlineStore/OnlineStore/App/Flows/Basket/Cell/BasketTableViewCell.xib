@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasketCell" rowHeight="125" id="KGk-i7-Jjw" customClass="BasketTableViewCell" customModule="OnlineStore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="368" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="368" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrO-in-yal">
+                        <rect key="frame" x="12" y="12" width="45" height="101"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="Orx-WC-rTn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfF-lX-bSb">
+                        <rect key="frame" x="325" y="54.5" width="31" height="16"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dai-bc-859">
+                        <rect key="frame" x="174" y="12" width="131" height="101"/>
+                        <subviews>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WVZ-HN-a5F">
+                                <rect key="frame" x="0.0" y="33.5" width="32" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" continuous="NO" autorepeat="NO" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="sjv-Eu-pnY">
+                                <rect key="frame" x="37" y="34.5" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChangedHandler:" destination="KGk-i7-Jjw" eventType="valueChanged" id="dVH-RO-0th"/>
+                                </connections>
+                            </stepper>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nrO-in-yal" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="BF2-aG-Pwn"/>
+                    <constraint firstItem="vfF-lX-bSb" firstAttribute="centerY" secondItem="nrO-in-yal" secondAttribute="centerY" id="G3w-p3-hCT"/>
+                    <constraint firstItem="Dai-bc-859" firstAttribute="centerY" secondItem="nrO-in-yal" secondAttribute="centerY" id="LCg-Fg-kOA"/>
+                    <constraint firstAttribute="bottom" secondItem="Dai-bc-859" secondAttribute="bottom" constant="12" id="PDr-hS-2T2"/>
+                    <constraint firstItem="Dai-bc-859" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Y9s-Wi-bQq"/>
+                    <constraint firstAttribute="bottom" secondItem="nrO-in-yal" secondAttribute="bottom" constant="12" id="Yxd-Zd-Vxd"/>
+                    <constraint firstAttribute="trailing" secondItem="vfF-lX-bSb" secondAttribute="trailing" constant="12" id="ZsE-tX-zyK"/>
+                    <constraint firstItem="vfF-lX-bSb" firstAttribute="leading" secondItem="Dai-bc-859" secondAttribute="trailing" constant="20" id="jxz-lL-wEe"/>
+                    <constraint firstItem="Dai-bc-859" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrO-in-yal" secondAttribute="trailing" constant="10" id="rvc-td-8ml"/>
+                    <constraint firstItem="nrO-in-yal" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="yEv-eU-t21"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countStepper" destination="sjv-Eu-pnY" id="SjR-6L-WoO"/>
+                <outlet property="countTextField" destination="WVZ-HN-a5F" id="GQd-nE-jFV"/>
+                <outlet property="nameLabel" destination="nrO-in-yal" id="Hkc-pa-qpE"/>
+                <outlet property="priceLabel" destination="vfF-lX-bSb" id="uVe-2l-qKZ"/>
+            </connections>
+            <point key="canvasLocation" x="186" y="53"/>
+        </tableViewCell>
+    </objects>
+</document>
