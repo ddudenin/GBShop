@@ -18,6 +18,10 @@ class CatalogTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "ProductTableViewCell",
                                       bundle: .none),
                                 forCellReuseIdentifier: "ProductCell")
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longPressGesture.minimumPressDuration = 0.5
+        self.tableView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +102,20 @@ class CatalogTableViewController: UITableViewController {
                                                 AnalyticsParameterContent: error.localizedDescription
                                             ])
             }
+        }
+    }
+    
+    @objc private func handleLongPress(longPressGesture: UILongPressGestureRecognizer) {
+        let pressPoint = longPressGesture.location(in: self.tableView)
+        
+        guard let indexPath = self.tableView.indexPathForRow(at: pressPoint) else { return }
+        
+        switch longPressGesture.state {
+        case .began:
+            print("Long press on row, at \(indexPath.row)")
+            let product = products[indexPath.row]
+        default:
+            return
         }
     }
 }
