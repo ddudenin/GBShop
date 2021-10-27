@@ -32,6 +32,8 @@ class FootnoteView: UIView {
         button.addTarget(self,
                          action: #selector(signUpButtonHandler(_:)),
                          for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityIdentifier = "register"
         return button
     }()
 

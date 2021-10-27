@@ -8,6 +8,8 @@ target 'OnlineStore' do
   # Pods for OnlineStore
   pod 'Alamofire', '~> 5.4'
   pod 'SwiftLint', '~> 0.43.1'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
   target 'OnlineStoreTests' do
     inherit! :search_paths

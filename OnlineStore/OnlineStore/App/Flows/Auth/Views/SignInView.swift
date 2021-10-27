@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SignInView: UIView {
     
@@ -24,6 +25,8 @@ class SignInView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.delegate = self
         textfield.returnKeyType = .continue
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign in login"
         return textfield
     }()
     
@@ -38,6 +41,8 @@ class SignInView: UIView {
         textfield.isSecureTextEntry = true
         textfield.delegate = self
         textfield.returnKeyType = .done
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign in password"
         return textfield
     }()
     
@@ -74,6 +79,8 @@ class SignInView: UIView {
         button.addTarget(self,
                          action: #selector(signInButtonHandler(_:)),
                          for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityIdentifier = "sign in"
         return button
     }()
     
@@ -138,7 +145,10 @@ class SignInView: UIView {
             let password = passwordTextField.text
         else {
             authDelegate?.showAlert(userMessage: "Не удалось прочитать данные авторизации")
-            log(message: "Ошибка чтения введенных данных", .Error)
+            let message = "Ошибка чтения данных для входа"
+            log(message: message, .Error)
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return
         }
         

@@ -34,6 +34,8 @@ class SignUpView: UIView {
         button.addTarget(self,
                          action: #selector(signUpButtonHandler(_:)),
                          for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityIdentifier = "sign up"
         return button
     }()
 

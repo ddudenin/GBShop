@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 var gBasket = [BasketItem]()
 
@@ -16,21 +17,21 @@ protocol BasketViewControllerDelegate: AnyObject {
 }
 
 class BasketViewController: UIViewController {
-
+    
     private lazy var basketTableView = UITableView()
     private lazy var paymentView = PaymentView()
-
+    
     private var totalBasketCost: Observable<Int> = Observable(0)
     private let userBasketInstance = UserBasketManager.shared
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         configureView()
-
+        
         paymentView.basketDelegate = self
-
+        
         totalBasketCost.addObserver(self,
                                     options: [.initial, .new],
                                     closure: {
@@ -38,28 +39,28 @@ class BasketViewController: UIViewController {
             self?.paymentView.setTotalPrice(price: value)
         })
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         totalBasketCost.value = userBasketInstance.getBasketCost()
         basketTableView.reloadData()
     }
-
+    
     private func configureView() {
         self.view.backgroundColor = .systemBackground
-
+        
         addPaymentView()
-
+        
         addBasketTableView()
         configureBasketTableView()
     }
-
+    
     private func addBasketTableView() {
         self.view.addSubview(basketTableView)
-
+        
         basketTableView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             basketTableView
                 .topAnchor
@@ -77,19 +78,19 @@ class BasketViewController: UIViewController {
                             constant: -10)
         ])
     }
-
+    
     private func addPaymentView() {
         self.view.addSubview(paymentView)
-
+        
         paymentView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let tabBarHeight: CGFloat = self.tabBarController?
             .tabBar
             .frame
             .size
             .height ?? 0
         let constraint: CGFloat = 20
-
+        
         NSLayoutConstraint.activate([
             paymentView
                 .leadingAnchor
@@ -103,65 +104,77 @@ class BasketViewController: UIViewController {
                             constant: -(tabBarHeight + constraint))
         ])
     }
-
+    
     private func configureBasketTableView() {
         basketTableView.delegate = self
         basketTableView.dataSource = self
-
+        
         basketTableView.register(UINib(nibName: "BasketTableViewCell",
                                        bundle: .none),
                                  forCellReuseIdentifier: "BasketCell")
     }
+    
+    private func logEventRemoveFromCart(success: Bool, content: String = "") {
+        Firebase.Analytics.logEvent(AnalyticsEventRemoveFromCart,
+                                    parameters: [
+                                        AnalyticsParameterSuccess: success,
+                                        AnalyticsParameterContent: content
+                                    ])
+    }
 }
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userBasketInstance.basket.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = basketTableView.dequeueReusableCell(withIdentifier: "BasketCell",
                                                              for: indexPath) as? BasketTableViewCell else {
+            let message = "Ошибка создания ячейки продукта в корзине"
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return UITableViewCell()
         }
-
+        
         cell.configure(basketItemAt: indexPath.row)
         cell.basketDelegate = self
-
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let id = userBasketInstance.basket[indexPath.row].product.id
             let basket = RequestFactory.shared.makeBasketRequestFactory()
-
+            
             basket.removeFromBasket(productId: id) { response in
                 switch response.result {
                 case .success(let result):
                     switch result.result {
                     case 1:
                         UserBasketManager.shared.deleteBasketItem(at: indexPath.row)
-
+                        
                         DispatchQueue
                             .main
                             .async {
                                 tableView.reloadData()
                                 self.totalBasketCost.value = UserBasketManager.shared.getBasketCost()
                             }
-
+                        
                         log(message: "\(result)", .Success)
+                        self.logEventRemoveFromCart(success: true)
                     default:
                         DispatchQueue
                             .main
@@ -170,10 +183,13 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                                                     message: "Remove from cart failed")
                             }
                         log(message: "\(result)", .Error)
+                        self.logEventRemoveFromCart(success: false)
                     }
-
+                    
                 case .failure(let error):
                     log(message: error.localizedDescription, .Error)
+                    self.logEventRemoveFromCart(success: false,
+                                                content: error.localizedDescription)
                 }
             }
         }
@@ -184,14 +200,14 @@ extension BasketViewController: BasketViewControllerDelegate {
     func increaseBasketCost(by price: Int) {
         totalBasketCost.value += price
     }
-
+    
     func decreaseBasketCost(by price: Int) {
         totalBasketCost.value -= price
     }
-
+    
     func makePayment() {
         guard !userBasketInstance.basket.isEmpty else { return }
-
+        
         let basket = RequestFactory.shared.makeBasketRequestFactory()
         basket.payBasket(userId: 123,
                          basketCost: totalBasketCost.value,
@@ -201,15 +217,21 @@ extension BasketViewController: BasketViewControllerDelegate {
                 switch result.result {
                 case 1:
                     UserBasketManager.shared.clearBasket()
-
+                    
                     DispatchQueue
                         .main
                         .async {
                             self.basketTableView.reloadData()
                             self.totalBasketCost.value = 0
                         }
-
+                    
                     log(message: "\(result)", .Success)
+                    Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: true,
+                                                    AnalyticsParameterCurrency: "RUB",
+                                                    AnalyticsParameterPrice: self.totalBasketCost.value
+                                                ])
                 default:
                     DispatchQueue
                         .main
@@ -218,9 +240,19 @@ extension BasketViewController: BasketViewControllerDelegate {
                                                 message: result.userMessage)
                         }
                     log(message: "\(result)", .Error)
+                    Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                                parameters: [
+                                                    AnalyticsParameterSuccess: false,
+                                                    AnalyticsParameterContent: result.userMessage
+                                                ])
                 }
             case .failure(let error):
                 log(message: error.localizedDescription, .Error)
+                Firebase.Analytics.logEvent(AnalyticsEventPurchase,
+                                            parameters: [
+                                                AnalyticsParameterSuccess: false,
+                                                AnalyticsParameterContent: error.localizedDescription
+                                            ])
             }
         }
     }

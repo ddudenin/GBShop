@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class UserDataView: UIView {
     
@@ -28,6 +29,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "username"
         return textfield
     }()
     
@@ -42,6 +45,8 @@ class UserDataView: UIView {
         textfield.isSecureTextEntry = true
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "sign up password"
         return textfield
     }()
     
@@ -55,6 +60,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "email"
         return textfield
     }()
     
@@ -74,6 +81,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "credit card"
         return textfield
     }()
     
@@ -87,6 +96,8 @@ class UserDataView: UIView {
         textfield.borderStyle = .roundedRect
         textfield.returnKeyType = .done
         textfield.delegate = self
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "bio"
         return textfield
     }()
     
@@ -131,7 +142,10 @@ class UserDataView: UIView {
             let bio = bioTextField.text
         else {
             signUpDelegate?.showAlert(userMessage: "Не удалось зарегестрироваться")
-            log(message: "Ошибка чтения данных регистрации", .Error)
+            let message = "Ошибка чтения данных регистрации"
+            log(message: message, .Error)
+            Firebase.Crashlytics.crashlytics().log(message)
+            assertionFailure(message)
             return nil
         }
         
