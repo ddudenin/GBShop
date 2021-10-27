@@ -17,10 +17,31 @@ default_platform(:ios)
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :custom_lane do
+  lane :prepare do
 
     # checkout release branch
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
+    # clear data
+    clear_derived_data
+    xcclean(
+        scheme: "OnlineStore",
+        workspace: "OnlineStore.xcworkspace"
+    )
+
+    # update a dependencies
+    cocoapods(
+        use_bundle_exec: false
+    )
+  end
+
+  lane :full_tests do
+   prepare
+
+   # run tests
+   run_tests
+
+   # make screenshots
+   capture_ios_screenshots
   end
 end

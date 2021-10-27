@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='OnlineStoreUITests.xctest' tests='4' failures='0'>
+  <testsuite name='OnlineStoreUITests.OnlineStoreSnapshots' tests='1' failures='0'>
+    <testcase classname='OnlineStoreUITests.OnlineStoreSnapshots' name='testExample' time='14.996'/>
+  </testsuite>
+  <testsuite name='OnlineStoreUITests.OnlineStoreUITests' tests='3' failures='0'>
+    <testcase classname='OnlineStoreUITests.OnlineStoreUITests' name='testFailureLogin' time='13.818'/>
+    <testcase classname='OnlineStoreUITests.OnlineStoreUITests' name='testSuccessLogin' time='12.279'/>
+    <testcase classname='OnlineStoreUITests.OnlineStoreUITests' name='testSuccessSignup' time='20.215'/>
+  </testsuite>
+</testsuites>
