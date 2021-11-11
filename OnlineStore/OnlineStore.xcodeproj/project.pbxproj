@@ -43,6 +43,8 @@
 		0A36240726FBB288002B31EE /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36240626FBB288002B31EE /* Ext+UIColor.swift */; };
 		0A3C740A26E37206008CACBA /* ProductReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740926E37206008CACBA /* ProductReviewsResult.swift */; };
 		0A3C740C26E3722D008CACBA /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C740B26E3722D008CACBA /* Review.swift */; };
+		0A3FDBF42729B878000B9F49 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FDBF32729B878000B9F49 /* SnapshotHelper.swift */; };
+		0A3FDBF62729B9F7000B9F49 /* OnlineStoreSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FDBF52729B9F7000B9F49 /* OnlineStoreSnapshots.swift */; };
 		0A47DBB5271C3EF6005F8AB2 /* FootnoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A47DBB4271C3EF6005F8AB2 /* FootnoteView.swift */; };
 		0A58DDB827188CCE009A9670 /* UserBasketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58DDB727188CCE009A9670 /* UserBasketManager.swift */; };
 		0A783F6026F5E9CE00F976C2 /* DefaultResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */; };
@@ -128,6 +130,8 @@
 		0A36240626FBB288002B31EE /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		0A3C740926E37206008CACBA /* ProductReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsResult.swift; sourceTree = "<group>"; };
 		0A3C740B26E3722D008CACBA /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		0A3FDBF32729B878000B9F49 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		0A3FDBF52729B9F7000B9F49 /* OnlineStoreSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStoreSnapshots.swift; sourceTree = "<group>"; };
 		0A47DBB4271C3EF6005F8AB2 /* FootnoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteView.swift; sourceTree = "<group>"; };
 		0A58DDB727188CCE009A9670 /* UserBasketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBasketManager.swift; sourceTree = "<group>"; };
 		0A783F5F26F5E9CE00F976C2 /* DefaultResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResult.swift; sourceTree = "<group>"; };
@@ -441,8 +445,10 @@
 		0AEA84D026BA686B00D4DF77 /* OnlineStoreUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0A3FDBF32729B878000B9F49 /* SnapshotHelper.swift */,
 				0AEA84D126BA686B00D4DF77 /* OnlineStoreUITests.swift */,
 				0AEA84D326BA686B00D4DF77 /* Info.plist */,
+				0A3FDBF52729B9F7000B9F49 /* OnlineStoreSnapshots.swift */,
 			);
 			path = OnlineStoreUITests;
 			sourceTree = "<group>";
@@ -751,7 +757,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnlineStore/Pods-OnlineStore-frameworks.sh\"\n\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnlineStore/Pods-OnlineStore-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF133C50B2B9B6EE608CD0D4 /* [CP] Check Pods Manifest.lock */ = {
@@ -891,6 +897,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AEA84D226BA686B00D4DF77 /* OnlineStoreUITests.swift in Sources */,
+				0A3FDBF62729B9F7000B9F49 /* OnlineStoreSnapshots.swift in Sources */,
+				0A3FDBF42729B878000B9F49 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
